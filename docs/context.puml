@@ -2,14 +2,16 @@
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
 
 Person(holder , "License Holder")
+Person(certifier, "Certifier")
 
-System(licium, "Licium", "Generates identifiers, attaches content licenses, create license terms, publish terms")
+System(licium, "Licium", "Generates identifiers, attaches content licenses, create license terms, publish terms, certify ISCC IDs")
 
 System_Ext(ams, "Assent Management System", "Contains copyrightable media files")
 System_Ext(blockchain, "Blockchain Network", "Stores ISCC on public ledger")
 
 
 Rel(holder, licium, "Use")
+Rel(certifier, licium, "Process certification requests")
 Rel(licium, ams, "Access files")
 Rel(licium, blockchain, "Submit ISCC transactions, participate in mining")
 

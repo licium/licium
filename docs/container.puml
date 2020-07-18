@@ -1,0 +1,34 @@
+@startuml Licium Context
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+
+Person(holder , "Rights Holder")
+Person(certifier , "Certifier")
+
+System_Boundary(licium, "Licium"){
+    Container(frontend, "Frontend", "React - Javascript - Browser/Electron", "GUI")
+    Container(wallet, "Wallet", "Local Browser Storage")
+    Container(backend, "Backend", "Spring-Boot - Java - Docker Container")
+    Container(gasstation, "Gas Station Network", "GSN")
+    Container(sc_iscc, "Register ISCC", "Ethereum Smart Contract")
+    Container(iscc, "ISCC Generator", "Python - Docker Container")
+}
+
+
+System_Ext(ams, "Assent Management System", "Contains copyrightable media files. Can be as simple as the local filesystem, or as complex as external software products")
+System_Ext(blockchain, "Blockchain Network", "Stores ISCC on public ledger")
+
+Rel(holder, frontend, "Access with web browser")
+Rel(certifier, frontend, "Access with web browser")
+Rel(frontend, backend, "configure, read state, trigger actions, upload files", "HTTP-JSON")
+Rel(backend, gasstation, "create transactions", "web3 JSON-RPC")
+Rel(backend, blockchain, "read state", "web3 JSON-RPC")
+Rel(frontend, ams, "read", "filesystem driver")
+Rel(frontend, wallet, "load", "browser API")
+Rel(sc_iscc, blockchain, "deployed at", "web3")
+Rel(gasstation, sc_iscc, "pay", "")
+
+
+Rel(backend, iscc, "generate ISCC for file", "HTTP")
+
+@enduml
