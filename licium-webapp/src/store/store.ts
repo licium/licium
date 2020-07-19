@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import NavigationReducer from './navigation/navigationSlice'
+import IdentificationTableReducer from './identification/identificationSlice'
 
 export const store = configureStore({
   reducer: {
-    navigation: NavigationReducer
+    navigation: NavigationReducer,
+    identificationTable: IdentificationTableReducer
   },
 });
 
