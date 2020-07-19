@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { ContentNavbar } from './features/ContentNavbar';
+import { NavBar } from './components/ContentNavbar/ContentNavbar';
 
 function App() {
   return (
-    <div><ContentNavbar></ContentNavbar></div>
+    <div><NavBar></NavBar></div>
   );
 }
 
