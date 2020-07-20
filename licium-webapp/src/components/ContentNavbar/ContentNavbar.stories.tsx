@@ -18,7 +18,6 @@ export default {
   component: Navbar,
   decorators: [withProvider],
 }
-
 export const Default = () => <Navbar></Navbar>
 export const IdentificationSelected = () => {
   store.dispatch(goToSection('id'))
