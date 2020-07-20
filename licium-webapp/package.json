@@ -53,7 +53,9 @@
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^5.3.19"
+    "@storybook/react": "^5.3.19",
+    "@types/faker": "^4.1.12",
+    "faker": "^4.1.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,css}": [

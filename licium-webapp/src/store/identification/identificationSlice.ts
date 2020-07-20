@@ -1,9 +1,9 @@
-import { Moment } from 'moment'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Moment } from 'moment'
 import { RootState } from '../store'
-import IdentificationTable from '../../components/Identification/IdentificationTable/IdentificationTable'
 
 export interface IdentificationItem {
+  id: string
   title: string
   metaCode: string
   contentCode: string
@@ -16,21 +16,38 @@ export type IdentificationTable = IdentificationItem[]
 
 const identificationTableSlice = createSlice({
   name: 'identificationTable',
-  initialState: [] as IdentificationTable,
+  initialState: {
+    items: [] as IdentificationTable,
+    selectedIds: [] as string[],
+  },
   reducers: {
-    clear: (state) => [],
+    clear: (state) => {
+      state.items = []
+      state.selectedIds = []
+    },
     addItem: (state, action: PayloadAction<IdentificationItem>) => {
-      state.push(action.payload)
+      state.items.push(action.payload)
     },
     addItems: (state, action: PayloadAction<IdentificationItem[]>) => {
-      action.payload.forEach((item) => state.push(item))
+      action.payload.forEach((item) => state.items.push(item))
+    },
+    selectItem: (state, action: PayloadAction<string>) => {
+      state.selectedIds.push(action.payload)
     },
   },
 })
 
-export const { clear, addItem, addItems } = identificationTableSlice.actions
+export const {
+  clear,
+  addItem,
+  addItems,
+  selectItem,
+} = identificationTableSlice.actions
 
 export const selectContentFromIdentificationTable = (state: RootState) =>
-  state.identificationTable
+  state.identificationTable.items
+
+export const selectedIds = (state: RootState) =>
+  state.identificationTable.selectedIds
 
 export default identificationTableSlice.reducer

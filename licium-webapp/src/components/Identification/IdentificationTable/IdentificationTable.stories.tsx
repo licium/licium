@@ -6,6 +6,7 @@ import {
   addItems,
   clear,
   IdentificationItem,
+  selectItem,
 } from '../../../store/identification/identificationSlice'
 import { store } from '../../../store/store'
 import IdentificationTable from './IdentificationTable'
@@ -17,6 +18,7 @@ const withProvider = (story: StoryFn<any>) => (
 
 const demoItems: IdentificationItem[] = [
   {
+    id: 'randomId',
     title: 'aysmptotic behaviour of eisenstein ingegrals',
     metaCode: 'LoD5',
     contentCode: 'LoD5',
@@ -26,14 +28,16 @@ const demoItems: IdentificationItem[] = [
   },
 ]
 
-const manyDemoItems: IdentificationItem[] = [...Array(100)].map((x) => ({
-  title: faker.system.fileName(),
-  metaCode: faker.random.alphaNumeric(5),
-  contentCode: faker.random.alphaNumeric(5),
-  fileName: faker.system.fileName(),
-  location: faker.system.directoryPath(),
-  timestamp: moment(faker.date.past()),
-}))
+const manyDemoItems = (numberOfItems: number): IdentificationItem[] =>
+  [...Array(numberOfItems)].map((x) => ({
+    id: faker.random.uuid(),
+    title: faker.system.fileName(),
+    metaCode: faker.random.alphaNumeric(5),
+    contentCode: faker.random.alphaNumeric(5),
+    fileName: faker.system.fileName(),
+    location: faker.system.directoryPath(),
+    timestamp: moment(faker.date.past()),
+  }))
 
 export default {
   title: 'Identification Table',
@@ -54,6 +58,15 @@ export const withSingleEntry = () => {
 
 export const withManyRandomEntries = () => {
   store.dispatch(clear())
-  store.dispatch(addItems(manyDemoItems))
+  store.dispatch(addItems(manyDemoItems(100)))
+  return <IdentificationTable></IdentificationTable>
+}
+
+export const withItemsPreselected = () => {
+  const demoItems = manyDemoItems(10)
+  const idsToSelect = demoItems.slice(0, 3).map((item) => item.id)
+  store.dispatch(clear())
+  store.dispatch(addItems(demoItems))
+  idsToSelect.forEach((id) => store.dispatch(selectItem(id)))
   return <IdentificationTable></IdentificationTable>
 }
