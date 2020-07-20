@@ -1,15 +1,15 @@
+import { StoryFn } from '@storybook/addons'
+import moment from 'moment'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { StoryFn } from '@storybook/addons'
-import { store } from '../../../store/store'
-import { storiesOf } from '@storybook/react'
-import IdentificationTable from './IdentificationTable'
 import {
   addItems,
-  IdentificationItem,
   clear,
+  IdentificationItem,
 } from '../../../store/identification/identificationSlice'
-import moment from 'moment'
+import { store } from '../../../store/store'
+import IdentificationTable from './IdentificationTable'
+import faker from 'faker'
 
 const withProvider = (story: StoryFn<any>) => (
   <Provider store={store}>{story()}</Provider>
@@ -26,14 +26,34 @@ const demoItems: IdentificationItem[] = [
   },
 ]
 
-storiesOf('Identification Table', module)
-  .addDecorator(withProvider)
-  .add('Empty Table', () => {
-    store.dispatch(clear())
-    return <IdentificationTable></IdentificationTable>
-  })
-  .add('With Data', () => {
-    store.dispatch(clear())
-    store.dispatch(addItems(demoItems))
-    return <IdentificationTable></IdentificationTable>
-  })
+const manyDemoItems: IdentificationItem[] = [...Array(100)].map((x) => ({
+  title: faker.system.fileName(),
+  metaCode: faker.random.alphaNumeric(5),
+  contentCode: faker.random.alphaNumeric(5),
+  fileName: faker.system.fileName(),
+  location: faker.system.directoryPath(),
+  timestamp: moment(faker.date.past()),
+}))
+
+export default {
+  title: 'Identification Table',
+  component: IdentificationTable,
+  decorators: [withProvider],
+}
+
+export const emptyTable = () => {
+  store.dispatch(clear())
+  return <IdentificationTable></IdentificationTable>
+}
+
+export const withSingleEntry = () => {
+  store.dispatch(clear())
+  store.dispatch(addItems(demoItems))
+  return <IdentificationTable></IdentificationTable>
+}
+
+export const withManyRandomEntries = () => {
+  store.dispatch(clear())
+  store.dispatch(addItems(manyDemoItems))
+  return <IdentificationTable></IdentificationTable>
+}

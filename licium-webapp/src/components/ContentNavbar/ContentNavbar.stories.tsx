@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import { goToSection } from '../../store/navigation/navigationSlice'
 import { store } from '../../store/store'
 import { NavBar } from './ContentNavbar'
-import { Navbar } from 'react-bootstrap'
 
 const withProvider = (story: StoryFn<any>) => (
   <Provider store={store}>{story()}</Provider>
@@ -15,10 +14,10 @@ const withProvider = (story: StoryFn<any>) => (
 
 export default {
   title: 'Navbar',
-  component: Navbar,
+  component: NavBar,
   decorators: [withProvider],
 }
-export const Default = () => <Navbar></Navbar>
+export const Default = () => <NavBar></NavBar>
 export const IdentificationSelected = () => {
   store.dispatch(goToSection('id'))
   return <NavBar></NavBar>

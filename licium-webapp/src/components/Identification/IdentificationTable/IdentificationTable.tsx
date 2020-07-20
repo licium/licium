@@ -18,7 +18,7 @@ export default function IdentificationTable() {
   ))
 
   return (
-    <Table>
+    <Table size="sm" striped bordered hover>
       <thead>
         <th>Title</th>
         <th>Meta-Code</th>
