@@ -31,8 +31,13 @@ const identificationTableSlice = createSlice({
     addItems: (state, action: PayloadAction<IdentificationItem[]>) => {
       action.payload.forEach((item) => state.items.push(item))
     },
-    selectItem: (state, action: PayloadAction<string>) => {
-      state.selectedIds.push(action.payload)
+    toggleSelect: (state, action: PayloadAction<string>) => {
+      if (state.selectedIds.includes(action.payload)) {
+        const indexOfId = state.selectedIds.indexOf(action.payload)
+        state.selectedIds.splice(indexOfId, 1)
+      } else {
+        state.selectedIds.push(action.payload)
+      }
     },
   },
 })
@@ -41,7 +46,7 @@ export const {
   clear,
   addItem,
   addItems,
-  selectItem,
+  toggleSelect,
 } = identificationTableSlice.actions
 
 export const selectContentFromIdentificationTable = (state: RootState) =>

@@ -6,7 +6,7 @@ import {
   addItems,
   clear,
   IdentificationItem,
-  selectItem,
+  toggleSelect,
 } from '../../../store/identification/identificationSlice'
 import { store } from '../../../store/store'
 import IdentificationTable from './IdentificationTable'
@@ -67,6 +67,6 @@ export const withItemsPreselected = () => {
   const idsToSelect = demoItems.slice(0, 3).map((item) => item.id)
   store.dispatch(clear())
   store.dispatch(addItems(demoItems))
-  idsToSelect.forEach((id) => store.dispatch(selectItem(id)))
+  idsToSelect.forEach((id) => store.dispatch(toggleSelect(id)))
   return <IdentificationTable></IdentificationTable>
 }

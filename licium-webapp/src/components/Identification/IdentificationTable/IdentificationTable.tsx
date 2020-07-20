@@ -1,34 +1,28 @@
-import React, { ChangeEvent } from 'react'
-import { Table, Form } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectContentFromIdentificationTable } from '../../../store/identification/identificationSlice'
-import './IdentificationTable.css'
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectItem,
+  selectContentFromIdentificationTable,
   selectedIds,
+  toggleSelect,
 } from '../../../store/identification/identificationSlice'
+import './IdentificationTable.css'
 
 export default function IdentificationTable() {
   const tableData = useSelector(selectContentFromIdentificationTable)
   const dispatch = useDispatch()
   const selectedItems = useSelector(selectedIds)
 
-  const handleCheckbox = (id: string, event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      dispatch(selectItem(id))
-    }
+  const handleRowClick = (id: string) => {
+    dispatch(toggleSelect(id))
   }
 
   const isChecked = (id: string) => selectedItems.includes(id)
 
   const tableBody = tableData.map((item) => (
-    <tr key={item.id}>
+    <tr key={item.id} onClick={() => handleRowClick(item.id)}>
       <td className="centered">
-        <input
-          type="checkbox"
-          onChange={(e) => handleCheckbox(item.id, e)}
-          checked={isChecked(item.id)}
-        ></input>
+        <input type="checkbox" checked={isChecked(item.id)}></input>
       </td>
       <td>{item.title}</td>
       <td>{item.metaCode}</td>
@@ -40,7 +34,7 @@ export default function IdentificationTable() {
   ))
 
   return (
-    <Table size="sm" striped bordered hovered>
+    <Table size="sm" striped bordered hover>
       <thead>
         <tr>
           <th>Select</th>
