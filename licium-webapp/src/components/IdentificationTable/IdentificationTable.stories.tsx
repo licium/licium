@@ -7,8 +7,8 @@ import {
   clear,
   IdentificationItem,
   toggleSelect,
-} from '../../../store/identification/identificationSlice'
-import { store } from '../../../store/store'
+} from '../../store/identification/identificationSlice'
+import { store } from '../../store/store'
 import IdentificationTable from './IdentificationTable'
 import faker from 'faker'
 

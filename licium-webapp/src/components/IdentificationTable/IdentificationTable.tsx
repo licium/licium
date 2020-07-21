@@ -5,7 +5,7 @@ import {
   selectContentFromIdentificationTable,
   selectedIds,
   toggleSelect,
-} from '../../../store/identification/identificationSlice'
+} from '../../store/identification/identificationSlice'
 import './IdentificationTable.css'
 
 export default function IdentificationTable() {
