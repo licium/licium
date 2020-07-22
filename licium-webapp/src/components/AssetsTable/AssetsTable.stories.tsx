@@ -5,18 +5,18 @@ import { Provider } from 'react-redux'
 import {
   addItems,
   clear,
-  IdentificationItem,
+  AssetItem,
   toggleSelect,
-} from '../../store/identification/identificationSlice'
+} from '../../store/asset/assetSlice'
 import { store } from '../../store/store'
-import IdentificationTable from './IdentificationTable'
+import AssetsTable from './AssetsTable'
 import faker from 'faker'
 
 const withProvider = (story: StoryFn<any>) => (
   <Provider store={store}>{story()}</Provider>
 )
 
-const demoItems: IdentificationItem[] = [
+const demoItems: AssetItem[] = [
   {
     id: 'randomId',
     title: 'aysmptotic behaviour of eisenstein ingegrals',
@@ -28,7 +28,7 @@ const demoItems: IdentificationItem[] = [
   },
 ]
 
-export const manyDemoItems = (numberOfItems: number): IdentificationItem[] =>
+export const manyDemoItems = (numberOfItems: number): AssetItem[] =>
   [...Array(numberOfItems)].map(() => ({
     id: faker.random.uuid(),
     title: faker.system.fileName(),
@@ -41,25 +41,26 @@ export const manyDemoItems = (numberOfItems: number): IdentificationItem[] =>
 
 export default {
   title: 'Identification Table',
-  component: IdentificationTable,
+  component: AssetsTable,
   decorators: [withProvider],
+  excludeStories: ['manyDemoItems'],
 }
 
 export const emptyTable = () => {
   store.dispatch(clear())
-  return <IdentificationTable />
+  return <AssetsTable />
 }
 
 export const withSingleEntry = () => {
   store.dispatch(clear())
   store.dispatch(addItems(demoItems))
-  return <IdentificationTable />
+  return <AssetsTable />
 }
 
 export const withManyRandomEntries = () => {
   store.dispatch(clear())
   store.dispatch(addItems(manyDemoItems(100)))
-  return <IdentificationTable />
+  return <AssetsTable />
 }
 
 export const withItemsPreselected = () => {
@@ -68,5 +69,5 @@ export const withItemsPreselected = () => {
   store.dispatch(clear())
   store.dispatch(addItems(demoItems))
   idsToSelect.forEach((id) => store.dispatch(toggleSelect(id)))
-  return <IdentificationTable />
+  return <AssetsTable />
 }

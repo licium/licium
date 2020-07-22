@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Moment } from 'moment'
 import { RootState } from '../store'
 
-export interface IdentificationItem {
+export interface AssetItem {
   id: string
   title: string
   metaCode: string
@@ -12,12 +12,12 @@ export interface IdentificationItem {
   timestamp: Moment
 }
 
-export type IdentificationTable = IdentificationItem[]
+export type AssetTable = AssetItem[]
 
-const identificationTableSlice = createSlice({
-  name: 'identificationTable',
+const assetTableSlice = createSlice({
+  name: 'assetTable',
   initialState: {
-    items: [] as IdentificationTable,
+    items: [] as AssetTable,
     selectedIds: [] as string[],
   },
   reducers: {
@@ -25,10 +25,10 @@ const identificationTableSlice = createSlice({
       state.items = []
       state.selectedIds = []
     },
-    addItem: (state, action: PayloadAction<IdentificationItem>) => {
+    addItem: (state, action: PayloadAction<AssetItem>) => {
       state.items.push(action.payload)
     },
-    addItems: (state, action: PayloadAction<IdentificationItem[]>) => {
+    addItems: (state, action: PayloadAction<AssetItem[]>) => {
       action.payload.forEach((item) => state.items.push(item))
     },
     toggleSelect: (state, action: PayloadAction<string>) => {
@@ -47,12 +47,19 @@ export const {
   addItem,
   addItems,
   toggleSelect,
-} = identificationTableSlice.actions
+} = assetTableSlice.actions
 
-export const selectContentFromIdentificationTable = (state: RootState) =>
-  state.identificationTable.items
+export const selectContentFromAssetTable = (state: RootState) =>
+  state.assetTable.items
 
-export const selectedIds = (state: RootState) =>
-  state.identificationTable.selectedIds
+export const selectedIds = (state: RootState) => state.assetTable.selectedIds
 
-export default identificationTableSlice.reducer
+export const selectSelectedAssets = (state: RootState) =>
+  state.assetTable.items.filter((selectedItem) => {
+    return state.assetTable.selectedIds.includes(selectedItem.id)
+  })
+
+export const selectNoAssetSelected = (state: RootState) =>
+  state.assetTable.selectedIds.length === 0
+
+export default assetTableSlice.reducer

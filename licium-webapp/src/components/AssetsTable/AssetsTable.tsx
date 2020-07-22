@@ -2,14 +2,14 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectContentFromIdentificationTable,
+  selectContentFromAssetTable,
   selectedIds,
   toggleSelect,
-} from '../../store/identification/identificationSlice'
-import './IdentificationTable.scss'
+} from '../../store/asset/assetSlice'
+import './AssetsTable.scss'
 
-export default function IdentificationTable() {
-  const tableData = useSelector(selectContentFromIdentificationTable)
+export default function AssetsTable() {
+  const tableData = useSelector(selectContentFromAssetTable)
   const dispatch = useDispatch()
   const selectedItems = useSelector(selectedIds)
 

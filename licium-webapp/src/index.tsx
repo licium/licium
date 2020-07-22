@@ -7,8 +7,8 @@ import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { addItems } from './store/identification/identificationSlice'
-import { manyDemoItems } from './components/IdentificationTable/IdentificationTable.stories'
+import { addItems } from './store/asset/assetSlice'
+import { manyDemoItems } from './components/AssetsTable/AssetsTable.stories'
 
 store.dispatch(addItems(manyDemoItems(20)))
 

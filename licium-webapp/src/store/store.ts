@@ -1,11 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import NavigationReducer from './navigation/navigationSlice'
-import IdentificationTableReducer from './identification/identificationSlice'
+import assetTableReducer from './asset/assetSlice'
 
 export const store = configureStore({
   reducer: {
     navigation: NavigationReducer,
-    identificationTable: IdentificationTableReducer,
+    assetTable: assetTableReducer,
   },
   middleware: [],
 })
