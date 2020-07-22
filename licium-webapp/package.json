@@ -15,7 +15,6 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "bootstrap": "^4.5.0",
-    "cypress-cucumber-preprocessor": "^2.5.4",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "moment": "^2.27.0",
@@ -45,7 +44,7 @@
     ]
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": false
+    "nonGlobalStepDefinitions": true
   },
   "browserslist": {
     "production": [
@@ -67,6 +66,7 @@
     "@storybook/react": "^5.3.19",
     "@types/faker": "^4.1.12",
     "cypress": "^4.11.0",
+    "cypress-cucumber-preprocessor": "^2.5.4",
     "eslint-plugin-cypress": "^2.11.1",
     "faker": "^4.1.0"
   },

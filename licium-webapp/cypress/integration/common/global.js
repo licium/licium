@@ -1,5 +1,4 @@
-import {And, Given} from 'cypress-cucumber-preprocessor/steps';
-
+import {Given} from 'cypress-cucumber-preprocessor/steps';
 
 export function openApplication() {
     cy.visit('/')
