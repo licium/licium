@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './certificate-white-black.png'
+import logo from './Logo.svg'
 import './Logo.css'
 
 type Size = 'sm' | 'm' | 'l'
