@@ -28,8 +28,8 @@ const demoItems: IdentificationItem[] = [
   },
 ]
 
-const manyDemoItems = (numberOfItems: number): IdentificationItem[] =>
-  [...Array(numberOfItems)].map((x) => ({
+export const manyDemoItems = (numberOfItems: number): IdentificationItem[] =>
+  [...Array(numberOfItems)].map(() => ({
     id: faker.random.uuid(),
     title: faker.system.fileName(),
     metaCode: faker.random.alphaNumeric(5),
@@ -47,19 +47,19 @@ export default {
 
 export const emptyTable = () => {
   store.dispatch(clear())
-  return <IdentificationTable></IdentificationTable>
+  return <IdentificationTable />
 }
 
 export const withSingleEntry = () => {
   store.dispatch(clear())
   store.dispatch(addItems(demoItems))
-  return <IdentificationTable></IdentificationTable>
+  return <IdentificationTable />
 }
 
 export const withManyRandomEntries = () => {
   store.dispatch(clear())
   store.dispatch(addItems(manyDemoItems(100)))
-  return <IdentificationTable></IdentificationTable>
+  return <IdentificationTable />
 }
 
 export const withItemsPreselected = () => {
@@ -68,5 +68,5 @@ export const withItemsPreselected = () => {
   store.dispatch(clear())
   store.dispatch(addItems(demoItems))
   idsToSelect.forEach((id) => store.dispatch(toggleSelect(id)))
-  return <IdentificationTable></IdentificationTable>
+  return <IdentificationTable />
 }

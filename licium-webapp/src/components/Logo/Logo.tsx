@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent as LogoSVG } from './Logo.svg'
-import './Logo.css'
+import './Logo.scss'
 
 type Size = 'sm' | 'm' | 'l'
 

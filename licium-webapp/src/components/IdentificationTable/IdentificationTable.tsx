@@ -6,7 +6,7 @@ import {
   selectedIds,
   toggleSelect,
 } from '../../store/identification/identificationSlice'
-import './IdentificationTable.css'
+import './IdentificationTable.scss'
 
 export default function IdentificationTable() {
   const tableData = useSelector(selectContentFromIdentificationTable)
@@ -20,10 +20,11 @@ export default function IdentificationTable() {
   const isChecked = (id: string) => selectedItems.includes(id)
 
   const tableBody = tableData.map((item) => (
-    <tr key={item.id} onClick={() => handleRowClick(item.id)}>
-      <td className="centered">
-        <input type="checkbox" checked={isChecked(item.id)}></input>
-      </td>
+    <tr
+      key={item.id}
+      onClick={() => handleRowClick(item.id)}
+      className={isChecked(item.id) ? 'selected' : ''}
+    >
       <td>{item.title}</td>
       <td>{item.metaCode}</td>
       <td>{item.contentCode}</td>
@@ -37,7 +38,6 @@ export default function IdentificationTable() {
     <Table size="sm" striped bordered hover>
       <thead>
         <tr>
-          <th>Select</th>
           <th>Title</th>
           <th>Meta-Code</th>
           <th>Content-Code</th>

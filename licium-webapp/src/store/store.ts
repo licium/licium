@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import NavigationReducer from './navigation/navigationSlice'
 import IdentificationTableReducer from './identification/identificationSlice'
 
