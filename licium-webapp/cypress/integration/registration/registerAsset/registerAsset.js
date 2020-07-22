@@ -1,6 +1,4 @@
-import {Given} from 'cucumber'
-import {When} from 'cucumber'
-import {Then} from 'cucumber'
+import {Given, Then, When} from 'cypress-cucumber-preprocessor';
 
 Given(/^A single asset$/, function() {
 
