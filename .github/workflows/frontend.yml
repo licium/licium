@@ -19,6 +19,6 @@ jobs:
       working-directory: licium-webapp
     - run: npm test
       working-directory: licium-webapp
-    - run: npm build
+    - run: npm run build
       working-directory: licium-webapp
       
