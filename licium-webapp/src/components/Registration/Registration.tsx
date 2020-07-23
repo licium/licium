@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import {
   Button,
   Col,
@@ -9,9 +9,13 @@ import {
   Row,
 } from 'react-bootstrap'
 import PageTitle, { PageTitleProps } from '../PageTitle/PageTitle'
-import { useSelector } from 'react-redux'
-import { selectSelectedAssets } from '../../store/asset/assetSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  clearSelection,
+  selectSelectedAssets,
+} from '../../store/asset/assetSlice'
 import './Registration.scss'
+import { useHistory } from 'react-router-dom'
 
 export default function Registration() {
   const pageTitleProps: PageTitleProps = {
@@ -28,9 +32,19 @@ export default function Registration() {
     </ListGroup.Item>
   ))
 
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [assetsVisible, setAssetsVisible] = useState<boolean>(false)
 
   const buttonText = () => (assetsVisible ? 'Hide assets' : 'Show assets')
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    dispatch(clearSelection())
+
+    history.push('/registrationSuccessful')
+  }
 
   return (
     <Container className="registration">
@@ -49,7 +63,7 @@ export default function Registration() {
         </Collapse>{' '}
       </Row>
       <Col>
-        <Form>
+        <Form onSubmit={(event) => handleSubmit(event)}>
           <Form.Group controlId="registrationForm.SelectBlockChain">
             <Form.Label>Select Blockchain</Form.Label>
             <Form.Control as="select">

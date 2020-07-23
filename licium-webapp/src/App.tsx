@@ -5,6 +5,7 @@ import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import Assets from './components/Assets/Assets'
 import Welcome from './components/Welcome/Welcome'
 import Registration from './components/Registration/Registration'
+import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
         <Route path={'/registration'}>
           <Registration />
         </Route>
+        <Route path={'/registrationSuccessful'}>
+          <RegistrationSuccess />
+        </Route>
+
         <Route>
           <Welcome />
         </Route>

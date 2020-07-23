@@ -39,6 +39,9 @@ const assetTableSlice = createSlice({
         state.selectedIds.push(action.payload)
       }
     },
+    clearSelection: (state) => {
+      state.selectedIds = []
+    },
   },
 })
 
@@ -47,6 +50,7 @@ export const {
   addItem,
   addItems,
   toggleSelect,
+  clearSelection,
 } = assetTableSlice.actions
 
 export const selectContentFromAssetTable = (state: RootState) =>
