@@ -4,6 +4,7 @@ import AppHeader from './components/AppHeader/AppHeader'
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import Assets from './components/Assets/Assets'
 import Welcome from './components/Welcome/Welcome'
+import Registration from './components/Registration/Registration'
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       <Switch>
         <Route path="/assets">
           <Assets />
+        </Route>
+        <Route path={'/registration'}>
+          <Registration />
         </Route>
         <Route>
           <Welcome />
