@@ -6,7 +6,7 @@ import { store } from './store/store'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bulma/css/bulma.min.css'
 import { addItems } from './store/asset/assetSlice'
 import { manyDemoItems } from './components/AssetsTable/AssetsTable.stories'
 

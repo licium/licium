@@ -1,5 +1,4 @@
 import React from 'react'
-import { Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   selectContentFromAssetTable,
@@ -23,7 +22,7 @@ export default function AssetsTable() {
     <tr
       key={item.id}
       onClick={() => handleRowClick(item.id)}
-      className={isChecked(item.id) ? 'selected' : ''}
+      className={isChecked(item.id) ? 'is-selected' : ''}
     >
       <td>{item.title}</td>
       <td>{item.metaCode}</td>
@@ -35,7 +34,7 @@ export default function AssetsTable() {
   ))
 
   return (
-    <Table size="sm" striped bordered hover>
+    <table className="table is-bordered is-striped is-hoverable">
       <thead>
         <tr>
           <th>Title</th>
@@ -47,6 +46,6 @@ export default function AssetsTable() {
         </tr>
       </thead>
       <tbody>{tableBody}</tbody>
-    </Table>
+    </table>
   )
 }

@@ -1,13 +1,4 @@
 import React, { FormEvent, useState } from 'react'
-import {
-  Button,
-  Col,
-  Collapse,
-  Container,
-  Form,
-  ListGroup,
-  Row,
-} from 'react-bootstrap'
 import PageTitle, { PageTitleProps } from '../PageTitle/PageTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -24,18 +15,21 @@ export default function Registration() {
   }
 
   const selectedAssets = useSelector(selectSelectedAssets)
+  const [assetsVisible, setAssetsVisible] = useState<boolean>(false)
 
-  const assetList = selectedAssets.map((asset) => (
-    <ListGroup.Item>
-      <span>{asset.fileName}</span>
-      <li className="fas fa-trash" />
-    </ListGroup.Item>
-  ))
+  const assetList = selectedAssets.map((asset) =>
+    assetsVisible ? (
+      <span className="panel-block">
+        <i className="fas fa-book" aria-hidden="true" />
+        {asset.fileName}
+      </span>
+    ) : (
+      ''
+    )
+  )
 
   const dispatch = useDispatch()
   const history = useHistory()
-
-  const [assetsVisible, setAssetsVisible] = useState<boolean>(false)
 
   const buttonText = () => (assetsVisible ? 'Hide assets' : 'Show assets')
 
@@ -47,42 +41,50 @@ export default function Registration() {
   }
 
   return (
-    <Container className="registration">
-      <Row>
-        <PageTitle {...pageTitleProps} />
-      </Row>
-      <Row className="asset-info">
-        <h6>{selectedAssets.length} assets selected.</h6>
-        <Button onClick={() => setAssetsVisible(!assetsVisible)}>
-          {buttonText()}
-        </Button>
-      </Row>
-      <Row>
-        <Collapse in={assetsVisible}>
-          <ListGroup variant="flush">{assetList}</ListGroup>
-        </Collapse>{' '}
-      </Row>
-      <Col>
-        <Form onSubmit={(event) => handleSubmit(event)}>
-          <Form.Group controlId="registrationForm.SelectBlockChain">
-            <Form.Label>Select Blockchain</Form.Label>
-            <Form.Control as="select">
-              <option>Ethereum</option>
-              <option>Bloxberg</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="registrationForm.SelectBlockChain">
-            <Form.Label>Select Wallet</Form.Label>
-            <Form.Control as="select">
-              <option>MyWallet</option>
-              <option>Someone elses wallet</option>
-            </Form.Control>
-          </Form.Group>
-          <Button variant={'primary'} type={'submit'}>
-            Register
-          </Button>
-        </Form>
-      </Col>
-    </Container>
+    <div className="container">
+      <PageTitle {...pageTitleProps} />
+
+      <nav className="panel">
+        <p className="panel-heading">{selectedAssets.length} assets selected</p>
+        {assetList}
+        <div className="panel-block">
+          <button
+            onClick={() => setAssetsVisible(!assetsVisible)}
+            className="button is-link is-outlined is-fullwidth"
+          >
+            {buttonText()}
+          </button>
+        </div>
+      </nav>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <div className="field">
+          <label className="label">Select Blockchain</label>
+          <div className="control">
+            <div className="select">
+              <select>
+                <option>Ethereum</option>
+                <option>Bloxberg</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">Select Wallet</label>
+          <div className="control">
+            <div className="select">
+              <select>
+                <option>MyWallet</option>
+                <option>Someone elses wallet</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
   )
 }

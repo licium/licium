@@ -1,5 +1,4 @@
 import React from 'react'
-import { ButtonGroup, Dropdown, DropdownButton } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export interface ActionButtonProps {
@@ -8,15 +7,27 @@ export interface ActionButtonProps {
 
 export default function ActionButton(props: ActionButtonProps) {
   return (
-    <DropdownButton
-      as={ButtonGroup}
-      title="Actions"
-      id="action-button"
-      disabled={props.disabled}
-    >
-      <Dropdown.Item eventKey="1">
-        <Link to={'/registration'}>Registration</Link>
-      </Dropdown.Item>
-    </DropdownButton>
+    <div className="dropdown is-hoverable">
+      <div className="dropdown-trigger">
+        <button
+          className="button is-primary"
+          aria-haspopup="true"
+          aria-controls="dropdown-menu"
+          disabled={props.disabled}
+        >
+          <span>Actions</span>
+          <span className="icon is-small">
+            <i className="fas fa-angle-down" aria-hidden="true" />
+          </span>
+        </button>
+      </div>
+      <div className="dropdown-menu" role="menu">
+        <div className="dropdown-content">
+          <div className="dropdown-item">
+            <Link to={'/registration'}>Registration</Link>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
