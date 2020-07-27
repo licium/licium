@@ -7,7 +7,7 @@ export default function RegistrationSuccess() {
   const selecedAssets = useSelector(selectSelectedAssets)
 
   return (
-    <section className="hero is-success">
+    <section className="hero is-medium is-success">
       <div className="hero-body">
         <div className="container">
           <h1 className="title">Registration successful</h1>
