@@ -5,5 +5,5 @@ import './Logo.scss'
 type Size = 'sm' | 'm' | 'l'
 
 export function Logo(props: { size?: Size }) {
-  return <LogoSVG height="auto" className={props.size} />
+  return <LogoSVG className={props.size} />
 }

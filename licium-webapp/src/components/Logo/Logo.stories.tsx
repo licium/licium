@@ -6,7 +6,7 @@ export default {
   component: Logo,
 }
 
-export const originalSize = () => <Logo></Logo>
-export const small = () => <Logo size="sm"></Logo>
-export const medium = () => <Logo size="m"></Logo>
-export const large = () => <Logo size="l"></Logo>
+export const originalSize = () => <Logo />
+export const small = () => <Logo size="sm" />
+export const medium = () => <Logo size="m" />
+export const large = () => <Logo size="l" />

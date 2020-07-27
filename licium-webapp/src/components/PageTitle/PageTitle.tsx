@@ -7,13 +7,11 @@ export interface PageTitleProps {
 
 export default function PageTitle(props: PageTitleProps) {
   return (
-    <section className="section">
-      <div className="hero is-primary">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">{props.title}</h1>
-            <h2 className="subtitle">{props.description}</h2>
-          </div>
+    <section className="hero is-primary">
+      <div className="hero-body">
+        <div className="container">
+          <h1 className="title">{props.title}</h1>
+          <h2 className="subtitle">{props.description}</h2>
         </div>
       </div>
     </section>
