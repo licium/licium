@@ -1,5 +1,5 @@
 import { AssetItem } from '../../store/asset/assetSlice'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 export const manyDemoItems: AssetItem[] = [
   {
@@ -9,7 +9,7 @@ export const manyDemoItems: AssetItem[] = [
     contentCode: 'vw0fb',
     fileName: 'hack_personal_loan_account.ots',
     location: 'd:/some/folder',
-    timestamp: moment('2019-10-06T02:12:31.178Z'),
+    timestamp: moment('2019-10-06T02:12:31.178Z').tz('UTC'),
   },
   {
     id: '588ce682-bda6-40dc-b84b-f29e75e3240e',
@@ -18,7 +18,7 @@ export const manyDemoItems: AssetItem[] = [
     contentCode: 'c7pii',
     fileName: 'maximized.qxb',
     location: 'd:/some/folder',
-    timestamp: moment('2019-12-29T07:04:14.834Z'),
+    timestamp: moment('2019-12-29T07:04:14.834Z').tz('UTC'),
   },
   {
     id: '33a94a30-0ad4-4c7d-b4f1-1bca4612a3aa',
@@ -27,7 +27,7 @@ export const manyDemoItems: AssetItem[] = [
     location: 'd:/some/folder',
     contentCode: 'j22vm',
     fileName: 'end_to_end_target_adapter.ecelp7470',
-    timestamp: moment('2020-07-11T09:03:17.073Z'),
+    timestamp: moment('2020-07-11T09:03:17.073Z').tz('UTC'),
   },
   {
     id: '679f3a21-d3c7-4310-af3d-b5607754a9b7',
@@ -36,7 +36,7 @@ export const manyDemoItems: AssetItem[] = [
     location: 'd:/some/folder',
     contentCode: 'twrn2',
     fileName: 'impactful_plastic.appcache',
-    timestamp: moment('2020-04-08T16:57:21.893Z'),
+    timestamp: moment('2020-04-08T16:57:21.893Z').tz('UTC'),
   },
   {
     id: '36ce82ec-1cec-4178-93f4-7be03495dfb9',
@@ -45,7 +45,7 @@ export const manyDemoItems: AssetItem[] = [
     location: 'd:/some/folder',
     contentCode: 'm0kt7',
     fileName: 'indexing.wmf',
-    timestamp: moment('2019-09-20T17:57:24.339Z'),
+    timestamp: moment('2019-09-20T17:57:24.339Z').tz('UTC'),
   },
   {
     id: '65c9ae34-f9d4-4e7d-9c4d-0373a3ebc986',
@@ -55,7 +55,7 @@ export const manyDemoItems: AssetItem[] = [
     location: 'd:/some/folder',
     contentCode: 'dfjeq',
     fileName: 'rubber_generate.mov',
-    timestamp: moment('2019-12-23T13:00:17.314Z'),
+    timestamp: moment('2019-12-23T13:00:17.314Z').tz('UTC'),
   },
   {
     id: '9a4e779f-28e6-4acd-b739-1c8420ffe19c',
@@ -64,7 +64,7 @@ export const manyDemoItems: AssetItem[] = [
     location: 'd:/some/folder',
     contentCode: 'jnoq7',
     fileName: 'web_enabled.wml',
-    timestamp: moment('2020-02-28T01:51:17.976Z'),
+    timestamp: moment('2020-02-28T01:51:17.976Z').tz('UTC'),
   },
   {
     id: '2ff1f929-363b-4a3c-944d-1566ce126e14',
@@ -73,7 +73,7 @@ export const manyDemoItems: AssetItem[] = [
     contentCode: 'hhl5v',
     fileName: 'agp.pclxl',
     location: 'd:/some/folder',
-    timestamp: moment('2019-12-29T09:36:01.979Z'),
+    timestamp: moment('2019-12-29T09:36:01.979Z').tz('UTC'),
   },
   {
     id: '1b1ccdca-047e-48d8-925e-a1aa87b38a59',
@@ -82,7 +82,7 @@ export const manyDemoItems: AssetItem[] = [
     contentCode: 'rs4va',
     fileName: 'deposit_kansas.rgb',
     location: 'd:/some/folder',
-    timestamp: moment('2020-04-07T13:12:52.188Z'),
+    timestamp: moment('2020-04-07T13:12:52.188Z').tz('UTC'),
   },
   {
     id: '44177929-d672-4f9d-88a3-f14fede97bd5',
@@ -91,6 +91,6 @@ export const manyDemoItems: AssetItem[] = [
     contentCode: 'vfrff',
     location: 'd:/some/folder',
     fileName: 'qatari_rial_withdrawal_tennessee.rdf',
-    timestamp: moment('2020-01-31T12:48:37.821Z'),
+    timestamp: moment('2020-01-31T12:48:37.821Z').tz('UTC'),
   },
 ]

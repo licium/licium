@@ -8,7 +8,7 @@ import {
   toggleSelect,
   clearSelection,
 } from './assetSlice'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import * as faker from 'faker'
 
 describe('identification', () => {
@@ -18,7 +18,7 @@ describe('identification', () => {
     fileName: faker.system.fileName(),
     location: 'location',
     metaCode: 'metacode',
-    timestamp: moment(faker.date.past()),
+    timestamp: moment(faker.date.past()).tz('UTC'),
     title: 'title',
   }
 
