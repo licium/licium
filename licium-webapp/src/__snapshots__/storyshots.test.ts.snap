@@ -1,0 +1,1869 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ActionButton Disabled 1`] = `
+<div
+  className="dropdown is-hoverable"
+>
+  <div
+    className="dropdown-trigger"
+  >
+    <button
+      aria-controls="dropdown-menu"
+      aria-haspopup="true"
+      className="button is-primary"
+      disabled={true}
+    >
+      <span>
+        Actions
+      </span>
+      <span
+        className="icon is-small"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-angle-down"
+        />
+      </span>
+    </button>
+  </div>
+  <div
+    className="dropdown-menu"
+    role="menu"
+  >
+    <div
+      className="dropdown-content"
+    >
+      <div
+        className="dropdown-item"
+      >
+        <a
+          href="/registration"
+          onClick={[Function]}
+        >
+          Registration
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ActionButton Enabled 1`] = `
+<div
+  className="dropdown is-hoverable"
+>
+  <div
+    className="dropdown-trigger"
+  >
+    <button
+      aria-controls="dropdown-menu"
+      aria-haspopup="true"
+      className="button is-primary"
+    >
+      <span>
+        Actions
+      </span>
+      <span
+        className="icon is-small"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-angle-down"
+        />
+      </span>
+    </button>
+  </div>
+  <div
+    className="dropdown-menu"
+    role="menu"
+  >
+    <div
+      className="dropdown-content"
+    >
+      <div
+        className="dropdown-item"
+      >
+        <a
+          href="/registration"
+          onClick={[Function]}
+        >
+          Registration
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots AppHeader Logo 1`] = `
+<div
+  className="app-header"
+>
+  <svg
+    className="sm"
+  >
+    Logo.svg
+  </svg>
+  licium
+</div>
+`;
+
+exports[`Storyshots AssetPanel Default 1`] = `
+<nav
+  className="asset-panel panel"
+>
+  <p
+    className="panel-heading"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <span>
+      0
+       assets selected
+    </span>
+    <span>
+      <button
+        className="button is-light is-small "
+        onClick={[Function]}
+      >
+        <i
+          className="icon fas fa-caret-down"
+        />
+      </button>
+    </span>
+  </p>
+  <div
+    className="asset-list expanded"
+  />
+</nav>
+`;
+
+exports[`Storyshots AssetPanel With Selected Assets 1`] = `
+<nav
+  className="asset-panel panel"
+>
+  <p
+    className="panel-heading"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <span>
+      10
+       assets selected
+    </span>
+    <span>
+      <button
+        className="button is-light is-small "
+        onClick={[Function]}
+      >
+        <i
+          className="icon fas fa-caret-down"
+        />
+      </button>
+    </span>
+  </p>
+  <div
+    className="asset-list expanded"
+  >
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      hack_personal_loan_account.ots
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      maximized.qxb
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      end_to_end_target_adapter.ecelp7470
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      impactful_plastic.appcache
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      indexing.wmf
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      rubber_generate.mov
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      web_enabled.wml
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      agp.pclxl
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      deposit_kansas.rgb
+    </a>
+    <a
+      className="panel-block"
+    >
+      <span
+        className="panel-icon"
+      >
+        <i
+          aria-hidden="true"
+          className="fas fa-book"
+        />
+      </span>
+      qatari_rial_withdrawal_tennessee.rdf
+    </a>
+  </div>
+</nav>
+`;
+
+exports[`Storyshots Assets Default 1`] = `
+<div
+  className="container"
+>
+  <section
+    className="hero is-primary"
+  >
+    <div
+      className="hero-body"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="title"
+        >
+          Your Assets
+        </h1>
+        <h2
+          className="subtitle"
+        >
+          Choose an Item from the list to perfom an action on it
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div
+    className="level"
+  >
+    <div
+      className="level-left"
+    />
+    <div
+      className="level-right"
+    >
+      <div
+        className="level-item"
+      >
+        <div
+          className="dropdown is-hoverable"
+        >
+          <div
+            className="dropdown-trigger"
+          >
+            <button
+              aria-controls="dropdown-menu"
+              aria-haspopup="true"
+              className="button is-primary"
+              disabled={true}
+            >
+              <span>
+                Actions
+              </span>
+              <span
+                className="icon is-small"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fas fa-angle-down"
+                />
+              </span>
+            </button>
+          </div>
+          <div
+            className="dropdown-menu"
+            role="menu"
+          >
+            <div
+              className="dropdown-content"
+            >
+              <div
+                className="dropdown-item"
+              >
+                <a
+                  href="/registration"
+                  onClick={[Function]}
+                >
+                  Registration
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="level"
+  >
+    <table
+      className="table is-bordered is-striped is-hoverable"
+    >
+      <thead>
+        <tr>
+          <th>
+            Title
+          </th>
+          <th>
+            Meta-Code
+          </th>
+          <th>
+            Content-Code
+          </th>
+          <th>
+            Filename
+          </th>
+          <th>
+            Location
+          </th>
+          <th>
+            Stamp
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            cambridgeshire.ait
+          </td>
+          <td>
+            yxtih
+          </td>
+          <td>
+            vw0fb
+          </td>
+          <td>
+            hack_personal_loan_account.ots
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2019-10-06T04:12:31.178+02:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            latvian_lats.rip
+          </td>
+          <td>
+            hzyob
+          </td>
+          <td>
+            c7pii
+          </td>
+          <td>
+            maximized.qxb
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2019-12-29T08:04:14.834+01:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            synergized_decentralized.x3dbz
+          </td>
+          <td>
+            4on6s
+          </td>
+          <td>
+            j22vm
+          </td>
+          <td>
+            end_to_end_target_adapter.ecelp7470
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2020-07-11T11:03:17.073+02:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            shoes.txf
+          </td>
+          <td>
+            9t99z
+          </td>
+          <td>
+            twrn2
+          </td>
+          <td>
+            impactful_plastic.appcache
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2020-04-08T18:57:21.893+02:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            invoice.bz
+          </td>
+          <td>
+            qvsc0
+          </td>
+          <td>
+            m0kt7
+          </td>
+          <td>
+            indexing.wmf
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2019-09-20T19:57:24.339+02:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            loop_california_mexican_peso_mexican_unidad_de_inversion_(udi).ssdl
+          </td>
+          <td>
+            gbsxr
+          </td>
+          <td>
+            dfjeq
+          </td>
+          <td>
+            rubber_generate.mov
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2019-12-23T14:00:17.314+01:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            payment.sxg
+          </td>
+          <td>
+            fcwe1
+          </td>
+          <td>
+            jnoq7
+          </td>
+          <td>
+            web_enabled.wml
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2020-02-28T02:51:17.976+01:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            tasty_advanced_electronics.pki
+          </td>
+          <td>
+            0aehn
+          </td>
+          <td>
+            hhl5v
+          </td>
+          <td>
+            agp.pclxl
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2019-12-29T10:36:01.979+01:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            vision_oriented_rand_loti.m1v
+          </td>
+          <td>
+            rzvls
+          </td>
+          <td>
+            rs4va
+          </td>
+          <td>
+            deposit_kansas.rgb
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2020-04-07T15:12:52.188+02:00
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
+          <td>
+            transmitter_liaison_silver.cb7
+          </td>
+          <td>
+            st70p
+          </td>
+          <td>
+            vfrff
+          </td>
+          <td>
+            qatari_rial_withdrawal_tennessee.rdf
+          </td>
+          <td>
+            d:/some/folder
+          </td>
+          <td>
+            2020-01-31T13:48:37.821+01:00
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Identification Table Empty Table 1`] = `
+<table
+  className="table is-bordered is-striped is-hoverable"
+>
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Meta-Code
+      </th>
+      <th>
+        Content-Code
+      </th>
+      <th>
+        Filename
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        Stamp
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;
+
+exports[`Storyshots Identification Table With Items Preselected 1`] = `
+<table
+  className="table is-bordered is-striped is-hoverable"
+>
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Meta-Code
+      </th>
+      <th>
+        Content-Code
+      </th>
+      <th>
+        Filename
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        Stamp
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      className="is-selected"
+      onClick={[Function]}
+    >
+      <td>
+        cambridgeshire.ait
+      </td>
+      <td>
+        yxtih
+      </td>
+      <td>
+        vw0fb
+      </td>
+      <td>
+        hack_personal_loan_account.ots
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-10-06T04:12:31.178+02:00
+      </td>
+    </tr>
+    <tr
+      className="is-selected"
+      onClick={[Function]}
+    >
+      <td>
+        latvian_lats.rip
+      </td>
+      <td>
+        hzyob
+      </td>
+      <td>
+        c7pii
+      </td>
+      <td>
+        maximized.qxb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T08:04:14.834+01:00
+      </td>
+    </tr>
+    <tr
+      className="is-selected"
+      onClick={[Function]}
+    >
+      <td>
+        synergized_decentralized.x3dbz
+      </td>
+      <td>
+        4on6s
+      </td>
+      <td>
+        j22vm
+      </td>
+      <td>
+        end_to_end_target_adapter.ecelp7470
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-07-11T11:03:17.073+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        shoes.txf
+      </td>
+      <td>
+        9t99z
+      </td>
+      <td>
+        twrn2
+      </td>
+      <td>
+        impactful_plastic.appcache
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-08T18:57:21.893+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        invoice.bz
+      </td>
+      <td>
+        qvsc0
+      </td>
+      <td>
+        m0kt7
+      </td>
+      <td>
+        indexing.wmf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-09-20T19:57:24.339+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        loop_california_mexican_peso_mexican_unidad_de_inversion_(udi).ssdl
+      </td>
+      <td>
+        gbsxr
+      </td>
+      <td>
+        dfjeq
+      </td>
+      <td>
+        rubber_generate.mov
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-23T14:00:17.314+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        payment.sxg
+      </td>
+      <td>
+        fcwe1
+      </td>
+      <td>
+        jnoq7
+      </td>
+      <td>
+        web_enabled.wml
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-02-28T02:51:17.976+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        tasty_advanced_electronics.pki
+      </td>
+      <td>
+        0aehn
+      </td>
+      <td>
+        hhl5v
+      </td>
+      <td>
+        agp.pclxl
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T10:36:01.979+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        vision_oriented_rand_loti.m1v
+      </td>
+      <td>
+        rzvls
+      </td>
+      <td>
+        rs4va
+      </td>
+      <td>
+        deposit_kansas.rgb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-07T15:12:52.188+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        transmitter_liaison_silver.cb7
+      </td>
+      <td>
+        st70p
+      </td>
+      <td>
+        vfrff
+      </td>
+      <td>
+        qatari_rial_withdrawal_tennessee.rdf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-01-31T13:48:37.821+01:00
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Identification Table With Many Entries 1`] = `
+<table
+  className="table is-bordered is-striped is-hoverable"
+>
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Meta-Code
+      </th>
+      <th>
+        Content-Code
+      </th>
+      <th>
+        Filename
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        Stamp
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        cambridgeshire.ait
+      </td>
+      <td>
+        yxtih
+      </td>
+      <td>
+        vw0fb
+      </td>
+      <td>
+        hack_personal_loan_account.ots
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-10-06T04:12:31.178+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        latvian_lats.rip
+      </td>
+      <td>
+        hzyob
+      </td>
+      <td>
+        c7pii
+      </td>
+      <td>
+        maximized.qxb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T08:04:14.834+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        synergized_decentralized.x3dbz
+      </td>
+      <td>
+        4on6s
+      </td>
+      <td>
+        j22vm
+      </td>
+      <td>
+        end_to_end_target_adapter.ecelp7470
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-07-11T11:03:17.073+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        shoes.txf
+      </td>
+      <td>
+        9t99z
+      </td>
+      <td>
+        twrn2
+      </td>
+      <td>
+        impactful_plastic.appcache
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-08T18:57:21.893+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        invoice.bz
+      </td>
+      <td>
+        qvsc0
+      </td>
+      <td>
+        m0kt7
+      </td>
+      <td>
+        indexing.wmf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-09-20T19:57:24.339+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        loop_california_mexican_peso_mexican_unidad_de_inversion_(udi).ssdl
+      </td>
+      <td>
+        gbsxr
+      </td>
+      <td>
+        dfjeq
+      </td>
+      <td>
+        rubber_generate.mov
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-23T14:00:17.314+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        payment.sxg
+      </td>
+      <td>
+        fcwe1
+      </td>
+      <td>
+        jnoq7
+      </td>
+      <td>
+        web_enabled.wml
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-02-28T02:51:17.976+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        tasty_advanced_electronics.pki
+      </td>
+      <td>
+        0aehn
+      </td>
+      <td>
+        hhl5v
+      </td>
+      <td>
+        agp.pclxl
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T10:36:01.979+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        vision_oriented_rand_loti.m1v
+      </td>
+      <td>
+        rzvls
+      </td>
+      <td>
+        rs4va
+      </td>
+      <td>
+        deposit_kansas.rgb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-07T15:12:52.188+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        transmitter_liaison_silver.cb7
+      </td>
+      <td>
+        st70p
+      </td>
+      <td>
+        vfrff
+      </td>
+      <td>
+        qatari_rial_withdrawal_tennessee.rdf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-01-31T13:48:37.821+01:00
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Identification Table With Single Entry 1`] = `
+<table
+  className="table is-bordered is-striped is-hoverable"
+>
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Meta-Code
+      </th>
+      <th>
+        Content-Code
+      </th>
+      <th>
+        Filename
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        Stamp
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        cambridgeshire.ait
+      </td>
+      <td>
+        yxtih
+      </td>
+      <td>
+        vw0fb
+      </td>
+      <td>
+        hack_personal_loan_account.ots
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-10-06T04:12:31.178+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        latvian_lats.rip
+      </td>
+      <td>
+        hzyob
+      </td>
+      <td>
+        c7pii
+      </td>
+      <td>
+        maximized.qxb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T08:04:14.834+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        synergized_decentralized.x3dbz
+      </td>
+      <td>
+        4on6s
+      </td>
+      <td>
+        j22vm
+      </td>
+      <td>
+        end_to_end_target_adapter.ecelp7470
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-07-11T11:03:17.073+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        shoes.txf
+      </td>
+      <td>
+        9t99z
+      </td>
+      <td>
+        twrn2
+      </td>
+      <td>
+        impactful_plastic.appcache
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-08T18:57:21.893+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        invoice.bz
+      </td>
+      <td>
+        qvsc0
+      </td>
+      <td>
+        m0kt7
+      </td>
+      <td>
+        indexing.wmf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-09-20T19:57:24.339+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        loop_california_mexican_peso_mexican_unidad_de_inversion_(udi).ssdl
+      </td>
+      <td>
+        gbsxr
+      </td>
+      <td>
+        dfjeq
+      </td>
+      <td>
+        rubber_generate.mov
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-23T14:00:17.314+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        payment.sxg
+      </td>
+      <td>
+        fcwe1
+      </td>
+      <td>
+        jnoq7
+      </td>
+      <td>
+        web_enabled.wml
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-02-28T02:51:17.976+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        tasty_advanced_electronics.pki
+      </td>
+      <td>
+        0aehn
+      </td>
+      <td>
+        hhl5v
+      </td>
+      <td>
+        agp.pclxl
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2019-12-29T10:36:01.979+01:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        vision_oriented_rand_loti.m1v
+      </td>
+      <td>
+        rzvls
+      </td>
+      <td>
+        rs4va
+      </td>
+      <td>
+        deposit_kansas.rgb
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-04-07T15:12:52.188+02:00
+      </td>
+    </tr>
+    <tr
+      className=""
+      onClick={[Function]}
+    >
+      <td>
+        transmitter_liaison_silver.cb7
+      </td>
+      <td>
+        st70p
+      </td>
+      <td>
+        vfrff
+      </td>
+      <td>
+        qatari_rial_withdrawal_tennessee.rdf
+      </td>
+      <td>
+        d:/some/folder
+      </td>
+      <td>
+        2020-01-31T13:48:37.821+01:00
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Storyshots Logo Large 1`] = `
+<svg
+  className="l"
+>
+  Logo.svg
+</svg>
+`;
+
+exports[`Storyshots Logo Medium 1`] = `
+<svg
+  className="m"
+>
+  Logo.svg
+</svg>
+`;
+
+exports[`Storyshots Logo Original Size 1`] = `
+<svg>
+  Logo.svg
+</svg>
+`;
+
+exports[`Storyshots Logo Small 1`] = `
+<svg
+  className="sm"
+>
+  Logo.svg
+</svg>
+`;
+
+exports[`Storyshots PageTitle Default 1`] = `
+<section
+  className="hero is-primary"
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="title"
+      >
+        This is a cool title
+      </h1>
+      <h2
+        className="subtitle"
+      >
+        Here is some more info about this page.
+      </h2>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Storyshots Registration Default 1`] = `
+<div
+  className="container"
+>
+  <section
+    className="hero is-primary"
+  >
+    <div
+      className="hero-body"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="title"
+        >
+          Registration
+        </h1>
+        <h2
+          className="subtitle"
+        >
+          Register your assets on the blockchain.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div
+    className="columns"
+  >
+    <div
+      className="column is-one-third"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="field"
+        >
+          <label
+            className="label"
+          >
+            Select Blockchain
+          </label>
+          <div
+            className="control"
+          >
+            <div
+              className="select"
+            >
+              <select>
+                <option>
+                  Ethereum
+                </option>
+                <option>
+                  Bloxberg
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div
+          className="field"
+        >
+          <label
+            className="label"
+          >
+            Select Wallet
+          </label>
+          <div
+            className="control"
+          >
+            <div
+              className="select"
+            >
+              <select>
+                <option>
+                  MyWallet
+                </option>
+                <option>
+                  Someone elses wallet
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div
+          className="field is-grouped"
+        >
+          <div
+            className="control"
+          >
+            <button
+              className="button is-link"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="column"
+    >
+      <nav
+        className="asset-panel panel"
+      >
+        <p
+          className="panel-heading"
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <span>
+            10
+             assets selected
+          </span>
+          <span>
+            <button
+              className="button is-light is-small "
+              onClick={[Function]}
+            >
+              <i
+                className="icon fas fa-caret-down"
+              />
+            </button>
+          </span>
+        </p>
+        <div
+          className="asset-list expanded"
+        >
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            hack_personal_loan_account.ots
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            maximized.qxb
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            end_to_end_target_adapter.ecelp7470
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            impactful_plastic.appcache
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            indexing.wmf
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            rubber_generate.mov
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            web_enabled.wml
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            agp.pclxl
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            deposit_kansas.rgb
+          </a>
+          <a
+            className="panel-block"
+          >
+            <span
+              className="panel-icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fas fa-book"
+              />
+            </span>
+            qatari_rial_withdrawal_tennessee.rdf
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Registration success Default 1`] = `
+<section
+  className="hero is-medium is-success"
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="title"
+      >
+        Registration successful
+      </h1>
+      <h2
+        className="subtitle"
+      >
+        You sucessfully registered 
+        10
+         assets.
+      </h2>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <button
+          className="button"
+        >
+          Back to home
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Storyshots Welcome Page Default 1`] = `
+<section
+  className="hero is-medium is-info"
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="title"
+      >
+        Welcome to licum.
+      </h1>
+      <h2
+        className="subtitle"
+      >
+        Licium does cool stuff with the blockchain.
+      </h2>
+      <a
+        href="/assets"
+        onClick={[Function]}
+      >
+        <button
+          className="button is-primary"
+        >
+          Show your assets
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+`;

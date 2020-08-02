@@ -5,8 +5,8 @@ import { store } from '../../store/store'
 import 'bulma/css/bulma.min.css'
 import AssetPanel from './AssetPanel'
 import { addItems, toggleSelect, clear } from '../../store/asset/assetSlice'
-import { manyDemoItems } from '../AssetsTable/AssetsTable.stories'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { manyDemoItems } from '../AssetsTable/manyDemoItems'
 
 const withStore = (storyFn: StoryFn<any>) => {
   store.dispatch(clear())
@@ -21,7 +21,7 @@ export default {
 
 export const Default = () => <AssetPanel />
 export const withSelectedAssets = () => {
-  const demoItems = manyDemoItems(10)
+  const demoItems = manyDemoItems
   store.dispatch(addItems(demoItems))
   demoItems.forEach((i) => store.dispatch(toggleSelect(i.id)))
   return <AssetPanel />

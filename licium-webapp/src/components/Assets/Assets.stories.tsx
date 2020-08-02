@@ -4,8 +4,8 @@ import { StoryFn } from '@storybook/addons'
 import { Provider } from 'react-redux'
 import { store } from '../../store/store'
 import { addItems, clear } from '../../store/asset/assetSlice'
-import { manyDemoItems } from '../AssetsTable/AssetsTable.stories'
 import { MemoryRouter } from 'react-router-dom'
+import { manyDemoItems } from '../AssetsTable/manyDemoItems'
 
 const withProvider = (story: StoryFn<any>) => (
   <Provider store={store}>{story()}</Provider>
@@ -23,6 +23,6 @@ export default {
 
 export const Default = () => {
   store.dispatch(clear())
-  store.dispatch(addItems(manyDemoItems(10)))
+  store.dispatch(addItems(manyDemoItems))
   return <Assets />
 }
