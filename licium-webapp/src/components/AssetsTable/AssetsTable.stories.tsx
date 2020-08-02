@@ -14,7 +14,6 @@ export default {
   title: 'Identification Table',
   component: AssetsTable,
   decorators: [withProvider],
-  excludeStories: ['manyDemoItems'],
 }
 
 export const emptyTable = () => {

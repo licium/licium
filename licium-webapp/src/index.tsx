@@ -8,9 +8,9 @@ import * as serviceWorker from './serviceWorker'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bulma/css/bulma.min.css'
 import { addItems } from './store/asset/assetSlice'
-import { manyDemoItems } from './components/AssetsTable/AssetsTable.stories'
+import { manyDemoItems } from './components/AssetsTable/manyDemoItems'
 
-store.dispatch(addItems(manyDemoItems(20)))
+store.dispatch(addItems(manyDemoItems))
 
 ReactDOM.render(
   <React.StrictMode>
