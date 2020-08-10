@@ -401,22 +401,34 @@ exports[`Storyshots Assets Default 1`] = `
     >
       <thead>
         <tr>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Title
           </th>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Meta-Code
           </th>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Content-Code
           </th>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Filename
           </th>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Location
           </th>
-          <th>
+          <th
+            onClick={[Function]}
+          >
             Stamp
           </th>
         </tr>
@@ -664,22 +676,34 @@ exports[`Storyshots Identification Table Empty Table 1`] = `
 >
   <thead>
     <tr>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Title
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Meta-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Content-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Filename
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Location
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Stamp
       </th>
     </tr>
@@ -694,22 +718,34 @@ exports[`Storyshots Identification Table With Items Preselected 1`] = `
 >
   <thead>
     <tr>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Title
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Meta-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Content-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Filename
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Location
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Stamp
       </th>
     </tr>
@@ -955,22 +991,34 @@ exports[`Storyshots Identification Table With Many Entries 1`] = `
 >
   <thead>
     <tr>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Title
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Meta-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Content-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Filename
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Location
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Stamp
       </th>
     </tr>
@@ -1216,22 +1264,34 @@ exports[`Storyshots Identification Table With Single Entry 1`] = `
 >
   <thead>
     <tr>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Title
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Meta-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Content-Code
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Filename
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Location
       </th>
-      <th>
+      <th
+        onClick={[Function]}
+      >
         Stamp
       </th>
     </tr>

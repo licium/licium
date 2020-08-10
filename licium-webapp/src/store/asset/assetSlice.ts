@@ -19,6 +19,8 @@ const assetTableSlice = createSlice({
   initialState: {
     items: [] as AssetTable,
     selectedIds: [] as string[],
+    sortedBy: 'title' as keyof AssetItem,
+    descending: true,
   },
   reducers: {
     clear: (state) => {
@@ -42,6 +44,20 @@ const assetTableSlice = createSlice({
     clearSelection: (state) => {
       state.selectedIds = []
     },
+    sortAssets: (state, action: PayloadAction<keyof AssetItem>) => {
+      state.items = state.items.sort((a, b) =>
+        state.descending
+          ? a[action.payload] < b[action.payload]
+            ? 1
+            : -1
+          : a[action.payload] > b[action.payload]
+          ? 1
+          : -1
+      )
+      state.sortedBy === action.payload
+        ? (state.descending = !state.descending)
+        : (state.sortedBy = action.payload)
+    },
   },
 })
 
@@ -51,6 +67,7 @@ export const {
   addItems,
   toggleSelect,
   clearSelection,
+  sortAssets,
 } = assetTableSlice.actions
 
 export const selectContentFromAssetTable = (state: RootState) =>
