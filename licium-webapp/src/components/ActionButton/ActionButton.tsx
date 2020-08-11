@@ -24,7 +24,13 @@ export default function ActionButton(props: ActionButtonProps) {
       <div className="dropdown-menu" role="menu">
         <div className="dropdown-content">
           <div className="dropdown-item">
-            <Link to={'/registration'}>Registration</Link>
+            <Link
+              to={{
+                pathname: `/registration/`,
+              }}
+            >
+              Registration
+            </Link>
           </div>
         </div>
       </div>
