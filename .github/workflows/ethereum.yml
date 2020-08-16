@@ -16,9 +16,7 @@ jobs:
         node-version: '12'
         
     - run: npm install -g truffle
-    - run: nohup truffle develop & 
+    - run: |
+        nohup truffle develop & 
+        truffle test
       working-directory: ethereum
-    - run: truffle test
-      working-directory: ethereum
-      
-      
