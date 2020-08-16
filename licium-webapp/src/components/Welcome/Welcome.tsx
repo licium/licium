@@ -1,8 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// @ts-ignore
-import { DrizzleContext } from '@drizzle/react-plugin'
-import { Drizzle } from './Drizzle'
 
 export default function Welcome() {
   return (
@@ -16,19 +13,12 @@ export default function Welcome() {
           <Link to="/assets">
             <button className="button is-primary">Show your assets</button>
           </Link>
+          <Link to="/blockchain">
+            <button className="button is-primary">
+              Visit blockchain content
+            </button>
+          </Link>
         </div>
-        <DrizzleContext.Consumer>
-          {(drizzleContext: any) => {
-            const { drizzle, drizzleState, initialized } = drizzleContext
-            console.log(drizzleContext)
-
-            if (!initialized) {
-              return 'Loading...'
-            }
-
-            return <Drizzle drizzle={drizzle} drizzleState={drizzleState} />
-          }}
-        </DrizzleContext.Consumer>
       </div>
     </section>
   )

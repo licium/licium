@@ -6,6 +6,7 @@ import Assets, { AssetItem } from './components/Assets/Assets'
 import Welcome from './components/Welcome/Welcome'
 import Registration from './components/Registration/Registration'
 import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
+import BlockchainContext from './components/BlockchainOutlet/BlockchainContext'
 
 function App() {
   const [selectedAssets, setSelectedAssets] = useState<AssetItem[]>([])
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path={'/registration'}>
           <Registration assetsForRegistration={selectedAssets} />
+        </Route>
+        <Route path={'/blockchain'}>
+          <BlockchainContext />
         </Route>
         <Route path={'/registrationSuccessful'}>
           <RegistrationSuccess />
