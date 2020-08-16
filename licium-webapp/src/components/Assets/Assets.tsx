@@ -13,6 +13,7 @@ export interface AssetItem {
   fileName: string
   location: string
   timestamp: Moment
+  transactionURL: string
 }
 
 export default function Assets(props: {
