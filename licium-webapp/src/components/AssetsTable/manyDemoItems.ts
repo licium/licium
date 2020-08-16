@@ -1,5 +1,5 @@
+import { AssetItem } from '../../store/asset/assetSlice'
 import moment from 'moment-timezone'
-import { AssetItem } from '../Assets/Assets'
 
 export const manyDemoItems: AssetItem[] = [
   {

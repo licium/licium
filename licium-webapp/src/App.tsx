@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
 import AppHeader from './components/AppHeader/AppHeader'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Assets, { AssetItem } from './components/Assets/Assets'
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
+import Assets from './components/Assets/Assets'
 import Welcome from './components/Welcome/Welcome'
 import Registration from './components/Registration/Registration'
 import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
 
 function App() {
-  const [selectedAssets, setSelectedAssets] = useState<AssetItem[]>([])
   return (
     <Router>
       <AppHeader />
       <Switch>
         <Route path="/assets">
-          <Assets onAssetsSelected={(assets) => setSelectedAssets(assets)} />
+          <Assets />
         </Route>
         <Route path={'/registration'}>
-          <Registration assetsForRegistration={selectedAssets} />
+          <Registration />
         </Route>
         <Route path={'/registrationSuccessful'}>
           <RegistrationSuccess />

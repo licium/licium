@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { AssetItem } from '../Assets/Assets'
+import { useSelector } from 'react-redux'
+import { selectSelectedAssets } from '../../store/asset/assetSlice'
 
-export default function AssetPanel(props: { selectedAssets: AssetItem[] }) {
+export default function AssetPanel() {
   const [assetsVisible, setAssetsVisible] = useState<boolean>(true)
-  const [selectedAssets] = useState(props.selectedAssets)
+  const selectedAssets = useSelector(selectSelectedAssets)
 
   const assetList = selectedAssets.map((asset) =>
     assetsVisible ? (

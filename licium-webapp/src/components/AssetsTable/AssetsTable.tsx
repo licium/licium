@@ -1,42 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  AssetItem,
+  selectContentFromAssetTable,
+  selectedIds,
+  toggleSelect,
+  sortAssets,
+} from '../../store/asset/assetSlice'
 import './AssetsTable.scss'
-import { AssetItem } from '../Assets/Assets'
 
-export default function AssetsTable(props: {
-  tableData: AssetItem[]
-  onItemSelected?: (items: AssetItem[]) => void
-}) {
-  const [tableData, setTableData] = useState(props.tableData)
-  const [sortKey, setSortKey] = useState('title')
-  const [descending, setDescending] = useState(true)
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
+export default function AssetsTable() {
+  const tableData = useSelector(selectContentFromAssetTable)
+
+  const dispatch = useDispatch()
+  const selectedItems = useSelector(selectedIds)
 
   const handleRowClick = (id: string) => {
-    const mutableIds = [...selectedIds]
-
-    selectedIds.includes(id)
-      ? mutableIds.splice(selectedIds.indexOf(id), 1)
-      : mutableIds.push(id)
-
-    setSelectedIds(mutableIds)
-    if (props.onItemSelected) {
-      props.onItemSelected(
-        tableData.filter((item) => mutableIds.includes(item.id))
-      )
-    }
+    dispatch(toggleSelect(id))
   }
-
-  const isChecked = (id: string) => selectedIds.includes(id)
 
   const sortBy = (key: keyof AssetItem) => {
-    setDescending(key === sortKey ? !descending : true)
-    setSortKey(key)
-    setTableData(
-      [...tableData].sort((a, b) =>
-        descending ? (a[key] < b[key] ? 1 : -1) : a[key] > b[key] ? 1 : -1
-      )
-    )
+    dispatch(sortAssets(key))
   }
+
+  const isChecked = (id: string) => selectedItems.includes(id)
 
   const tableBody = () =>
     tableData.map((item) => (
