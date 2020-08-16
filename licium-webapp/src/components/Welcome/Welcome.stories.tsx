@@ -14,4 +14,4 @@ export default {
   decorators: [withRouter],
 }
 
-//export const Default = () => <Welcome />
+export const Default = () => <Welcome />
