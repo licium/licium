@@ -1,9 +1,11 @@
-import React from "react";
-import { newContextComponents } from "@drizzle/react-components";
-import logo from "./logo.png";
+import React from 'react'
+// @ts-ignore
+import { newContextComponents } from '@drizzle/react-components'
+import logo from './logo.png'
 
-const { AccountData, ContractData, ContractForm } = newContextComponents;
+const { AccountData, ContractData, ContractForm } = newContextComponents
 
+// @ts-ignore
 export default ({ drizzle, drizzleState }) => {
   // destructure drizzle and drizzleState from props
   return (
@@ -46,25 +48,6 @@ export default ({ drizzle, drizzleState }) => {
       </div>
 
       <div className="section">
-        <h2>Greeter</h2>
-        <p>Data from greeter</p>
-        <p>
-          <strong>Stored Value: </strong>
-          <ContractData
-            drizzle={drizzle}
-            drizzleState={drizzleState}
-            contract="Greeter"
-            method="greeting"
-          />
-        </p>
-        <ContractForm
-          drizzle={drizzle}
-          contract="Greeter"
-          method="setGreeting"
-        />
-      </div>
-
-      <div className="section">
         <h2>TutorialToken</h2>
         <p>
           Here we have a form with custom, friendly labels. Also note the token
@@ -80,7 +63,7 @@ export default ({ drizzle, drizzleState }) => {
             contract="TutorialToken"
             method="totalSupply"
             methodArgs={[{ from: drizzleState.accounts[0] }]}
-          />{" "}
+          />{' '}
           <ContractData
             drizzle={drizzle}
             drizzleState={drizzleState}
@@ -104,7 +87,7 @@ export default ({ drizzle, drizzleState }) => {
           drizzle={drizzle}
           contract="TutorialToken"
           method="transfer"
-          labels={["To Address", "Amount to Send"]}
+          labels={['To Address', 'Amount to Send']}
         />
       </div>
 
@@ -144,5 +127,5 @@ export default ({ drizzle, drizzleState }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
