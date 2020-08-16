@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@drizzle/react-components": "^1.5.1",
+    "@drizzle/react-plugin": "^1.5.1",
+    "@drizzle/store": "^1.5.1",
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -13,7 +15,6 @@
     "@types/node": "^12.12.50",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
-    "@types/react-redux": "^7.1.9",
     "bulma": "^0.9.0",
     "husky": "^4.2.5",
     "jest-date-serializer": "^1.0.1",
@@ -24,9 +25,8 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.2",
     "typescript": "^3.8.3"
   },
   "scripts": {
@@ -67,12 +67,10 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
-    "@types/faker": "^4.1.12",
     "@types/react-router-dom": "^5.1.5",
     "cypress": "^4.11.0",
     "cypress-cucumber-preprocessor": "^2.5.4",
     "eslint-plugin-cypress": "^2.11.1",
-    "faker": "^4.1.0",
     "react-test-renderer": "^16.13.1"
   },
   "lint-staged": {

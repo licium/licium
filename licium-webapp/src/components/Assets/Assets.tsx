@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ActionButton from '../ActionButton/ActionButton'
 import AssetsTable from '../AssetsTable/AssetsTable'
 import PageTitle, { PageTitleProps } from '../PageTitle/PageTitle'
-import { useSelector } from 'react-redux'
-import { selectNoAssetSelected } from '../../store/asset/assetSlice'
+import { manyDemoItems } from '../AssetsTable/manyDemoItems'
+import { Moment } from 'moment'
 
-export default function Assets() {
+export interface AssetItem {
+  id: string
+  title: string
+  metaCode: string
+  contentCode: string
+  fileName: string
+  location: string
+  timestamp: Moment
+  transactionURL: string
+}
+
+export default function Assets(props: {
+  onAssetsSelected: (assets: AssetItem[]) => void
+}) {
+  const [selectedItems, setSelectedItems] = useState<AssetItem[]>([])
+
   const pageTitle: PageTitleProps = {
     title: 'Your Assets',
     description: `Choose an Item from the list to perfom an action on it`,
   }
 
-  const assetSelected = useSelector(selectNoAssetSelected)
+  const itemSelected = (items: AssetItem[]) => {
+    setSelectedItems(items)
+    props.onAssetsSelected(items)
+  }
 
   return (
     <div className={'container'}>
@@ -21,12 +39,15 @@ export default function Assets() {
         <div className="level-left" />
         <div className="level-right">
           <div className="level-item">
-            <ActionButton disabled={assetSelected} />
+            <ActionButton disabled={selectedItems.length === 0} />
           </div>
         </div>
       </div>
       <div className="level">
-        <AssetsTable />
+        <AssetsTable
+          tableData={manyDemoItems}
+          onItemSelected={(items) => itemSelected(items)}
+        />
       </div>
     </div>
   )

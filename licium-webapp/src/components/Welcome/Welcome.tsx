@@ -13,6 +13,11 @@ export default function Welcome() {
           <Link to="/assets">
             <button className="button is-primary">Show your assets</button>
           </Link>
+          <Link to="/blockchain">
+            <button className="button is-primary">
+              Visit blockchain content
+            </button>
+          </Link>
         </div>
       </div>
     </section>

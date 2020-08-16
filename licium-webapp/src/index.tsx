@@ -2,21 +2,27 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
-import { store } from './store/store'
-import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bulma/css/bulma.min.css'
-import { addItems } from './store/asset/assetSlice'
-import { manyDemoItems } from './components/AssetsTable/manyDemoItems'
+import Greeter from './assets/contracts/Greeter.json'
+// @ts-ignore
+import { DrizzleContext } from '@drizzle/react-plugin'
+// @ts-ignore
+import { Drizzle } from '@drizzle/store'
 
-store.dispatch(addItems(manyDemoItems))
+const drizzleOptions = {
+  contracts: [Greeter],
+  events: {},
+}
+
+const drizzle = new Drizzle(drizzleOptions as any)
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <DrizzleContext.Provider drizzle={drizzle}>
       <App />
-    </Provider>
+    </DrizzleContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

@@ -1,23 +1,22 @@
 import React, { FormEvent } from 'react'
 import PageTitle, { PageTitleProps } from '../PageTitle/PageTitle'
-import { useDispatch } from 'react-redux'
-import { clearSelection } from '../../store/asset/assetSlice'
 import './Registration.scss'
 import { useHistory } from 'react-router-dom'
 import AssetPanel from '../AssetPanel/AssetPanel'
+import { AssetItem } from '../Assets/Assets'
 
-export default function Registration() {
+export default function Registration(props: {
+  assetsForRegistration: AssetItem[]
+}) {
   const pageTitleProps: PageTitleProps = {
     title: 'Registration',
     description: 'Register your assets on the blockchain.',
   }
 
-  const dispatch = useDispatch()
   const history = useHistory()
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    dispatch(clearSelection())
 
     history.push('/registrationSuccessful')
   }
@@ -59,7 +58,7 @@ export default function Registration() {
           </form>
         </div>
         <div className="column">
-          <AssetPanel />
+          <AssetPanel selectedAssets={props.assetsForRegistration} />
         </div>
       </div>
     </div>
