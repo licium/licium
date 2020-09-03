@@ -18,6 +18,9 @@ export default function Welcome() {
               Visit blockchain content
             </button>
           </Link>
+          <Link to="/iscc-registration">
+            <button className="button is-primary">Generate ISCC</button>
+          </Link>
         </div>
       </div>
     </section>

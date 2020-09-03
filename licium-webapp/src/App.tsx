@@ -7,6 +7,7 @@ import Welcome from './components/Welcome/Welcome'
 import Registration from './components/Registration/Registration'
 import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
 import BlockchainContext from './components/BlockchainOutlet/BlockchainContext'
+import { ISCCRegistration } from './components/ISCCRegistration/ISCCRegistration'
 
 function App() {
   const [selectedAssets, setSelectedAssets] = useState<AssetItem[]>([])
@@ -26,7 +27,9 @@ function App() {
         <Route path={'/registrationSuccessful'}>
           <RegistrationSuccess />
         </Route>
-
+        <Route path={'/iscc-registration'}>
+          <ISCCRegistration />
+        </Route>
         <Route>
           <Welcome />
         </Route>
