@@ -1387,6 +1387,16 @@ exports[`Storyshots Welcome Page Default 1`] = `
           Visit blockchain content
         </button>
       </a>
+      <a
+        href="/iscc-registration"
+        onClick={[Function]}
+      >
+        <button
+          className="button is-primary"
+        >
+          Generate ISCC
+        </button>
+      </a>
     </div>
   </div>
 </section>
