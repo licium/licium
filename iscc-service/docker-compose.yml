@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+    iscc-service:
+        build: .
+        ports:
+            - 9080:80
+            - 9088:8080
