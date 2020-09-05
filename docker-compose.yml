@@ -5,13 +5,14 @@ services:
     ports:
       - 8123:8080
     labels:
-      - "traefik.http.routers.iscc-service.rule=PathPrefix(`/api`)"
-      - "traefik.http.services.iscc-service.loadbalancer.server.port=8080"
+      - traefik.http.routers.iscc-service.rule=PathPrefix(`/api`)
+      - traefik.http.routers.iscc-service.middlewares=iscc-service-stipprefix
+      - traefik.http.services.iscc-service.loadbalancer.server.port=8080
+      - traefik.http.middlewares.iscc-service-stipprefix.stripprefix.prefixes=/api
   licium-webapp:
     build: licium-webapp/.
     labels:
       - "traefik.http.routers.licium-webapp.rule=PathPrefix(`/`)"
-      - "traefik.http.services.licium-webapp.loadbalancer.server.port=80"
   reverse-proxy:
     # The official v2 Traefik docker image
     image: traefik:v2.2
