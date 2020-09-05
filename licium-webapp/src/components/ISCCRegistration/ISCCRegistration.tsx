@@ -1,19 +1,11 @@
 import React, { FormEvent, useState } from 'react'
-
-export interface ISCC {
-  bits: string[]
-  extra: string
-  extra_trimmed: string
-  gmt: string
-  iscc: string
-  title: string
-  title_trimmed: string
-  tophash: string
-}
+import ISCC, { ISCCCode } from '../ISCC/ISCC'
 
 export function ISCCRegistration() {
-  const [url, setUrl] = useState<string>()
-  const [iscc, setISCC] = useState<ISCC>()
+  const [url, setUrl] = useState<string>(
+    'https://www.tagesschau.de/multimedia/bilder/spahn-425~_v-videowebl.jpg'
+  )
+  const [isccCodes, setIsccCodes] = useState<ISCCCode[]>([])
 
   const handleSumit = async (event: FormEvent) => {
     console.log(url)
@@ -22,7 +14,7 @@ export function ISCCRegistration() {
       method: 'POST',
     })
     const json = await response.json()
-    setISCC(json)
+    setIsccCodes([...isccCodes, json])
   }
 
   return (
@@ -41,19 +33,23 @@ export function ISCCRegistration() {
             />
           </div>
         </div>
-        {iscc ? (
-          <div>
-            <div>iscc: {iscc.iscc}</div>
-          </div>
-        ) : (
-          ''
-        )}
+
         <div className="field">
           <div className="control">
             <input type="submit" className="button is-link" value="Submit" />
           </div>
         </div>
       </form>
+      {isccCodes.length === 0 ? (
+        ''
+      ) : (
+        <div>
+          <h1>Generated Codes</h1>
+          {isccCodes.map((code) => (
+            <ISCC iscc={code} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
