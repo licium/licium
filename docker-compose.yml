@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  iscc-service:
+    build: iscc-service/.
+    ports:
+      - 8123:8080
+    labels:
+      - "traefik.http.routers.iscc-service.rule=PathPrefix(`/api`)"
+      - "traefik.http.services.iscc-service.loadbalancer.server.port=8080"
+  licium-webapp:
+    build: licium-webapp/.
+    labels:
+      - "traefik.http.routers.licium-webapp.rule=PathPrefix(`/`)"
+      - "traefik.http.services.licium-webapp.loadbalancer.server.port=80"
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    image: traefik:v2.2
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock

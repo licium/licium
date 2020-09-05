@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react'
 import ISCC, { ISCCCode } from '../ISCC/ISCC'
+import { API_PATH } from '../../App'
 
 export function ISCCRegistration() {
   const [url, setUrl] = useState<string>(
@@ -10,7 +11,7 @@ export function ISCCRegistration() {
   const handleSumit = async (event: FormEvent) => {
     console.log(url)
     event.preventDefault()
-    const response = await fetch(`/generate/from_url?url=${url}`, {
+    const response = await fetch(`${API_PATH}/generate/from_url?url=${url}`, {
       method: 'POST',
     })
     const json = await response.json()
