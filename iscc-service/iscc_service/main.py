@@ -46,7 +46,9 @@ app = FastAPI(
     title="ISCC Web Service API",
     version=iscc_service.__version__,
     description="Microservice for creating ISCC Codes from Media Files.",
-    docs_url="/",
+    docs_url="/api",
+    root_url="/api",
+    openapi_url="/api/openapi.json"
 )
 
 app.add_middleware(
@@ -59,7 +61,7 @@ app.add_middleware(
 
 
 @app.post(
-    "/generate/from_file",
+    "/api/generate/from_file",
     response_model=ISCC,
     response_model_exclude_unset=True,
     tags=["generate"],
@@ -145,7 +147,7 @@ def from_file(
 
 
 @app.post(
-    "/generate/from_url",
+    "/api/generate/from_url",
     response_model=ISCC,
     tags=["generate"],
     summary="Generate ISCC from URL",
@@ -161,7 +163,7 @@ def from_url(url: HttpUrl):
 
 
 @app.post(
-    "/generate/meta_id/",
+    "/api/generate/meta_id/",
     response_model=MetaID,
     response_model_exclude_unset=True,
     tags=["generate"],
@@ -187,7 +189,7 @@ def meta_id(meta: Metadata):
 
 
 @app.post(
-    "/generate/content_id_text",
+    "/api/generate/content_id_text",
     response_model=ContentID,
     tags=["generate"],
     summary="Generate ISCC Content-ID-Text",
@@ -204,7 +206,7 @@ def content_id_text(text: Text):
 
 
 @app.post(
-    "/generate/data_id",
+    "/api/generate/data_id",
     response_model=DataID,
     tags=["generate"],
     summary="Generate ISCC Data-ID",
@@ -216,7 +218,7 @@ def data_id(file: UploadFile = File(...)):
 
 
 @app.post(
-    "/generate/instance_id",
+    "/api/generate/instance_id",
     response_model=InstanceID,
     tags=["generate"],
     summary="Generate ISCC Instance-ID",
@@ -233,7 +235,7 @@ def instance_id(file: UploadFile = File(...)):
 
 
 @app.post(
-    "/generate/data_instance_id",
+    "/api/generate/data_instance_id",
     tags=["generate"],
     summary="Generate ISCC Data-ID and Instance-ID",
 )
@@ -255,7 +257,7 @@ def data_and_instance_id(file: UploadFile = File(...,)):
 
 
 @app.get(
-    "/lookup",
+    "/api/lookup",
     response_model=List[StreamItem],
     tags=["lookup"],
     summary="Lookup ISCC Codes",

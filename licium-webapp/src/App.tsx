@@ -9,8 +9,7 @@ import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSu
 import BlockchainContext from './components/BlockchainOutlet/BlockchainContext'
 import { ISCCRegistration } from './components/ISCCRegistration/ISCCRegistration'
 
-export const API_PATH =
-  process.env.NODE_ENV === 'production' ? 'https://api.licium.dev' : ''
+export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : ''
 
 function App() {
   const [selectedAssets, setSelectedAssets] = useState<AssetItem[]>([])
