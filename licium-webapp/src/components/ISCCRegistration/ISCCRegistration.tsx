@@ -7,20 +7,22 @@ export function ISCCRegistration() {
     'https://www.tagesschau.de/multimedia/bilder/spahn-425~_v-videowebl.jpg'
   )
   const [isccCodes, setIsccCodes] = useState<ISCCCode[]>([])
+  const [isWorking, setIsWorking] = useState(false)
 
   const handleSumit = async (event: FormEvent) => {
     console.log(url)
     event.preventDefault()
+    setIsWorking(true)
     const response = await fetch(`${API_PATH}/generate/from_url?url=${url}`, {
       method: 'POST',
-    })
+    }).finally(() => setIsWorking(false))
     const json = await response.json()
     setIsccCodes([...isccCodes, json])
   }
 
   return (
-    <div>
-      <h1>ISCC Registration</h1>
+    <div className="container">
+      <h1 className="title is1">ISCC Registration</h1>
       <form onSubmit={(event) => handleSumit(event)}>
         <div className="field">
           <label className="label">Generate from URL</label>
@@ -37,7 +39,19 @@ export function ISCCRegistration() {
 
         <div className="field">
           <div className="control">
-            <input type="submit" className="button is-link" value="Submit" />
+            <input
+              type="submit"
+              className="button is-link"
+              value="Submit"
+              disabled={isWorking}
+            />
+            {isWorking ? (
+              <span className="icon is-medium">
+                <i className="fa fa-spinner fa-lg fa-pulse" />
+              </span>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </form>

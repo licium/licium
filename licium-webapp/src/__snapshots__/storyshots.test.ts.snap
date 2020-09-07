@@ -782,6 +782,58 @@ exports[`Storyshots ISCC Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots ISCCRegistration Default 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="title is1"
+  >
+    ISCC Registration
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Generate from URL
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          onChange={[Function]}
+          placeholder="Enter URL"
+          type="text"
+          value="https://www.tagesschau.de/multimedia/bilder/spahn-425~_v-videowebl.jpg"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control"
+      >
+        <input
+          className="button is-link"
+          disabled={false}
+          type="submit"
+          value="Submit"
+        />
+        
+      </div>
+    </div>
+  </form>
+  
+</div>
+`;
+
 exports[`Storyshots Identification Table Empty Table 1`] = `
 <table
   className="table is-bordered is-striped is-hoverable"
