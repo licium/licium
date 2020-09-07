@@ -800,6 +800,55 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
       <label
         className="label"
       >
+        Generate from file
+      </label>
+      <section>
+        <div
+          className="dropzone"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragEnter={[Function]}
+          onDragLeave={[Function]}
+          onDragOver={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <input
+            autoComplete="off"
+            multiple={true}
+            onChange={[Function]}
+            onClick={[Function]}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            tabIndex={-1}
+            type="file"
+          />
+          <p>
+            <span
+              className="icon"
+            >
+              <i
+                className="fas fa-download"
+              />
+            </span>
+          </p>
+          <p>
+            Drag 'n' drop some files here, or click to select files
+          </p>
+        </div>
+      </section>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
         Generate from URL
       </label>
       <div
@@ -810,9 +859,10 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
           onChange={[Function]}
           placeholder="Enter URL"
           type="text"
-          value="https://www.tagesschau.de/multimedia/bilder/spahn-425~_v-videowebl.jpg"
+          value=""
         />
       </div>
+      
     </div>
     <div
       className="field"
@@ -822,7 +872,7 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
       >
         <input
           className="button is-link"
-          disabled={false}
+          disabled={true}
           type="submit"
           value="Submit"
         />
