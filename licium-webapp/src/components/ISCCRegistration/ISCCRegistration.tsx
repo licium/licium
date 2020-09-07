@@ -33,6 +33,7 @@ export function ISCCRegistration() {
       files.map(async (file) => {
         const formData = new FormData()
         formData.append('file', file)
+        formData.append('title', file.name)
         const response = await fetch(`${API_PATH}/generate/from_file`, {
           method: 'POST',
           body: formData,
@@ -106,8 +107,8 @@ export function ISCCRegistration() {
       ) : (
         <div>
           <h1>Generated Codes</h1>
-          {isccCodes.map((code) => (
-            <ISCC iscc={code} />
+          {isccCodes.map((code, idx) => (
+            <ISCC key={idx} iscc={code} />
           ))}
         </div>
       )}
