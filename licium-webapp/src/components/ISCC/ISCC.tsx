@@ -20,7 +20,7 @@ const types: { [key: number]: string } = {
 export default function ISCC(props: { iscc: ISCCCode }) {
   const codes = () =>
     props.iscc.iscc.split('-').map((code, idx) => (
-      <tr>
+      <tr key={idx}>
         <td>{types[idx]}</td>
         <td>{code}</td>
         <td>
