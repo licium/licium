@@ -1,5 +1,4 @@
 import React from 'react'
-
 export interface ISCCCode {
   bits: string[]
   extra: string
@@ -11,42 +10,59 @@ export interface ISCCCode {
   tophash: string
 }
 
+const types: { [key: number]: string } = {
+  0: 'Meta-ID',
+  1: 'Content-ID',
+  2: 'Data-ID',
+  3: 'Instance-ID',
+}
+
 export default function ISCC(props: { iscc: ISCCCode }) {
+  const codes = () =>
+    props.iscc.iscc.split('-').map((code, idx) => (
+      <tr>
+        <td>{types[idx]}</td>
+        <td>{code}</td>
+        <td>
+          <code>{props.iscc.bits[idx]}</code>
+        </td>
+      </tr>
+    ))
+
   return (
-    <fieldset>
-      <legend>ISCC Code</legend>
-      <div>
-        <span>Bits: </span>
-        <span>{props.iscc.bits.join(', ')}</span>
+    <div className="box iscc">
+      <div className="meta">
+        <p>
+          <strong>Title: </strong>
+          {props.iscc.title}
+        </p>
+        <p>
+          <strong>Tophash: </strong>
+          {props.iscc.tophash}
+        </p>
+        <p>
+          <strong>Extra: </strong>
+          {props.iscc.extra}
+        </p>
+        <p>
+          <strong>GMT: </strong>
+          {props.iscc.gmt}
+        </p>
+        <p>
+          <strong>ISCC: </strong>
+          {props.iscc.iscc}
+        </p>
       </div>
-      <div>
-        <span>Extra:</span>
-        <span>{props.iscc.extra}</span>
-      </div>
-      <div>
-        <span>Extra (trimmed):</span>
-        <span>{props.iscc.extra_trimmed}</span>
-      </div>
-      <div>
-        <span>GMT:</span>
-        <span>{props.iscc.gmt}</span>
-      </div>
-      <div>
-        <span>ISCC:</span>
-        <span>{props.iscc.iscc}</span>
-      </div>
-      <div>
-        <span>Title:</span>
-        <span>{props.iscc.title}</span>
-      </div>
-      <div>
-        <span>Title (trimmed):</span>
-        <span>{props.iscc.title_trimmed}</span>
-      </div>
-      <div>
-        <span>Tophas:</span>
-        <span>{props.iscc.tophash}</span>
-      </div>
-    </fieldset>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Code</th>
+            <th>Bits</th>
+          </tr>
+        </thead>
+        <tbody>{codes()}</tbody>
+      </table>
+    </div>
   )
 }

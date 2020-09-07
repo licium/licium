@@ -670,6 +670,118 @@ exports[`Storyshots Assets Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots ISCC Default 1`] = `
+<div
+  className="box iscc"
+>
+  <div
+    className="meta"
+  >
+    <p>
+      <strong>
+        Title: 
+      </strong>
+      Title - Long
+    </p>
+    <p>
+      <strong>
+        Tophash: 
+      </strong>
+      aeed0934a90961e0fb6635e5c9bd13a4739c4c3f6e30aaffd75411d12e940316
+    </p>
+    <p>
+      <strong>
+        Extra: 
+      </strong>
+      Extra Foto
+    </p>
+    <p>
+      <strong>
+        GMT: 
+      </strong>
+      IMAGE
+    </p>
+    <p>
+      <strong>
+        ISCC: 
+      </strong>
+      CCm7y4abbVN6r-CYeLkPETE1TPr-CD9TdCywdGcK3-CRWGC2JciDeP5
+    </p>
+  </div>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          Type
+        </th>
+        <th>
+          Code
+        </th>
+        <th>
+          Bits
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Meta-ID
+        </td>
+        <td>
+          CCm7y4abbVN6r
+        </td>
+        <td>
+          <code>
+            1001011000101110111011110101010100100101100100111000100001011111
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Content-ID
+        </td>
+        <td>
+          CYeLkPETE1TPr
+        </td>
+        <td>
+          <code>
+            1110000110000011000110000110010110011110110011111001110001101001
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Data-ID
+        </td>
+        <td>
+          CD9TdCywdGcK3
+        </td>
+        <td>
+          <code>
+            0011000110001010110010101100110001011001101101111110001101001100
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Instance-ID
+        </td>
+        <td>
+          CRWGC2JciDeP5
+        </td>
+        <td>
+          <code>
+            1010111011101101000010010011010010101001000010010110000111100000
+          </code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
 exports[`Storyshots Identification Table Empty Table 1`] = `
 <table
   className="table is-bordered is-striped is-hoverable"
