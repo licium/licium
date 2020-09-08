@@ -19,7 +19,7 @@ export default function ISCCField(props: {
     if (props.value !== value) {
       setValue(props.value)
     }
-  })
+  }, [props.value, value])
 
   return (
     <div className="field">

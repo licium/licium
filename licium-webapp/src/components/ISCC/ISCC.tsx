@@ -51,7 +51,7 @@ export default function ISCC(props: {
     if (props.iscc !== iscc) {
       setISCC(props.iscc)
     }
-  })
+  }, [iscc, props.iscc])
 
   return (
     <div className="box iscc">
