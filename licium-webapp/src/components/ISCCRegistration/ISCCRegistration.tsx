@@ -46,6 +46,10 @@ export function ISCCRegistration() {
   const regenMetaId = async (idx: number, title: string, extra: string) => {
     const response = await fetch(`${API_PATH}/generate/meta_id`, {
       method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'content-type': 'application/json',
+      },
       body: JSON.stringify({
         title,
         extra,
