@@ -44,7 +44,7 @@ export function ISCCRegistration() {
     setIsccCodes([...isccCodes, ...newCodes])
   }
   const regenMetaId = async (idx: number, title: string, extra: string) => {
-    const response = await fetch(`${API_PATH}/generate/meta_id`, {
+    const response = await fetch(`${API_PATH}/generate/meta_id/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
