@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react'
-import ISCC, { ISCCCode } from '../ISCC/ISCC'
+import ISCC, { ISCCCode, ISCCMetaId } from '../ISCC/ISCC'
 import { API_PATH } from '../../App'
 import Dropzone from 'react-dropzone'
 import './ISCCRegistration.scss'
@@ -11,7 +11,6 @@ export function ISCCRegistration() {
   const [isUrlInvalid, setIsUrlInvalid] = useState(false)
 
   const handleSumit = async (event: FormEvent) => {
-    console.log(url)
     event.preventDefault()
     setIsWorking(true)
 
@@ -44,7 +43,28 @@ export function ISCCRegistration() {
 
     setIsccCodes([...isccCodes, ...newCodes])
   }
+  const regenMetaId = async (idx: number, title: string, extra: string) => {
+    const response = await fetch(`${API_PATH}/generate/meta_id`, {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        extra,
+      }),
+    })
+    const newId: ISCCMetaId = await response.json()
 
+    const isccToMutate = isccCodes[idx]
+    let [, ...rest] = isccToMutate.iscc.split('-')
+    isccToMutate.iscc = [newId.code, ...rest].join('-')
+    ;[, ...rest] = isccToMutate.bits
+    isccToMutate.bits = [newId.bits, ...rest]
+
+    const mutableIsccs = isccCodes
+    mutableIsccs.splice(idx, 1, isccToMutate)
+    setIsccCodes([...mutableIsccs])
+
+    console.log(isccCodes)
+  }
   return (
     <div className="container">
       <h1 className="title is1">ISCC Registration</h1>
@@ -108,7 +128,11 @@ export function ISCCRegistration() {
         <div>
           <h1>Generated Codes</h1>
           {isccCodes.map((code, idx) => (
-            <ISCC key={idx} iscc={code} />
+            <ISCC
+              key={idx}
+              iscc={code}
+              onRegenMetaId={(title, extra) => regenMetaId(idx, title, extra)}
+            />
           ))}
         </div>
       )}

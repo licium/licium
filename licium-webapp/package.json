@@ -40,7 +40,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
-  "proxy": "http://localhost:9088",
+  "proxy": "http://localhost:9088/api",
   "eslintConfig": {
     "extends": [
       "react-app",

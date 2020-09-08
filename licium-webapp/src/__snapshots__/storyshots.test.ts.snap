@@ -674,51 +674,167 @@ exports[`Storyshots ISCC Default 1`] = `
 <div
   className="box iscc"
 >
-  <div
-    className="meta"
+  <form
+    className="form"
+    onSubmit={[Function]}
   >
-    <p>
-      <strong>
-        Title: 
-      </strong>
-      Title - Long
-    </p>
-    <p>
-      <strong>
-        Tophash: 
-      </strong>
-      aeed0934a90961e0fb6635e5c9bd13a4739c4c3f6e30aaffd75411d12e940316
-    </p>
-    <p>
-      <strong>
-        Extra: 
-      </strong>
-      Extra Foto
-    </p>
-    <p>
-      <strong>
-        GMT: 
-      </strong>
-      IMAGE
-    </p>
-    <p>
-      <strong>
-        ISCC: 
-      </strong>
-      CCm7y4abbVN6r-CYeLkPETE1TPr-CD9TdCywdGcK3-CRWGC2JciDeP5
-    </p>
-  </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control is-small"
+      >
+        <label
+          className="label is-small"
+        >
+          Title
+          :
+        </label>
+        <input
+          className="input is-small"
+          disabled={false}
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value="Title - Long"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control is-small"
+      >
+        <label
+          className="label is-small"
+        >
+          Extra
+          :
+        </label>
+        <input
+          className="input is-small"
+          disabled={false}
+          onChange={[Function]}
+          type="text"
+          value="Extra Foto"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <input
+        className="button is-small"
+        type="submit"
+        value="Regenerate Meta-ID"
+      />
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control is-small"
+      >
+        <label
+          className="label is-small"
+        >
+          ISCC
+          :
+        </label>
+        <input
+          className="input is-small"
+          disabled={true}
+          onChange={[Function]}
+          type="text"
+          value="CCm7y4abbVN6r-CYeLkPETE1TPr-CD9TdCywdGcK3-CRWGC2JciDeP5"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control is-small"
+      >
+        <label
+          className="label is-small"
+        >
+          Tophash
+          :
+        </label>
+        <input
+          className="input is-small"
+          disabled={true}
+          onChange={[Function]}
+          type="text"
+          value="aeed0934a90961e0fb6635e5c9bd13a4739c4c3f6e30aaffd75411d12e940316"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control is-small"
+      >
+        <label
+          className="label is-small"
+        >
+          GMT
+          :
+        </label>
+        <input
+          className="input is-small"
+          disabled={true}
+          onChange={[Function]}
+          type="text"
+          value="IMAGE"
+        />
+      </div>
+    </div>
+  </form>
   <table
-    className="table"
+    className="table is-narrow"
   >
     <thead>
       <tr>
         <th>
-          Type
+          Meta-ID
         </th>
         <th>
-          Code
+          Content-ID
         </th>
+        <th>
+          Data-ID
+        </th>
+        <th>
+          Instance-ID
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          CCm7y4abbVN6r
+        </td>
+        <td>
+          CYeLkPETE1TPr
+        </td>
+        <td>
+          CD9TdCywdGcK3
+        </td>
+        <td>
+          CRWGC2JciDeP5
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table
+    className="table is-narrow"
+  >
+    <thead>
+      <tr>
         <th>
           Bits
         </th>
@@ -727,24 +843,12 @@ exports[`Storyshots ISCC Default 1`] = `
     <tbody>
       <tr>
         <td>
-          Meta-ID
-        </td>
-        <td>
-          CCm7y4abbVN6r
-        </td>
-        <td>
           <code>
             1001011000101110111011110101010100100101100100111000100001011111
           </code>
         </td>
       </tr>
       <tr>
-        <td>
-          Content-ID
-        </td>
-        <td>
-          CYeLkPETE1TPr
-        </td>
         <td>
           <code>
             1110000110000011000110000110010110011110110011111001110001101001
@@ -753,24 +857,12 @@ exports[`Storyshots ISCC Default 1`] = `
       </tr>
       <tr>
         <td>
-          Data-ID
-        </td>
-        <td>
-          CD9TdCywdGcK3
-        </td>
-        <td>
           <code>
             0011000110001010110010101100110001011001101101111110001101001100
           </code>
         </td>
       </tr>
       <tr>
-        <td>
-          Instance-ID
-        </td>
-        <td>
-          CRWGC2JciDeP5
-        </td>
         <td>
           <code>
             1010111011101101000010010011010010101001000010010110000111100000
@@ -779,6 +871,54 @@ exports[`Storyshots ISCC Default 1`] = `
       </tr>
     </tbody>
   </table>
+</div>
+`;
+
+exports[`Storyshots ISCCField Default 1`] = `
+<div
+  className="field"
+>
+  <div
+    className="control is-small"
+  >
+    <label
+      className="label is-small"
+    >
+      Title
+      :
+    </label>
+    <input
+      className="input is-small"
+      disabled={true}
+      onChange={[Function]}
+      type="text"
+      value="A Title"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots ISCCField Editable 1`] = `
+<div
+  className="field"
+>
+  <div
+    className="control is-small"
+  >
+    <label
+      className="label is-small"
+    >
+      Title
+      :
+    </label>
+    <input
+      className="input is-small"
+      disabled={false}
+      onChange={[Function]}
+      type="text"
+      value="A Title"
+    />
+  </div>
 </div>
 `;
 

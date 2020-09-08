@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import ISCCField from './ISCCField/ISCCField'
+
 export interface ISCCCode {
   bits: string[]
   extra: string
@@ -10,58 +12,96 @@ export interface ISCCCode {
   tophash: string
 }
 
-const types: { [key: number]: string } = {
-  0: 'Meta-ID',
-  1: 'Content-ID',
-  2: 'Data-ID',
-  3: 'Instance-ID',
+export interface ISCCMetaId {
+  code: string
+  bits: string
+  ident: number
+  title: string
+  title_trimmed: string
+  extra: string
+  extra_trimmed: string
 }
 
-export default function ISCC(props: { iscc: ISCCCode }) {
-  const codes = () =>
-    props.iscc.iscc.split('-').map((code, idx) => (
+export default function ISCC(props: {
+  iscc: ISCCCode
+  onRegenMetaId: (title: string, extra: string) => void
+}) {
+  const [title, setTitle] = useState(props.iscc.title)
+  const [extra, setExtra] = useState(props.iscc.extra)
+  const [iscc, setISCC] = useState(props.iscc)
+
+  const isccCodes = () => (
+    <tr>
+      {props.iscc.iscc.split('-').map((code, idx) => (
+        <td key={idx}>{code}</td>
+      ))}
+    </tr>
+  )
+
+  const bits = () =>
+    iscc.bits.map((bit, idx) => (
       <tr key={idx}>
-        <td>{types[idx]}</td>
-        <td>{code}</td>
         <td>
-          <code>{props.iscc.bits[idx]}</code>
+          <code>{bit}</code>
         </td>
       </tr>
     ))
 
+  useEffect(() => {
+    if (props.iscc !== iscc) {
+      setISCC(props.iscc)
+    }
+  })
+
   return (
     <div className="box iscc">
-      <div className="meta">
-        <p>
-          <strong>Title: </strong>
-          {props.iscc.title}
-        </p>
-        <p>
-          <strong>Tophash: </strong>
-          {props.iscc.tophash}
-        </p>
-        <p>
-          <strong>Extra: </strong>
-          {props.iscc.extra}
-        </p>
-        <p>
-          <strong>GMT: </strong>
-          {props.iscc.gmt}
-        </p>
-        <p>
-          <strong>ISCC: </strong>
-          {props.iscc.iscc}
-        </p>
-      </div>
-      <table className="table">
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault()
+          props.onRegenMetaId(title, extra)
+        }}
+      >
+        <ISCCField
+          label={'Title'}
+          required={true}
+          value={title}
+          onEdit={(value) => setTitle(value)}
+        />
+        <ISCCField
+          label={'Extra'}
+          value={extra}
+          onEdit={(value) => setExtra(value)}
+        />
+        <div className="field">
+          <input
+            type="submit"
+            className="button is-small"
+            value="Regenerate Meta-ID"
+          />
+        </div>
+        <ISCCField label={'ISCC'} value={iscc.iscc} />
+        <ISCCField label={'Tophash'} value={iscc.tophash} />
+        <ISCCField label={'GMT'} value={iscc.gmt} />
+      </form>
+      <table className="table is-narrow">
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Code</th>
+            <th>Meta-ID</th>
+            <th>Content-ID</th>
+            <th>Data-ID</th>
+            <th>Instance-ID</th>
+          </tr>
+        </thead>
+        <tbody>{isccCodes()}</tbody>
+      </table>
+      <table className="table is-narrow">
+        <thead>
+          <tr>
             <th>Bits</th>
           </tr>
         </thead>
-        <tbody>{codes()}</tbody>
+        <tbody>{bits()}</tbody>
       </table>
     </div>
   )

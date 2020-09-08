@@ -19,9 +19,9 @@ const iscc: ISCCCode = {
 
 export default {
   title: 'ISCC',
-  component: <ISCC iscc={iscc} />,
+  component: ISCC,
 }
 
 export const Default = () => {
-  return <ISCC iscc={iscc} />
+  return <ISCC iscc={iscc} onRegenMetaId={() => {}} />
 }
