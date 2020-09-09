@@ -3,6 +3,7 @@ import ISCC, { ISCCCode, ISCCMetaId } from '../ISCC/ISCC'
 import { API_PATH } from '../../App'
 import Dropzone from 'react-dropzone'
 import './ISCCRegistration.scss'
+import * as R from 'ramda'
 
 export function ISCCRegistration() {
   const [url, setUrl] = useState<string>('')
@@ -66,9 +67,27 @@ export function ISCCRegistration() {
     const mutableIsccs = isccCodes
     mutableIsccs.splice(idx, 1, isccToMutate)
     setIsccCodes([...mutableIsccs])
-
-    console.log(isccCodes)
   }
+
+  const renderISCCPair = (pairId: number, pair: ISCCCode[]) =>
+    pair.map((iscc, issccId) => (
+      <div className={'column'} key={iscc.iscc}>
+        <ISCC
+          iscc={iscc}
+          onRegenMetaId={(title, extra) =>
+            regenMetaId(pairId + issccId, title, extra)
+          }
+        />
+      </div>
+    ))
+
+  const renderISCCs = () =>
+    R.splitEvery(2, isccCodes).map((pair, pairId) => (
+      <div key={`pair-${pairId}`} className="columns">
+        {renderISCCPair(pairId, pair)}
+      </div>
+    ))
+
   return (
     <div className="container">
       <h1 className="title is1">ISCC Registration</h1>
@@ -130,14 +149,8 @@ export function ISCCRegistration() {
         ''
       ) : (
         <div>
-          <h1>Generated Codes</h1>
-          {isccCodes.map((code, idx) => (
-            <ISCC
-              key={idx}
-              iscc={code}
-              onRegenMetaId={(title, extra) => regenMetaId(idx, title, extra)}
-            />
-          ))}
+          <h1 className="title is-1">Generated Codes</h1>
+          {renderISCCs()}
         </div>
       )}
     </div>

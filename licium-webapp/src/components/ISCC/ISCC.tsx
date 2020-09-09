@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ISCCField from './ISCCField/ISCCField'
+import * as R from 'ramda'
 
 export interface ISCCCode {
   bits: string[]
@@ -30,22 +31,12 @@ export default function ISCC(props: {
   const [extra, setExtra] = useState(props.iscc.extra)
   const [iscc, setISCC] = useState(props.iscc)
 
-  const isccCodes = () => (
-    <tr>
-      {props.iscc.iscc.split('-').map((code, idx) => (
-        <td key={idx}>{code}</td>
-      ))}
-    </tr>
-  )
-
-  const bits = () =>
-    iscc.bits.map((bit, idx) => (
-      <tr key={idx}>
-        <td>
-          <code>{bit}</code>
-        </td>
-      </tr>
-    ))
+  const renderBits = (bits: string) =>
+    R.splitEvery(16, bits)
+      .map<React.ReactNode>((value, idx) => (
+        <code key={`c${idx}`}>{value}</code>
+      ))
+      .reduce((prev, cur, idx) => [prev, <br key={`b${idx}`} />, cur])
 
   useEffect(() => {
     if (props.iscc !== iscc) {
@@ -83,26 +74,45 @@ export default function ISCC(props: {
         <ISCCField label={'ISCC'} value={iscc.iscc} />
         <ISCCField label={'Tophash'} value={iscc.tophash} />
         <ISCCField label={'GMT'} value={iscc.gmt} />
+        <div className="field">
+          <div className="columns ">
+            <div className="column is-narrow">
+              <div className="columns is-mobile">
+                <div className="column is-narrow">
+                  <p key={0} className="title is-7">
+                    Meta-ID
+                  </p>
+                  <p key={1} className="subtitle is-7">
+                    {iscc.iscc.split('-')[0]}
+                  </p>
+                  <p key={2} className="is-7">
+                    {renderBits(iscc.bits[0])}
+                  </p>
+                </div>
+                <div className="column is-narrow">
+                  <p className="title is-7">Content-ID</p>
+                  <p className="subtitle is-7">{iscc.iscc.split('-')[1]}</p>
+                  <p className="is-7">{renderBits(iscc.bits[1])}</p>
+                </div>
+              </div>
+            </div>
+            <div className="column is-narrow">
+              <div className="columns is-mobile">
+                <div className="column is-narrow">
+                  <p className="title is-7">Data-ID</p>
+                  <p className="subtitle is-7">{iscc.iscc.split('-')[2]}</p>
+                  <p className="is-7">{renderBits(iscc.bits[2])}</p>
+                </div>
+                <div className="column is-narrow">
+                  <p className="title is-7">Data-ID</p>
+                  <p className="subtitle is-7">{iscc.iscc.split('-')[3]}</p>
+                  <p className="is-7">{renderBits(iscc.bits[3])}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
-      <table className="table is-narrow">
-        <thead>
-          <tr>
-            <th>Meta-ID</th>
-            <th>Content-ID</th>
-            <th>Data-ID</th>
-            <th>Instance-ID</th>
-          </tr>
-        </thead>
-        <tbody>{isccCodes()}</tbody>
-      </table>
-      <table className="table is-narrow">
-        <thead>
-          <tr>
-            <th>Bits</th>
-          </tr>
-        </thead>
-        <tbody>{bits()}</tbody>
-      </table>
     </div>
   )
 }

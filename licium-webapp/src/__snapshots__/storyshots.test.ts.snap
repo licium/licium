@@ -793,84 +793,163 @@ exports[`Storyshots ISCC Default 1`] = `
         />
       </div>
     </div>
+    <div
+      className="field"
+    >
+      <div
+        className="columns "
+      >
+        <div
+          className="column is-narrow"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-narrow"
+            >
+              <p
+                className="title is-7"
+              >
+                Meta-ID
+              </p>
+              <p
+                className="subtitle is-7"
+              >
+                CCm7y4abbVN6r
+              </p>
+              <p
+                className="is-7"
+              >
+                <code>
+                  1001011000101110
+                </code>
+                <br />
+                <code>
+                  1110111101010101
+                </code>
+                <br />
+                <code>
+                  0010010110010011
+                </code>
+                <br />
+                <code>
+                  1000100001011111
+                </code>
+              </p>
+            </div>
+            <div
+              className="column is-narrow"
+            >
+              <p
+                className="title is-7"
+              >
+                Content-ID
+              </p>
+              <p
+                className="subtitle is-7"
+              >
+                CYeLkPETE1TPr
+              </p>
+              <p
+                className="is-7"
+              >
+                <code>
+                  1110000110000011
+                </code>
+                <br />
+                <code>
+                  0001100001100101
+                </code>
+                <br />
+                <code>
+                  1001111011001111
+                </code>
+                <br />
+                <code>
+                  1001110001101001
+                </code>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="column is-narrow"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-narrow"
+            >
+              <p
+                className="title is-7"
+              >
+                Data-ID
+              </p>
+              <p
+                className="subtitle is-7"
+              >
+                CD9TdCywdGcK3
+              </p>
+              <p
+                className="is-7"
+              >
+                <code>
+                  0011000110001010
+                </code>
+                <br />
+                <code>
+                  1100101011001100
+                </code>
+                <br />
+                <code>
+                  0101100110110111
+                </code>
+                <br />
+                <code>
+                  1110001101001100
+                </code>
+              </p>
+            </div>
+            <div
+              className="column is-narrow"
+            >
+              <p
+                className="title is-7"
+              >
+                Data-ID
+              </p>
+              <p
+                className="subtitle is-7"
+              >
+                CRWGC2JciDeP5
+              </p>
+              <p
+                className="is-7"
+              >
+                <code>
+                  1010111011101101
+                </code>
+                <br />
+                <code>
+                  0000100100110100
+                </code>
+                <br />
+                <code>
+                  1010100100001001
+                </code>
+                <br />
+                <code>
+                  0110000111100000
+                </code>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
-  <table
-    className="table is-narrow"
-  >
-    <thead>
-      <tr>
-        <th>
-          Meta-ID
-        </th>
-        <th>
-          Content-ID
-        </th>
-        <th>
-          Data-ID
-        </th>
-        <th>
-          Instance-ID
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          CCm7y4abbVN6r
-        </td>
-        <td>
-          CYeLkPETE1TPr
-        </td>
-        <td>
-          CD9TdCywdGcK3
-        </td>
-        <td>
-          CRWGC2JciDeP5
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table
-    className="table is-narrow"
-  >
-    <thead>
-      <tr>
-        <th>
-          Bits
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <code>
-            1001011000101110111011110101010100100101100100111000100001011111
-          </code>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>
-            1110000110000011000110000110010110011110110011111001110001101001
-          </code>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>
-            0011000110001010110010101100110001011001101101111110001101001100
-          </code>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>
-            1010111011101101000010010011010010101001000010010110000111100000
-          </code>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 `;
 
