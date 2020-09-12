@@ -1010,6 +1010,55 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
   >
     ISCC Registration
   </h1>
+  <div
+    className="field"
+  >
+    <label
+      className="label"
+    >
+      Generate from file
+    </label>
+    <section>
+      <div
+        className="dropzone"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragEnter={[Function]}
+        onDragLeave={[Function]}
+        onDragOver={[Function]}
+        onDrop={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <input
+          autoComplete="off"
+          multiple={true}
+          onChange={[Function]}
+          onClick={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          tabIndex={-1}
+          type="file"
+        />
+        <p>
+          <span
+            className="icon"
+          >
+            <i
+              className="fas fa-download"
+            />
+          </span>
+        </p>
+        <p>
+          Drag 'n' drop some files here, or click to select files
+        </p>
+      </div>
+    </section>
+  </div>
   <form
     onSubmit={[Function]}
   >
@@ -1019,70 +1068,18 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
       <label
         className="label"
       >
-        Generate from file
+        Generate from URL:
       </label>
-      <section>
-        <div
-          className="dropzone"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onDragEnter={[Function]}
-          onDragLeave={[Function]}
-          onDragOver={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
-        >
-          <input
-            autoComplete="off"
-            multiple={true}
-            onChange={[Function]}
-            onClick={[Function]}
-            style={
-              Object {
-                "display": "none",
-              }
-            }
-            tabIndex={-1}
-            type="file"
-          />
-          <p>
-            <span
-              className="icon"
-            >
-              <i
-                className="fas fa-download"
-              />
-            </span>
-          </p>
-          <p>
-            Drag 'n' drop some files here, or click to select files
-          </p>
-        </div>
-      </section>
+      <input
+        className="input"
+        disabled={false}
+        id="url-input-text"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
     </div>
-    <div
-      className="field"
-    >
-      <label
-        className="label"
-      >
-        Generate from URL
-      </label>
-      <div
-        className="control"
-      >
-        <input
-          className="input"
-          onChange={[Function]}
-          placeholder="Enter URL"
-          type="text"
-          value=""
-        />
-      </div>
-      
-    </div>
+    
     <div
       className="field"
     >
@@ -1092,6 +1089,7 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
         <input
           className="button is-link"
           disabled={true}
+          id="url-input-submit"
           type="submit"
           value="Submit"
         />
