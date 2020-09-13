@@ -6,9 +6,14 @@ import './ISCCRegistration.scss'
 import * as R from 'ramda'
 import URLUpload from './URLUpload'
 import { generateFromURL } from './ISCCServiceAdapter'
+import { replaceMetaInfoOnISCC } from './ISCCModifier'
+import { useLocalStorage } from '../../hooks/localstorage'
 
 export function ISCCRegistration() {
-    const [isccCodes, setIsccCodes] = useState<ISCCCode[]>([])
+    const [isccCodes, setIsccCodes] = useLocalStorage<ISCCCode[]>(
+        'isccCodes',
+        []
+    )
     const [isWorking, setIsWorking] = useState(false)
     const [isUrlInvalid, setIsUrlInvalid] = useState(false)
 
@@ -55,20 +60,13 @@ export function ISCCRegistration() {
             }),
         })
         const newId: ISCCMetaId = await response.json()
+        const newIscc = replaceMetaInfoOnISCC(isccCodes[idx], newId)
 
-        const isccToMutate = isccCodes[idx]
-        let [, ...rest] = isccToMutate.iscc.split('-')
-        isccToMutate.iscc = [newId.code, ...rest].join('-')
-        ;[, ...rest] = isccToMutate.bits
-        isccToMutate.bits = [newId.bits, ...rest]
-        isccToMutate.title = newId.title
-        isccToMutate.title_trimmed = newId.title_trimmed
-        isccToMutate.extra = newId.extra
-        isccToMutate.extra_trimmed = newId.extra_trimmed
-
-        const mutableIsccs = isccCodes
-        mutableIsccs.splice(idx, 1, isccToMutate)
-        setIsccCodes([...mutableIsccs])
+        setIsccCodes([
+            ...isccCodes.splice(0, idx),
+            newIscc,
+            ...isccCodes.splice(idx + 1),
+        ])
     }
 
     const renderISCCPair = (pairId: number, pair: ISCCCode[]) =>
