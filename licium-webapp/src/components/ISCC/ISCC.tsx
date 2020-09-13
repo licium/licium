@@ -46,7 +46,7 @@ export default function ISCC(props: {
     }, [iscc, props.iscc])
 
     return (
-        <div>
+        <div className="box iscc">
             <div className="message-header">
                 {props.iscc.title}
                 <button

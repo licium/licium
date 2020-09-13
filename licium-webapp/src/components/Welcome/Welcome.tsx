@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Welcome() {
     return (
-        <section className="hero is-medium is-info">
+        <section className="hero is-medium is-primary">
             <div className="hero-body">
                 <div className="container">
                     <h1 className="title">Welcome to licium.</h1>
@@ -11,19 +11,10 @@ export default function Welcome() {
                         Licium does cool stuff with the blockchain.
                     </h2>
                     <Link to="/assets">
-                        <button className="button is-primary">
-                            Show your assets
-                        </button>
-                    </Link>
-                    <Link to="/blockchain">
-                        <button className="button is-primary">
-                            Visit blockchain content
-                        </button>
+                        <button className="button ">Show your assets</button>
                     </Link>
                     <Link to="/iscc-registration">
-                        <button className="button is-primary">
-                            Generate ISCC
-                        </button>
+                        <button className="button ">Generate ISCC</button>
                     </Link>
                 </div>
             </div>

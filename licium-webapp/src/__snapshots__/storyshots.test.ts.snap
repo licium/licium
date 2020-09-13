@@ -675,7 +675,9 @@ exports[`Storyshots Assets Default 1`] = `
 `;
 
 exports[`Storyshots ISCC Default 1`] = `
-<div>
+<div
+  className="box iscc"
+>
   <div
     className="message-header"
   >
@@ -1765,7 +1767,7 @@ exports[`Storyshots Registration success Default 1`] = `
 
 exports[`Storyshots Welcome Page Default 1`] = `
 <section
-  className="hero is-medium is-info"
+  className="hero is-medium is-primary"
 >
   <div
     className="hero-body"
@@ -1788,19 +1790,9 @@ exports[`Storyshots Welcome Page Default 1`] = `
         onClick={[Function]}
       >
         <button
-          className="button is-primary"
+          className="button "
         >
           Show your assets
-        </button>
-      </a>
-      <a
-        href="/blockchain"
-        onClick={[Function]}
-      >
-        <button
-          className="button is-primary"
-        >
-          Visit blockchain content
         </button>
       </a>
       <a
@@ -1808,7 +1800,7 @@ exports[`Storyshots Welcome Page Default 1`] = `
         onClick={[Function]}
       >
         <button
-          className="button is-primary"
+          className="button "
         >
           Generate ISCC
         </button>
