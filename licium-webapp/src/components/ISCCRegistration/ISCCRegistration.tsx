@@ -10,10 +10,7 @@ import { replaceMetaInfoOnISCC } from './ISCCModifier'
 import { useLocalStorage } from '../../hooks/localstorage'
 
 export function ISCCRegistration() {
-    const [isccCodes, setIsccCodes] = useLocalStorage<ISCCCode[]>(
-        'isccCodes',
-        []
-    )
+    const [isccCodes, setIsccCodes] = useLocalStorage<ISCCCode[]>('ISCCS', [])
     const [isWorking, setIsWorking] = useState(false)
     const [isUrlInvalid, setIsUrlInvalid] = useState(false)
 

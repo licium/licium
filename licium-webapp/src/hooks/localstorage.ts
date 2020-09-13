@@ -1,9 +1,10 @@
 //
 import { useState } from 'react'
 
+export type LocalstorageKey = 'ISCCS'
 // Hook
 export function useLocalStorage<T>(
-    key: string,
+    key: LocalstorageKey,
     initialValue: T
 ): [T, (s: T) => void] {
     // State to store our value
