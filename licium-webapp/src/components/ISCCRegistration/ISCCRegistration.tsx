@@ -1,32 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ISCC, { ISCCCode, ISCCMetaId } from '../ISCC/ISCC'
 import { API_PATH } from '../../App'
 import Dropzone from 'react-dropzone'
 import './ISCCRegistration.scss'
 import * as R from 'ramda'
-import URLUpload from './URLUpload'
-import { generateFromURL } from './ISCCServiceAdapter'
 import { replaceMetaInfoOnISCC } from './ISCCModifier'
 import { useLocalStorage } from '../../hooks/localstorage'
 
 export function ISCCRegistration() {
     const [isccCodes, setIsccCodes] = useLocalStorage<ISCCCode[]>('ISCCS', [])
-    const [isWorking, setIsWorking] = useState(false)
-    const [isUrlInvalid, setIsUrlInvalid] = useState(false)
-
-    const handleUrlSubmit = async (url: string) => {
-        setIsWorking(true)
-        try {
-            const iscc = await generateFromURL(url)
-            setIsccCodes([...isccCodes, iscc])
-            setIsUrlInvalid(false)
-        } catch (error) {
-            console.error(error)
-            setIsUrlInvalid(true)
-        } finally {
-            setIsWorking(false)
-        }
-    }
 
     const handleFile = async (files: File[]) => {
         const newCodes = await Promise.all(
@@ -114,11 +96,6 @@ export function ISCCRegistration() {
                     )}
                 </Dropzone>
             </div>
-            <URLUpload
-                handleSubmit={handleUrlSubmit}
-                disabled={isWorking}
-                isUrlInvalid={isUrlInvalid}
-            />
             {isccCodes.length === 0 ? (
                 ''
             ) : (
