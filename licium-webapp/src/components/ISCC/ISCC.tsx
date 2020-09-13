@@ -26,6 +26,7 @@ export interface ISCCMetaId {
 export default function ISCC(props: {
     iscc: ISCCCode
     onRegenMetaId: (title: string, extra: string) => void
+    onDeleteClick: () => void
 }) {
     const [title, setTitle] = useState(props.iscc.title)
     const [extra, setExtra] = useState(props.iscc.extra || '')
@@ -45,7 +46,14 @@ export default function ISCC(props: {
     }, [iscc, props.iscc])
 
     return (
-        <div className="box iscc">
+        <div>
+            <div className="message-header">
+                {props.iscc.title}
+                <button
+                    className="delete"
+                    onClick={() => props.onDeleteClick()}
+                />
+            </div>
             <form
                 className="form"
                 onSubmit={(event) => {
@@ -53,17 +61,23 @@ export default function ISCC(props: {
                     props.onRegenMetaId(title, extra)
                 }}
             >
-                <ISCCField
-                    label={'Title'}
-                    required={true}
-                    value={title}
-                    onEdit={(value) => setTitle(value)}
-                />
-                <ISCCField
-                    label={'Extra'}
-                    value={extra}
-                    onEdit={(value) => setExtra(value)}
-                />
+                <div className="columns">
+                    <div className="column">
+                        <ISCCField
+                            label={'Title'}
+                            required={true}
+                            value={title}
+                            onEdit={(value) => setTitle(value)}
+                        />
+                    </div>
+                    <div className="column">
+                        <ISCCField
+                            label={'Extra'}
+                            value={extra}
+                            onEdit={(value) => setExtra(value)}
+                        />
+                    </div>
+                </div>
                 <div className="field">
                     <input
                         type="submit"

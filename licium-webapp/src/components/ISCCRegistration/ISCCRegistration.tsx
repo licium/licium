@@ -70,13 +70,14 @@ export function ISCCRegistration() {
     }
 
     const renderISCCPair = (pairId: number, pair: ISCCCode[]) =>
-        pair.map((iscc, issccId) => (
+        pair.map((iscc, isccId) => (
             <div className={'column'} key={iscc.iscc}>
                 <ISCC
                     iscc={iscc}
                     onRegenMetaId={(title, extra) =>
-                        regenMetaId(2 * pairId + issccId, title, extra)
+                        regenMetaId(2 * pairId + isccId, title, extra)
                     }
+                    onDeleteClick={() => removeISCC(2 * pairId + isccId)}
                 />
             </div>
         ))
@@ -87,6 +88,10 @@ export function ISCCRegistration() {
                 {renderISCCPair(pairId, pair)}
             </div>
         ))
+
+    const removeISCC = (idx: number) => {
+        setIsccCodes([...isccCodes.slice(0, idx), ...isccCodes.slice(idx + 1)])
+    }
 
     return (
         <div className="container">

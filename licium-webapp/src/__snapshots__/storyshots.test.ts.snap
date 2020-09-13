@@ -671,54 +671,73 @@ exports[`Storyshots Assets Default 1`] = `
 `;
 
 exports[`Storyshots ISCC Default 1`] = `
-<div
-  className="box iscc"
->
+<div>
+  <div
+    className="message-header"
+  >
+    Title - Long
+    <button
+      className="delete"
+      onClick={[Function]}
+    />
+  </div>
   <form
     className="form"
     onSubmit={[Function]}
   >
     <div
-      className="field"
+      className="columns"
     >
       <div
-        className="control is-small"
+        className="column"
       >
-        <label
-          className="label is-small"
+        <div
+          className="field"
         >
-          Title
-          :
-        </label>
-        <input
-          className="input is-small"
-          disabled={false}
-          onChange={[Function]}
-          required={true}
-          type="text"
-          value="Title - Long"
-        />
+          <div
+            className="control is-small"
+          >
+            <label
+              className="label is-small"
+            >
+              Title
+              :
+            </label>
+            <input
+              className="input is-small"
+              disabled={false}
+              onChange={[Function]}
+              required={true}
+              type="text"
+              value="Title - Long"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    <div
-      className="field"
-    >
       <div
-        className="control is-small"
+        className="column"
       >
-        <label
-          className="label is-small"
+        <div
+          className="field"
         >
-          Extra
-          :
-        </label>
-        <input
-          className="input is-small"
-          disabled={false}
-          onChange={[Function]}
-          type="text"
-          value="Extra Foto"
-        />
+          <div
+            className="control is-small"
+          >
+            <label
+              className="label is-small"
+            >
+              Extra
+              :
+            </label>
+            <input
+              className="input is-small"
+              disabled={false}
+              onChange={[Function]}
+              type="text"
+              value="Extra Foto"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div
