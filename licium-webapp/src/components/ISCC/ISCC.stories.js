@@ -1,7 +1,7 @@
 import React from 'react'
-import ISCC, { ISCCCode } from './ISCC'
+import ISCC from './ISCC'
 
-const iscc: ISCCCode = {
+const iscc = {
     tophash: 'aeed0934a90961e0fb6635e5c9bd13a4739c4c3f6e30aaffd75411d12e940316',
     bits: [
         '1001011000101110111011110101010100100101100100111000100001011111',

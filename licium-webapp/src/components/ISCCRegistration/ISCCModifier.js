@@ -1,10 +1,4 @@
-import { ISCCCode } from '../ISCC/ISCC'
-import { MetaIdResponse } from './ISCCServiceAdapter'
-
-export const replaceMetaInfoOnISCC = (
-    iscc: ISCCCode,
-    metaId: MetaIdResponse
-) => ({
+export const replaceMetaInfoOnISCC = (iscc, metaId) => ({
     ...iscc,
     iscc: iscc.iscc.replace(/\w*/, metaId.code),
     bits: [metaId.bits, ...iscc.bits.slice(1)],

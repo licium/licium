@@ -1,5 +1,5 @@
 import React from 'react'
-import ISCC, { ISCCCode, ISCCMetaId } from '../ISCC/ISCC'
+import ISCC from '../ISCC/ISCC'
 import { API_PATH } from '../../App'
 import Dropzone from 'react-dropzone'
 import './ISCCRegistration.scss'
@@ -8,9 +8,9 @@ import { replaceMetaInfoOnISCC } from './ISCCModifier'
 import { useLocalStorage } from '../../hooks/localstorage'
 
 export function ISCCRegistration() {
-    const [isccCodes, setIsccCodes] = useLocalStorage<ISCCCode[]>('ISCCS', [])
+    const [isccCodes, setIsccCodes] = useLocalStorage('ISCCS', [])
 
-    const handleFile = async (files: File[]) => {
+    const handleFile = async (files) => {
         const newCodes = await Promise.all(
             files.map(async (file) => {
                 const formData = new FormData()
@@ -20,13 +20,13 @@ export function ISCCRegistration() {
                     method: 'POST',
                     body: formData,
                 })
-                return (await response.json()) as ISCCCode
+                return await response.json()
             })
         )
 
         setIsccCodes([...isccCodes, ...newCodes])
     }
-    const regenMetaId = async (idx: number, title: string, extra: string) => {
+    const regenMetaId = async (idx, title, extra) => {
         const response = await fetch(`${API_PATH}/generate/meta_id/`, {
             method: 'POST',
             headers: {
@@ -38,7 +38,7 @@ export function ISCCRegistration() {
                 extra,
             }),
         })
-        const newId: ISCCMetaId = await response.json()
+        const newId = await response.json()
         const newIscc = replaceMetaInfoOnISCC(isccCodes[idx], newId)
 
         setIsccCodes([
@@ -48,7 +48,7 @@ export function ISCCRegistration() {
         ])
     }
 
-    const renderISCCPair = (pairId: number, pair: ISCCCode[]) =>
+    const renderISCCPair = (pairId, pair) =>
         pair.map((iscc, isccId) => (
             <div className={'column'} key={iscc.iscc}>
                 <ISCC
@@ -68,7 +68,7 @@ export function ISCCRegistration() {
             </div>
         ))
 
-    const removeISCC = (idx: number) => {
+    const removeISCC = (idx) => {
         setIsccCodes([...isccCodes.slice(0, idx), ...isccCodes.slice(idx + 1)])
     }
 

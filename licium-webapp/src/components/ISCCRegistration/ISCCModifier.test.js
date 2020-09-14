@@ -1,8 +1,7 @@
 import { replaceMetaInfoOnISCC } from './ISCCModifier'
-import { ISCCCode } from '../ISCC/ISCC'
 
 describe('ISCCModifier', () => {
-    const givenIscc: ISCCCode = {
+    const givenIscc = {
         tophash:
             'aeed0934a90961e0fb6635e5c9bd13a4739c4c3f6e30aaffd75411d12e940316',
         bits: [
@@ -34,7 +33,7 @@ describe('ISCCModifier', () => {
         const expectedTitle = 'Another title'
 
         newMetaId.title = expectedTitle
-        const actual: ISCCCode = replaceMetaInfoOnISCC(givenIscc, newMetaId)
+        const actual = replaceMetaInfoOnISCC(givenIscc, newMetaId)
 
         expect(actual.title).toEqual(expectedTitle)
     })
@@ -43,7 +42,7 @@ describe('ISCCModifier', () => {
         const expectedTitleTrimmed = 'Another title trimmed'
 
         newMetaId.title_trimmed = expectedTitleTrimmed
-        const actual: ISCCCode = replaceMetaInfoOnISCC(givenIscc, newMetaId)
+        const actual = replaceMetaInfoOnISCC(givenIscc, newMetaId)
 
         expect(actual.title_trimmed).toEqual(expectedTitleTrimmed)
     })
@@ -52,7 +51,7 @@ describe('ISCCModifier', () => {
         const expectedExtra = 'Another extra'
 
         newMetaId.extra = expectedExtra
-        const actual: ISCCCode = replaceMetaInfoOnISCC(givenIscc, newMetaId)
+        const actual = replaceMetaInfoOnISCC(givenIscc, newMetaId)
 
         expect(actual.extra).toEqual(expectedExtra)
     })
@@ -61,7 +60,7 @@ describe('ISCCModifier', () => {
         const expectedExtraTrimmed = 'Another extra trimmed'
 
         newMetaId.extra_trimmed = expectedExtraTrimmed
-        const actual: ISCCCode = replaceMetaInfoOnISCC(givenIscc, newMetaId)
+        const actual = replaceMetaInfoOnISCC(givenIscc, newMetaId)
 
         expect(actual.extra_trimmed).toEqual(expectedExtraTrimmed)
     })

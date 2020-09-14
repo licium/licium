@@ -2,41 +2,14 @@ import React, { useEffect, useState } from 'react'
 import ISCCField from './ISCCField/ISCCField'
 import * as R from 'ramda'
 
-export interface ISCCCode {
-    bits: string[]
-    extra: string
-    extra_trimmed: string
-    gmt: string
-    iscc: string
-    title: string
-    title_trimmed: string
-    tophash: string
-}
-
-export interface ISCCMetaId {
-    code: string
-    bits: string
-    ident: number
-    title: string
-    title_trimmed: string
-    extra: string
-    extra_trimmed: string
-}
-
-export default function ISCC(props: {
-    iscc: ISCCCode
-    onRegenMetaId: (title: string, extra: string) => void
-    onDeleteClick: () => void
-}) {
+export default function ISCC(props) {
     const [title, setTitle] = useState(props.iscc.title)
     const [extra, setExtra] = useState(props.iscc.extra || '')
     const [iscc, setISCC] = useState(props.iscc)
 
-    const renderBits = (bits: string) =>
+    const renderBits = (bits) =>
         R.splitEvery(16, bits)
-            .map<React.ReactNode>((value, idx) => (
-                <code key={`c${idx}`}>{value}</code>
-            ))
+            .map((value, idx) => <code key={`c${idx}`}>{value}</code>)
             .reduce((prev, cur, idx) => [prev, <br key={`b${idx}`} />, cur])
 
     useEffect(() => {
