@@ -4,11 +4,14 @@ import './index.scss'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { ThemeProvider } from '@chakra-ui/core'
 //const drizzle = new Drizzle(drizzleOptions as any)
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 )

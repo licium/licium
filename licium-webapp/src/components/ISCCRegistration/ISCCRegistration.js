@@ -74,7 +74,6 @@ export function ISCCRegistration() {
 
     return (
         <div className="container">
-            <h1 className="title is1">ISCC Registration</h1>
             <div className="field">
                 <label className="label">Generate from file</label>
                 <Dropzone onDrop={(acceptedFiles) => handleFile(acceptedFiles)}>

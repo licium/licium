@@ -1030,11 +1030,6 @@ exports[`Storyshots ISCCRegistration Default 1`] = `
 <div
   className="container"
 >
-  <h1
-    className="title is1"
-  >
-    ISCC Registration
-  </h1>
   <div
     className="field"
   >
@@ -1431,6 +1426,23 @@ exports[`Storyshots Logo Small 1`] = `
 >
   Logo.svg
 </svg>
+`;
+
+exports[`Storyshots Menu Default 1`] = `
+<div
+  className="css-1domaf0"
+>
+  <div
+    className="css-j7qwjs"
+  >
+    <button
+      className="css-c4fa1y"
+      type="button"
+    >
+      Generate ISCCs
+    </button>
+  </div>
+</div>
 `;
 
 exports[`Storyshots PageTitle Default 1`] = `
