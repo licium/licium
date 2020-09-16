@@ -1,14 +1,16 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
+import { Heading } from '@chakra-ui/core'
 
-export default function PageTitle(props) {
-    return (
-        <section className="hero is-primary">
-            <div className="hero-body">
-                <div className="container">
-                    <h1 className="title">{props.title}</h1>
-                    <h2 className="subtitle">{props.description}</h2>
-                </div>
-            </div>
-        </section>
-    )
+const titles = {
+    '/': 'ISCC Entries',
+    '/registration': 'Register ISCCs',
+}
+
+export default function PageTitle() {
+    const location = useLocation()
+
+    const title = titles[location.pathname]
+
+    return <Heading>{title}</Heading>
 }

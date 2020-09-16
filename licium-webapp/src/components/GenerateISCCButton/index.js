@@ -62,7 +62,6 @@ const GenerateISCCButton = () => {
                     <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <Button
-                            w="100%"
                             isLoading={isLoading}
                             loadingText="Submitting"
                             onClick={() => setIsLoading(true)}

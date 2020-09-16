@@ -2,7 +2,22 @@ import React, { useContext, useMemo, useState } from 'react'
 import { ISCCContext } from '../../App'
 import { FaQrcode, FaStar } from 'react-icons/all'
 import styled from '@emotion/styled'
-import { IconButton, Input, InputGroup, InputRightAddon } from '@chakra-ui/core'
+import {
+    Checkbox,
+    IconButton,
+    Input,
+    InputGroup,
+    InputRightAddon,
+    List,
+    ListItem,
+    Popover,
+    PopoverArrow,
+    PopoverBody,
+    PopoverCloseButton,
+    PopoverContent,
+    PopoverHeader,
+    PopoverTrigger,
+} from '@chakra-ui/core'
 
 const EditableCell = (props) => {
     const [isEditable, setEditable] = useState(false)
@@ -43,7 +58,9 @@ const EditableCell = (props) => {
 }
 
 const Table = () => {
-    const { isccs, setIsccs } = useContext(ISCCContext)
+    const { isccs, setIsccs, selectedEntries, setSelectedEntries } = useContext(
+        ISCCContext
+    )
 
     const data = useMemo(() => isccs, [isccs])
 
@@ -57,6 +74,16 @@ const Table = () => {
             }
         }
     `
+
+    const toggleSelect = (iscc) => {
+        let newEntries
+        if (selectedEntries.includes(iscc)) {
+            newEntries = selectedEntries.filter((entry) => entry !== iscc)
+        } else {
+            newEntries = [...selectedEntries, iscc]
+        }
+        setSelectedEntries(newEntries)
+    }
 
     const updateIscc = (id, field, value) => {
         const isccToUpdate = isccs[id]
@@ -72,24 +99,98 @@ const Table = () => {
         setIsccs(newIsccs)
     }
 
+    const isccCodeList = (iscc) => {
+        const codes = iscc.split('-')
+        const codeObject = {
+            'Meta-ID': codes[0],
+            'Content-ID': codes[1],
+            'Data-ID': codes[2],
+            'Instance-ID': codes[3],
+        }
+        return Object.keys(codeObject).map((key, idx) => (
+            <ListItem key={idx}>
+                {key}: {codeObject[key]}
+            </ListItem>
+        ))
+    }
+
     const cells = () =>
         data.map((iscc, id) => (
             <tr key={id}>
-                <td>
-                    <input type="checkbox" />
+                <td onClick={() => toggleSelect(iscc)}>
+                    <Checkbox
+                        isChecked={selectedEntries.includes(iscc)}
+                        onChange={() => toggleSelect(iscc)}
+                    />
                 </td>
                 <td>
                     <FaStar />
                 </td>
-                <td>{iscc.date}</td>
-                <td>-</td>
+                <td>{iscc.title}</td>
                 <EditableCell
                     value={iscc.extra}
                     onSubmit={(value) => updateIscc(id, 'extra', value)}
                 />
-                <td>{iscc.title}</td>
+                <td>-</td>
+                <td>{iscc.date}</td>
                 <td>
-                    <FaQrcode />
+                    <Popover>
+                        <PopoverTrigger>
+                            <IconButton
+                                icon={FaQrcode}
+                                aria-label="registered"
+                            />
+                        </PopoverTrigger>
+                        <PopoverContent zIndex={4} w="1000px">
+                            <PopoverArrow />
+                            <PopoverCloseButton />
+                            <PopoverHeader>Iscc Content</PopoverHeader>
+                            <PopoverBody>
+                                <List>
+                                    <ListItem>Tophash: {iscc.tophash}</ListItem>
+
+                                    {isccCodeList(iscc.iscc)}
+                                </List>
+                            </PopoverBody>
+                        </PopoverContent>
+                    </Popover>
+                </td>
+                <td>
+                    {iscc.registration ? (
+                        <Popover>
+                            <PopoverTrigger>
+                                <IconButton
+                                    icon="check"
+                                    variantColor="green"
+                                    aria-label="registered"
+                                />
+                            </PopoverTrigger>
+                            <PopoverContent zIndex={4}>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <PopoverHeader>Registration Info</PopoverHeader>
+                                <PopoverBody>
+                                    <List>
+                                        {Object.keys(iscc.registration).map(
+                                            (key, id) => (
+                                                <ListItem key={id}>
+                                                    {key}:{' '}
+                                                    {iscc.registration[key]}
+                                                </ListItem>
+                                            )
+                                        )}
+                                    </List>
+                                </PopoverBody>
+                            </PopoverContent>
+                        </Popover>
+                    ) : (
+                        <IconButton
+                            isDisabled
+                            icon="close"
+                            variantColor="red"
+                            aria-label="Not registered"
+                        />
+                    )}
                 </td>
             </tr>
         ))
@@ -101,11 +202,12 @@ const Table = () => {
                     <tr>
                         <td>Select</td>
                         <td>Star</td>
-                        <td>Date</td>
-                        <td>#Tag</td>
-                        <td>Embedded Title</td>
                         <td>Filename</td>
+                        <td>Embedded Title</td>
+                        <td>#Tag</td>
+                        <td>Date</td>
                         <td>ISCC</td>
+                        <td>Registered?</td>
                     </tr>
                 </thead>
                 <tbody>{cells()}</tbody>

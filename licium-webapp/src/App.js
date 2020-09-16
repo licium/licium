@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
-import { Box, Flex, Heading } from '@chakra-ui/core'
+import { Box, Flex } from '@chakra-ui/core'
 import AppHeader from './components/AppHeader/AppHeader'
 import Menu from './components/Menu'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -13,19 +13,17 @@ import theme from '@chakra-ui/core/dist/theme'
 import Table from './components/EntryTable'
 import { useLocalStorage } from './hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
+import PageTitle from './components/PageTitle/PageTitle'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : ''
 
-export const ISCCContext = createContext({
-    isccEntries: [],
-    setEntries: () => {},
-})
+export const ISCCContext = createContext({})
 
 function App() {
-    const [selectedAssets, setSelectedAssets] = useState([])
+    const [selectedEntries, setSelectedEntries] = useState([])
     const [isccs, setIsccs] = useLocalStorage(LOCAL_STORAGE_KEY_ISSCS, [])
 
-    const value = { isccs, setIsccs }
+    const value = { isccs, setIsccs, selectedEntries, setSelectedEntries }
 
     return (
         <ISCCContext.Provider value={value}>
@@ -42,7 +40,7 @@ function App() {
                         alignItems="flex-end"
                         backgroundColor={theme.colors.gray['300']}
                     >
-                        <Heading>ISCC-Registration</Heading>
+                        <PageTitle />
                     </Flex>
                     <Box backgroundColor={theme.colors.gray['300']}>
                         <Menu />
@@ -52,13 +50,13 @@ function App() {
                             <Route path="/assets">
                                 <Assets
                                     onAssetsSelected={(assets) =>
-                                        setSelectedAssets(assets)
+                                        setSelectedEntries(assets)
                                     }
                                 />
                             </Route>
                             <Route path={'/registration'}>
                                 <Registration
-                                    assetsForRegistration={selectedAssets}
+                                    assetsForRegistration={selectedEntries}
                                 />
                             </Route>
                             <Route path={'/blockchain'}>
