@@ -95,23 +95,6 @@ exports[`Storyshots ActionButton Enabled 1`] = `
 </div>
 `;
 
-exports[`Storyshots AppHeader Logo 1`] = `
-<div
-  className="app-header"
->
-  <a
-    href="/"
-  >
-    <svg
-      className="sm"
-    >
-      Logo.svg
-    </svg>
-  </a>
-  licium
-</div>
-`;
-
 exports[`Storyshots AssetPanel Default 1`] = `
 <nav
   className="asset-panel panel"
@@ -1009,63 +992,6 @@ exports[`Storyshots ISCCField Editable 1`] = `
 </div>
 `;
 
-exports[`Storyshots ISCCRegistration Default 1`] = `
-<div
-  className="container"
->
-  <div
-    className="field"
-  >
-    <label
-      className="label"
-    >
-      Generate from file
-    </label>
-    <section>
-      <div
-        className="dropzone"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragEnter={[Function]}
-        onDragLeave={[Function]}
-        onDragOver={[Function]}
-        onDrop={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
-      >
-        <input
-          autoComplete="off"
-          multiple={true}
-          onChange={[Function]}
-          onClick={[Function]}
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-          tabIndex={-1}
-          type="file"
-        />
-        <p>
-          <span
-            className="icon"
-          >
-            <i
-              className="fas fa-download"
-            />
-          </span>
-        </p>
-        <p>
-          Drag 'n' drop some files here, or click to select files
-        </p>
-      </div>
-    </section>
-  </div>
-  
-</div>
-`;
-
 exports[`Storyshots Identification Table Empty Table 1`] = `
 <table
   className="table is-bordered is-striped is-hoverable"
@@ -1409,59 +1335,6 @@ exports[`Storyshots Logo Small 1`] = `
 >
   Logo.svg
 </svg>
-`;
-
-exports[`Storyshots Menu Default 1`] = `
-<div
-  className="css-1domaf0"
->
-  <div
-    className="css-j7qwjs"
-  >
-    <section>
-      <div
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragEnter={[Function]}
-        onDragLeave={[Function]}
-        onDragOver={[Function]}
-        onDrop={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
-      >
-        <input
-          autoComplete="off"
-          multiple={true}
-          onChange={[Function]}
-          onClick={[Function]}
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-          tabIndex={-1}
-          type="file"
-        />
-        <button
-          aria-disabled={false}
-          className="css-z70eed"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Generate ISCCs
-        </button>
-      </div>
-    </section>
-    <a
-      download="filename.json"
-      href="data:text/json;charset=utf-8,undefined"
-    >
-      Download Json
-    </a>
-  </div>
-</div>
 `;
 
 exports[`Storyshots Registration success Default 1`] = `
