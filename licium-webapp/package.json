@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "cross-env NODE_ENV=production react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-icons)/\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
@@ -18,6 +18,9 @@
       "react-app",
       "plugin:cypress/recommended"
     ]
+  },
+  "resolutions": {
+    "styled-components": "^5"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
@@ -35,41 +38,48 @@
     ]
   },
   "devDependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@drizzle/react-components": "^1.5.1",
+    "@drizzle/react-plugin": "^1.5.1",
+    "@drizzle/store": "^1.5.1",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-storyshots": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
-    "cross-env": "^7.0.2",
-    "cypress": "^4.11.0",
-    "cypress-cucumber-preprocessor": "^2.5.4",
-    "eslint-plugin-cypress": "^2.11.1",
-    "msw": "^0.21.2",
-    "react-test-renderer": "^16.13.1",
-    "@drizzle/react-components": "^1.5.1",
-    "@drizzle/react-plugin": "^1.5.1",
-    "@drizzle/store": "^1.5.1",
-    "@fortawesome/fontawesome-free": "^5.14.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bulma": "^0.9.0",
+    "cross-env": "^7.0.2",
+    "cypress": "^4.11.0",
+    "cypress-cucumber-preprocessor": "^2.5.4",
+    "emotion-theming": "^10.0.27",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "eslint-plugin-cypress": "^2.11.1",
     "husky": "^4.2.5",
     "jest-date-serializer": "^1.0.1",
     "lint-staged": "^10.2.11",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
+    "msw": "^0.21.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.3",
+    "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "react-table": "^7.5.0",
+    "react-test-renderer": "^16.13.1",
+    "styled-components": "^5.2.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,css}": [
@@ -92,11 +102,5 @@
       "jest-date-serializer"
     ]
   },
-  "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.35",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27",
-    "react-table": "^7.5.0"
-  }
+  "dependencies": {}
 }
