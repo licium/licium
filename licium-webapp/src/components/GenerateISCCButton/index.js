@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Button, useToast } from '@chakra-ui/core'
+import { useToast } from '@chakra-ui/core'
 import Dropzone from 'react-dropzone'
 import { API_PATH, ISCCContext } from '../../App'
 import { useLocalStorage } from '../../hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from '../../utils/constants'
+import { StyledButton } from '../Menu'
 
 const GenerateISCCButton = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -60,16 +61,16 @@ const GenerateISCCButton = () => {
             onFileDialogCancel={() => setIsLoading(false)}
         >
             {({ getRootProps, getInputProps }) => (
-                <section>
+                <section w="100%">
                     <div {...getRootProps()}>
                         <input {...getInputProps()} />
-                        <Button
+                        <StyledButton
                             isLoading={isLoading}
                             loadingText="Submitting"
                             onClick={() => setIsLoading(true)}
                         >
                             Generate ISCCs
-                        </Button>
+                        </StyledButton>
                     </div>
                 </section>
             )}

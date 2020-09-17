@@ -1,6 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react'
 import { ISCCContext } from '../../App'
-import { FaQrcode } from 'react-icons/all'
 import styled from '@emotion/styled'
 import {
     Checkbox,
@@ -9,17 +8,9 @@ import {
     Input,
     InputGroup,
     InputRightAddon,
-    List,
-    ListItem,
-    Popover,
-    PopoverArrow,
-    PopoverBody,
-    PopoverCloseButton,
-    PopoverContent,
-    PopoverHeader,
-    PopoverTrigger,
 } from '@chakra-ui/core'
-import { splitEvery } from 'ramda'
+import { ISCCButton } from '../ISCCButton'
+import { RegisteredButton } from '../RegisteredButton'
 
 const EditableCell = (props) => {
     const [isEditable, setEditable] = useState(false)
@@ -40,6 +31,7 @@ const EditableCell = (props) => {
                 />
                 <InputRightAddon>
                     <IconButton
+                        size="sm"
                         aria-label="confirm"
                         icon="check"
                         onClick={() => finishEdit()}
@@ -50,6 +42,7 @@ const EditableCell = (props) => {
     ) : (
         <td>
             <IconButton
+                size="sm"
                 aria-label="edit"
                 icon="edit"
                 onClick={() => setEditable(true)}
@@ -59,28 +52,32 @@ const EditableCell = (props) => {
     )
 }
 
+export const StyledTable = styled.div`
+    margin: 1em 2em 0 0.5em;
+    table {
+        border-color: #d3d6ed;
+        border-width: 5px;
+        width: 100%;
+        .centered {
+            text-align: center;
+        }
+        th {
+            border: 1px solid #d3d6ed;
+            padding: 0.5em;
+        }
+        td {
+            border: 1px solid #d3d6ed;
+            padding: 0.5em;
+        }
+    }
+`
+
 const Table = () => {
     const { isccs, setIsccs, selectedEntries, setSelectedEntries } = useContext(
         ISCCContext
     )
 
     const data = useMemo(() => isccs, [isccs])
-
-    const Styled = styled.div`
-        margin: 1em 2em 0 0.5em;
-        table {
-            border-color: #d3d6ed;
-            border-width: 5px;
-            width: 100%;
-            td {
-                border: 1px solid;
-                padding: 1em;
-            }
-            td.centered {
-                text-align: center;
-            }
-        }
-    `
 
     const toggleSelect = (iscc) => {
         let newEntries
@@ -106,23 +103,6 @@ const Table = () => {
         setIsccs(newIsccs)
     }
 
-    const isccCodeList = (iscc) => {
-        const codes = iscc.split('-')
-        const codeObject = {
-            'Meta-ID': codes[0],
-            'Content-ID': codes[1],
-            'Data-ID': codes[2],
-            'Instance-ID': codes[3],
-        }
-        return Object.keys(codeObject).map((key, idx) => (
-            <ListItem key={idx}>
-                <strong>{key}:</strong> {codeObject[key]}
-            </ListItem>
-        ))
-    }
-
-    const breakTophash = (tophash) => splitEvery(32, tophash).join(' ')
-
     const cells = () =>
         data.map((iscc, id) => (
             <tr key={id}>
@@ -143,87 +123,32 @@ const Table = () => {
                 <td>-</td>
                 <td>{iscc.date}</td>
                 <td className="centered">
-                    <Popover>
-                        <PopoverTrigger>
-                            <IconButton
-                                icon={FaQrcode}
-                                aria-label="registered"
-                            />
-                        </PopoverTrigger>
-                        <PopoverContent zIndex={4} w="1000px">
-                            <PopoverArrow />
-                            <PopoverCloseButton />
-                            <PopoverHeader>Iscc Content</PopoverHeader>
-                            <PopoverBody>
-                                <List textAlign="left">
-                                    {isccCodeList(iscc.iscc)}
-                                    <ListItem>
-                                        <strong>Tophash:</strong>{' '}
-                                        {breakTophash(iscc.tophash)}
-                                    </ListItem>
-                                </List>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover>
+                    <ISCCButton iscc={iscc} />
                 </td>
                 <td className="centered">
-                    {iscc.registration ? (
-                        <Popover placement="left">
-                            <PopoverTrigger>
-                                <IconButton
-                                    icon="check"
-                                    variantColor="green"
-                                    aria-label="registered"
-                                />
-                            </PopoverTrigger>
-                            <PopoverContent zIndex={4}>
-                                <PopoverArrow />
-                                <PopoverCloseButton />
-                                <PopoverHeader>Registration Info</PopoverHeader>
-                                <PopoverBody>
-                                    <List textAlign="left">
-                                        {Object.keys(iscc.registration).map(
-                                            (key, id) => (
-                                                <ListItem key={id}>
-                                                    <strong>{key}:</strong>{' '}
-                                                    {iscc.registration[key]}
-                                                </ListItem>
-                                            )
-                                        )}
-                                    </List>
-                                </PopoverBody>
-                            </PopoverContent>
-                        </Popover>
-                    ) : (
-                        <IconButton
-                            isDisabled
-                            icon="close"
-                            variantColor="red"
-                            aria-label="Not registered"
-                        />
-                    )}
+                    <RegisteredButton iscc={iscc} />
                 </td>
             </tr>
         ))
 
     return (
-        <Styled>
+        <StyledTable>
             <table>
                 <thead>
                     <tr>
-                        <td className="centered">Select</td>
-                        <td className="centered">Star</td>
-                        <td>Filename</td>
-                        <td>Embedded Title</td>
-                        <td>#Tag</td>
-                        <td>Date</td>
-                        <td className="centered">ISCC</td>
-                        <td className="centered">Registered</td>
+                        <th className="centered">Select</th>
+                        <th className="centered">Star</th>
+                        <th>Filename</th>
+                        <th>Embedded Title</th>
+                        <th>Tag</th>
+                        <th>Date</th>
+                        <th className="centered">ISCC</th>
+                        <th className="centered">Registered</th>
                     </tr>
                 </thead>
                 <tbody>{cells()}</tbody>
             </table>
-        </Styled>
+        </StyledTable>
     )
 }
 

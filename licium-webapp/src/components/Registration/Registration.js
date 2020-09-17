@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import './Registration.scss'
 import { ISCCContext } from '../../App'
-import styled from '@emotion/styled'
-import { FaQrcode } from 'react-icons/all'
 import { Button, FormControl, FormLabel, Select } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
 import { useHistory } from 'react-router-dom'
+import { StyledTable } from '../EntryTable'
+import { ISCCButton } from '../ISCCButton'
 
 const publisherAddresses = {
     CI: [
@@ -31,19 +31,10 @@ export default function Registration() {
         ISCCContext
     )
     const [usedBlockchain, setUsedBlockchain] = useState('CI')
-    const [usedPublisherAddress, setUsedPublisherAddress] = useState()
+    const [usedPublisherAddress, setUsedPublisherAddress] = useState(
+        publisherAddresses[usedBlockchain][0]
+    )
     const history = useHistory()
-
-    const Styled = styled.div`
-        margin: 1em;
-        table {
-            width: 100%;
-            td {
-                border: 1px solid;
-                padding: 1em;
-            }
-        }
-    `
 
     const cells = () =>
         selectedEntries.map((iscc, id) => (
@@ -51,9 +42,9 @@ export default function Registration() {
                 <td>{iscc.title}</td>
                 <td>{iscc.extra}</td>
                 <td>-</td>
-                <td>iscc.date</td>
-                <td>
-                    <FaQrcode />
+                <td>{iscc.date}</td>
+                <td className="centered">
+                    <ISCCButton iscc={iscc} placement="left" />
                 </td>
             </tr>
         ))
@@ -65,8 +56,6 @@ export default function Registration() {
             </option>
         ))
 
-    //Registry
-    //Registration Address
     const submitEntries = (event) => {
         event.preventDefault()
         const registeredIsccs = isccs.map((iscc) =>
@@ -86,7 +75,7 @@ export default function Registration() {
     }
 
     return (
-        <Styled>
+        <StyledTable>
             {selectedEntries.length === 0 ? (
                 <span>No entries selected</span>
             ) : (
@@ -94,11 +83,11 @@ export default function Registration() {
                     <table>
                         <thead>
                             <tr>
-                                <td>Filename</td>
-                                <td>Embedded Title</td>
-                                <td>#Tag</td>
-                                <td>Date</td>
-                                <td>ISCC</td>
+                                <th>Filename</th>
+                                <th>Embedded Title</th>
+                                <th>Tag</th>
+                                <th>Date</th>
+                                <th className="centered">ISCC</th>
                             </tr>
                         </thead>
                         <tbody>{cells()}</tbody>
@@ -163,6 +152,6 @@ export default function Registration() {
                     </Box>
                 </Box>
             )}
-        </Styled>
+        </StyledTable>
     )
 }
