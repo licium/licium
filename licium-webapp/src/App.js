@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
-import { Box, Flex } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 import AppHeader from './components/AppHeader/AppHeader'
 import Menu from './components/Menu'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -35,9 +35,7 @@ function App() {
                     <Box>
                         <AppHeader />
                     </Box>
-                    <Flex alignItems="flex-end">
-                        <PageTitle />
-                    </Flex>
+                    <PageTitle />
                     <Box>
                         <Menu />
                     </Box>

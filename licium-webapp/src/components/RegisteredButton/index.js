@@ -11,6 +11,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/core'
+import { BLOCKCHAIN_NETWORKS } from '../../utils/constants'
 
 export const RegisteredButton = (props) => {
     const [iscc] = useState(props.iscc)
@@ -19,7 +20,7 @@ export const RegisteredButton = (props) => {
         <>
             <ListItem>
                 <strong>Registry: </strong>
-                {registration.usedBlockchain}
+                {BLOCKCHAIN_NETWORKS[registration.usedBlockchain]}
             </ListItem>
             <ListItem>
                 <strong>Registration Address: </strong>
@@ -54,6 +55,7 @@ export const RegisteredButton = (props) => {
                 <IconButton
                     isDisabled
                     icon="close"
+                    size="sm"
                     variantColor="red"
                     aria-label="Not registered"
                 />

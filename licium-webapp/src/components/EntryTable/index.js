@@ -53,7 +53,7 @@ const EditableCell = (props) => {
 }
 
 export const StyledTable = styled.div`
-    margin: 1em 2em 0 0.5em;
+    margin: 1em 2em 0 0;
     table {
         border-color: #d3d6ed;
         border-width: 5px;
@@ -106,7 +106,7 @@ const Table = () => {
     const cells = () =>
         data.map((iscc, id) => (
             <tr key={id}>
-                <td onClick={() => toggleSelect(iscc)} className="centered">
+                <td className="centered">
                     <Checkbox
                         isChecked={selectedEntries.includes(iscc)}
                         onChange={() => toggleSelect(iscc)}
@@ -121,7 +121,7 @@ const Table = () => {
                     onSubmit={(value) => updateIscc(id, 'extra', value)}
                 />
                 <td>-</td>
-                <td>{iscc.date}</td>
+                <td>{new Date(iscc.date).toISOString().replace('T', ' ')}</td>
                 <td className="centered">
                     <ISCCButton iscc={iscc} />
                 </td>

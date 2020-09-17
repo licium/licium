@@ -298,11 +298,15 @@ exports[`Storyshots Assets Default 1`] = `
 <div
   className="container"
 >
-  <h2
-    className="css-1ud0ne8"
+  <div
+    className="css-4mx99q"
   >
-    ISCC Entries
-  </h2>
+    <h2
+      className="css-1ud0ne8"
+    >
+      ISCC Entries
+    </h2>
+  </div>
   <div
     className="level"
   >
