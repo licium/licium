@@ -1,9 +1,10 @@
-import React, { useContext, useMemo, useState } from 'react'
-import { ISCCContext } from '../../App'
-import { FaQrcode, FaStar } from 'react-icons/all'
+import React, {useContext, useMemo, useState} from 'react'
+import {ISCCContext} from '../../App'
+import {FaQrcode} from 'react-icons/all'
 import styled from '@emotion/styled'
 import {
     Checkbox,
+    Icon,
     IconButton,
     Input,
     InputGroup,
@@ -18,7 +19,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/core'
-import { splitEvery } from 'ramda'
+import {splitEvery} from 'ramda'
 
 const EditableCell = (props) => {
     const [isEditable, setEditable] = useState(false)
@@ -59,7 +60,7 @@ const EditableCell = (props) => {
 }
 
 const Table = () => {
-    const { isccs, setIsccs, selectedEntries, setSelectedEntries } = useContext(
+    const {isccs, setIsccs, selectedEntries, setSelectedEntries} = useContext(
         ISCCContext
     )
 
@@ -72,6 +73,9 @@ const Table = () => {
             td {
                 border: 1px solid;
                 padding: 1em;
+            }
+            td.centered {
+                text-align: center;
             }
         }
     `
@@ -120,14 +124,14 @@ const Table = () => {
     const cells = () =>
         data.map((iscc, id) => (
             <tr key={id}>
-                <td onClick={() => toggleSelect(iscc)}>
+                <td onClick={() => toggleSelect(iscc)} className="centered">
                     <Checkbox
                         isChecked={selectedEntries.includes(iscc)}
                         onChange={() => toggleSelect(iscc)}
                     />
                 </td>
-                <td>
-                    <FaStar />
+                <td className="centered">
+                    <Icon name="star"/>
                 </td>
                 <td>{iscc.title}</td>
                 <EditableCell
@@ -136,7 +140,7 @@ const Table = () => {
                 />
                 <td>-</td>
                 <td>{iscc.date}</td>
-                <td>
+                <td className="centered">
                     <Popover>
                         <PopoverTrigger>
                             <IconButton
@@ -145,8 +149,8 @@ const Table = () => {
                             />
                         </PopoverTrigger>
                         <PopoverContent zIndex={4} w="1000px">
-                            <PopoverArrow />
-                            <PopoverCloseButton />
+                            <PopoverArrow/>
+                            <PopoverCloseButton/>
                             <PopoverHeader>Iscc Content</PopoverHeader>
                             <PopoverBody>
                                 <List>
@@ -160,7 +164,7 @@ const Table = () => {
                         </PopoverContent>
                     </Popover>
                 </td>
-                <td>
+                <td className="centered">
                     {iscc.registration ? (
                         <Popover>
                             <PopoverTrigger>
@@ -171,8 +175,8 @@ const Table = () => {
                                 />
                             </PopoverTrigger>
                             <PopoverContent zIndex={4}>
-                                <PopoverArrow />
-                                <PopoverCloseButton />
+                                <PopoverArrow/>
+                                <PopoverCloseButton/>
                                 <PopoverHeader>Registration Info</PopoverHeader>
                                 <PopoverBody>
                                     <List>
@@ -204,16 +208,16 @@ const Table = () => {
         <Styled>
             <table>
                 <thead>
-                    <tr>
-                        <td>Select</td>
-                        <td>Star</td>
-                        <td>Filename</td>
-                        <td>Embedded Title</td>
-                        <td>#Tag</td>
-                        <td>Date</td>
-                        <td>ISCC</td>
-                        <td>Registered?</td>
-                    </tr>
+                <tr>
+                    <td className="centered">Select</td>
+                    <td className="centered">Star</td>
+                    <td>Filename</td>
+                    <td>Embedded Title</td>
+                    <td>#Tag</td>
+                    <td>Date</td>
+                    <td className="centered">ISCC</td>
+                    <td className="centered">Registered?</td>
+                </tr>
                 </thead>
                 <tbody>{cells()}</tbody>
             </table>
