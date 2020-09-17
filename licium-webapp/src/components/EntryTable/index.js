@@ -18,6 +18,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/core'
+import { splitEvery } from 'ramda'
 
 const EditableCell = (props) => {
     const [isEditable, setEditable] = useState(false)
@@ -109,10 +110,12 @@ const Table = () => {
         }
         return Object.keys(codeObject).map((key, idx) => (
             <ListItem key={idx}>
-                {key}: {codeObject[key]}
+                <strong>{key}:</strong> {codeObject[key]}
             </ListItem>
         ))
     }
+
+    const breakTophash = (tophash) => splitEvery(32, tophash).join(' ')
 
     const cells = () =>
         data.map((iscc, id) => (
@@ -147,9 +150,11 @@ const Table = () => {
                             <PopoverHeader>Iscc Content</PopoverHeader>
                             <PopoverBody>
                                 <List>
-                                    <ListItem>Tophash: {iscc.tophash}</ListItem>
-
                                     {isccCodeList(iscc.iscc)}
+                                    <ListItem>
+                                        <strong>Tophash:</strong>{' '}
+                                        {breakTophash(iscc.tophash)}
+                                    </ListItem>
                                 </List>
                             </PopoverBody>
                         </PopoverContent>
@@ -174,7 +179,7 @@ const Table = () => {
                                         {Object.keys(iscc.registration).map(
                                             (key, id) => (
                                                 <ListItem key={id}>
-                                                    {key}:{' '}
+                                                    <strong>{key}:</strong>{' '}
                                                     {iscc.registration[key]}
                                                 </ListItem>
                                             )
