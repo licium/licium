@@ -9,7 +9,6 @@ import Assets from './components/Assets/Assets'
 import Registration from './components/Registration/Registration'
 import BlockchainContext from './components/BlockchainOutlet/BlockchainContext'
 import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
-import theme from '@chakra-ui/core/dist/theme'
 import Table from './components/EntryTable'
 import { useLocalStorage } from './hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
@@ -30,19 +29,16 @@ function App() {
             <Router>
                 <Grid
                     templateRows="100px 1fr"
-                    templateColumns="320px 1fr"
+                    templateColumns="200px 1fr"
                     padding="5px"
                 >
-                    <Box backgroundColor={theme.colors.gray['300']}>
+                    <Box>
                         <AppHeader />
                     </Box>
-                    <Flex
-                        alignItems="flex-end"
-                        backgroundColor={theme.colors.gray['300']}
-                    >
+                    <Flex alignItems="flex-end">
                         <PageTitle />
                     </Flex>
-                    <Box backgroundColor={theme.colors.gray['300']}>
+                    <Box>
                         <Menu />
                     </Box>
                     <Box>

@@ -65,6 +65,8 @@ export default function Registration() {
             </option>
         ))
 
+    //Registry
+    //Registration Address
     const submitEntries = (event) => {
         event.preventDefault()
         const registeredIsccs = isccs.map((iscc) =>

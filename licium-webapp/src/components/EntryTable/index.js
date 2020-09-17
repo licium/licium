@@ -69,6 +69,8 @@ const Table = () => {
     const Styled = styled.div`
         margin: 1em 2em 0 0.5em;
         table {
+            border-color: #d3d6ed;
+            border-width: 5px;
             width: 100%;
             td {
                 border: 1px solid;
@@ -153,7 +155,7 @@ const Table = () => {
                             <PopoverCloseButton />
                             <PopoverHeader>Iscc Content</PopoverHeader>
                             <PopoverBody>
-                                <List>
+                                <List textAlign="left">
                                     {isccCodeList(iscc.iscc)}
                                     <ListItem>
                                         <strong>Tophash:</strong>{' '}
@@ -166,7 +168,7 @@ const Table = () => {
                 </td>
                 <td className="centered">
                     {iscc.registration ? (
-                        <Popover>
+                        <Popover placement="left">
                             <PopoverTrigger>
                                 <IconButton
                                     icon="check"
@@ -179,7 +181,7 @@ const Table = () => {
                                 <PopoverCloseButton />
                                 <PopoverHeader>Registration Info</PopoverHeader>
                                 <PopoverBody>
-                                    <List>
+                                    <List textAlign="left">
                                         {Object.keys(iscc.registration).map(
                                             (key, id) => (
                                                 <ListItem key={id}>
