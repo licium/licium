@@ -1,6 +1,6 @@
-import React, {useContext, useMemo, useState} from 'react'
-import {ISCCContext} from '../../App'
-import {FaQrcode} from 'react-icons/all'
+import React, { useContext, useMemo, useState } from 'react'
+import { ISCCContext } from '../../App'
+import { FaQrcode } from 'react-icons/all'
 import styled from '@emotion/styled'
 import {
     Checkbox,
@@ -19,7 +19,7 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '@chakra-ui/core'
-import {splitEvery} from 'ramda'
+import { splitEvery } from 'ramda'
 
 const EditableCell = (props) => {
     const [isEditable, setEditable] = useState(false)
@@ -60,14 +60,14 @@ const EditableCell = (props) => {
 }
 
 const Table = () => {
-    const {isccs, setIsccs, selectedEntries, setSelectedEntries} = useContext(
+    const { isccs, setIsccs, selectedEntries, setSelectedEntries } = useContext(
         ISCCContext
     )
 
     const data = useMemo(() => isccs, [isccs])
 
     const Styled = styled.div`
-        margin: 1em;
+        margin: 1em 2em 0 0.5em;
         table {
             width: 100%;
             td {
@@ -131,7 +131,7 @@ const Table = () => {
                     />
                 </td>
                 <td className="centered">
-                    <Icon name="star"/>
+                    <Icon name="star" />
                 </td>
                 <td>{iscc.title}</td>
                 <EditableCell
@@ -149,8 +149,8 @@ const Table = () => {
                             />
                         </PopoverTrigger>
                         <PopoverContent zIndex={4} w="1000px">
-                            <PopoverArrow/>
-                            <PopoverCloseButton/>
+                            <PopoverArrow />
+                            <PopoverCloseButton />
                             <PopoverHeader>Iscc Content</PopoverHeader>
                             <PopoverBody>
                                 <List>
@@ -175,8 +175,8 @@ const Table = () => {
                                 />
                             </PopoverTrigger>
                             <PopoverContent zIndex={4}>
-                                <PopoverArrow/>
-                                <PopoverCloseButton/>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
                                 <PopoverHeader>Registration Info</PopoverHeader>
                                 <PopoverBody>
                                     <List>
@@ -208,16 +208,16 @@ const Table = () => {
         <Styled>
             <table>
                 <thead>
-                <tr>
-                    <td className="centered">Select</td>
-                    <td className="centered">Star</td>
-                    <td>Filename</td>
-                    <td>Embedded Title</td>
-                    <td>#Tag</td>
-                    <td>Date</td>
-                    <td className="centered">ISCC</td>
-                    <td className="centered">Registered?</td>
-                </tr>
+                    <tr>
+                        <td className="centered">Select</td>
+                        <td className="centered">Star</td>
+                        <td>Filename</td>
+                        <td>Embedded Title</td>
+                        <td>#Tag</td>
+                        <td>Date</td>
+                        <td className="centered">ISCC</td>
+                        <td className="centered">Registered</td>
+                    </tr>
                 </thead>
                 <tbody>{cells()}</tbody>
             </table>
