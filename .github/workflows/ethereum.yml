@@ -15,8 +15,7 @@ jobs:
       with:
         node-version: '12'
         
-    - run: npm install -g truffle truffle-assertions ganache-cli
-    - run: |
-        ganache-cli & 
-        truffle test
+    - run: npm install
+      working-directory: ethereum
+    - run: npm run test
       working-directory: ethereum
