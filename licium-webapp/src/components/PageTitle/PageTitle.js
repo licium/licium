@@ -12,5 +12,5 @@ export default function PageTitle() {
 
     const title = titles[location.pathname]
 
-    return <Heading>{title}</Heading>
+    return <Heading size="lg">{title}</Heading>
 }
