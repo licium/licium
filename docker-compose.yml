@@ -11,6 +11,8 @@ services:
   licium-webapp:
     build: licium-webapp/.
     labels:
+      - "traefik.http.middlewares.auth.basicauth.users=licium:$$apr1$$vvEtHgQ7$$W3T3O5B.K59N77RnAQd8a/"
+      - traefik.http.routers.licium-webapp.middlewares=auth
       - traefik.http.routers.licium-webapp.tls=true
       - traefik.http.routers.licium-webapp.tls.certresolver=myresolver
       - traefik.http.routers.licium-webapp.rule=Host(`licium.dev`) && PathPrefix(`/`)
