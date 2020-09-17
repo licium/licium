@@ -1,53 +1,109 @@
 import React, { useContext, useMemo, useState } from 'react'
 import { ISCCContext } from '../../App'
 import styled from '@emotion/styled'
+import FocusLock from 'react-focus-lock'
 import {
+    Button,
+    ButtonGroup,
     Checkbox,
+    FormControl,
+    FormLabel,
     Icon,
     IconButton,
     Input,
-    InputGroup,
-    InputRightAddon,
+    Popover,
+    PopoverArrow,
+    PopoverCloseButton,
+    PopoverContent,
+    PopoverTrigger,
+    Stack,
 } from '@chakra-ui/core'
 import { ISCCButton } from '../ISCCButton'
 import { RegisteredButton } from '../RegisteredButton'
+import Box from '@chakra-ui/core/dist/Box'
 
-const EditableCell = (props) => {
-    const [isEditable, setEditable] = useState(false)
-    const [value, setValue] = useState(props.value)
+const TextInput = React.forwardRef((props, ref) => {
+    return (
+        <FormControl>
+            <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
+            <Input ref={ref} id={props.id} {...props} />
+        </FormControl>
+    )
+})
 
-    const finishEdit = () => {
-        setEditable(false)
-        props.onSubmit(value)
+const TitleForm = ({ firstFieldRef, value, onCancel, onSave }) => {
+    const [isSaveDisabled, setIsSaveDisabled] = useState(true)
+    const [title, setTitle] = useState(value)
+
+    const onValueChange = (newVal) => {
+        setTitle(newVal)
+        setIsSaveDisabled(false)
     }
 
-    return isEditable ? (
-        <td>
-            <InputGroup>
-                <Input
-                    type="text"
-                    value={value}
-                    onChange={(event) => setValue(event.target.value)}
-                />
-                <InputRightAddon>
-                    <IconButton
-                        size="sm"
-                        aria-label="confirm"
-                        icon="check"
-                        onClick={() => finishEdit()}
-                    />
-                </InputRightAddon>
-            </InputGroup>
-        </td>
-    ) : (
-        <td>
-            <IconButton
-                size="sm"
-                aria-label="edit"
-                icon="edit"
-                onClick={() => setEditable(true)}
+    return (
+        <Stack spacing={4}>
+            <TextInput
+                label="Edit title"
+                id="new-title"
+                ref={firstFieldRef}
+                defaultValue={title}
+                onChange={(e) => onValueChange(e.target.value)}
             />
-            {value}
+            <ButtonGroup>
+                <Button variant="outline" onClick={onCancel}>
+                    Cancel
+                </Button>
+                <Button
+                    isDisabled={isSaveDisabled}
+                    onClick={() => onSave(title)}
+                >
+                    Save
+                </Button>
+            </ButtonGroup>
+        </Stack>
+    )
+}
+
+const EditCell = ({ value, onUpdate }) => {
+    const [isOpen, setIsOpen] = React.useState(false)
+    const firstFieldRef = React.useRef(null)
+    const open = () => setIsOpen(true)
+    const close = () => setIsOpen(false)
+    const [text, setText] = useState(value)
+
+    return (
+        <td>
+            <Box d="inline-block" mr={3}>
+                {text}
+            </Box>
+            <Popover
+                isOpen={isOpen}
+                initialFocusRef={firstFieldRef}
+                onOpen={open}
+                onClose={close}
+                placement="bottom"
+                closeOnBlur={false}
+            >
+                <PopoverTrigger>
+                    <IconButton size="sm" icon="edit" aria-label="edit" />
+                </PopoverTrigger>
+                <PopoverContent zIndex={4} p={5}>
+                    <FocusLock returnFocus persistentFocus={false}>
+                        <PopoverArrow bg="white" />
+                        <PopoverCloseButton />
+                        <TitleForm
+                            firstFieldRef={firstFieldRef}
+                            value={text}
+                            onCancel={close}
+                            onSave={(val) => {
+                                close()
+                                setText(val)
+                                onUpdate(val)
+                            }}
+                        />
+                    </FocusLock>
+                </PopoverContent>
+            </Popover>
         </td>
     )
 }
@@ -116,9 +172,10 @@ const Table = () => {
                     <Icon name="star" />
                 </td>
                 <td>{iscc.title}</td>
-                <EditableCell
+
+                <EditCell
                     value={iscc.extra}
-                    onSubmit={(value) => updateIscc(id, 'extra', value)}
+                    onUpdate={(val) => updateIscc(id, 'extra', val)}
                 />
                 <td>-</td>
                 <td>{new Date(iscc.date).toISOString().replace('T', ' ')}</td>
