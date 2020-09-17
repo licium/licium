@@ -43,13 +43,15 @@ const GenerateISCCButton = () => {
             })
         )
         setIsLoading(false)
-        const codesWithDate = newCodes.map((code) => ({
-            ...code,
-            date: new Date().toISOString(),
-        }))
-        setIsccs([...isccCodes, ...codesWithDate])
+        const codesWithDate = newCodes
+            .filter((code) => !!code)
+            .map((code) => ({
+                ...code,
+                date: new Date().toISOString(),
+            }))
+        setIsccs([...codesWithDate, ...isccCodes])
 
-        setIsccCodes([...isccCodes, ...codesWithDate])
+        setIsccCodes([...codesWithDate, ...isccCodes])
     }
 
     return (
