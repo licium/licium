@@ -101,44 +101,64 @@ export default function Registration() {
                         </thead>
                         <tbody>{cells()}</tbody>
                     </table>
-                    <form onSubmit={(e) => submitEntries(e)}>
-                        <FormControl as="fieldset" isRequired>
-                            <FormLabel as="legend">Select Blockain</FormLabel>
-                            <Select
-                                value={usedBlockchain}
-                                onChange={(event) =>
-                                    setUsedBlockchain(event.target.value)
-                                }
+                    <Box>
+                        <form onSubmit={(e) => submitEntries(e)}>
+                            <FormControl
+                                as="fieldset"
+                                isRequired
+                                marginTop="2em"
                             >
-                                <option value="CI">
-                                    Copyright Infrastructure
-                                </option>
-                                <option value="BX">Bloxberg</option>
-                                <option value="BC">Bitcoin</option>
-                                <option value="ET">Ethereum</option>
-                            </Select>
-                        </FormControl>
-                        {usedBlockchain ? (
-                            <FormControl as="fieldset" isRequired>
-                                <FormLabel as="legend">
-                                    Select Publisher Address
+                                <FormLabel as="legend" fontWeight="bold">
+                                    Select Blockchain
                                 </FormLabel>
-                                <Select
-                                    value={usedPublisherAddress}
-                                    onChange={(event) =>
-                                        setUsedPublisherAddress(
-                                            event.target.value
-                                        )
-                                    }
-                                >
-                                    {addressOptions()}
-                                </Select>
+                                <Box w="50%">
+                                    <Select
+                                        value={usedBlockchain}
+                                        onChange={(event) =>
+                                            setUsedBlockchain(
+                                                event.target.value
+                                            )
+                                        }
+                                    >
+                                        <option value="CI">
+                                            Copyright Infrastructure
+                                        </option>
+                                        <option value="BX">Bloxberg</option>
+                                        <option value="BC">Bitcoin</option>
+                                        <option value="ET">Ethereum</option>
+                                    </Select>
+                                </Box>
                             </FormControl>
-                        ) : (
-                            ''
-                        )}
-                        <Button type="submit">Submit</Button>
-                    </form>
+                            {usedBlockchain ? (
+                                <FormControl
+                                    as="fieldset"
+                                    isRequired
+                                    marginTop="1em"
+                                >
+                                    <FormLabel as="legend" fontWeight="bold">
+                                        Select Publisher Address
+                                    </FormLabel>
+                                    <Box w="50%">
+                                        <Select
+                                            value={usedPublisherAddress}
+                                            onChange={(event) =>
+                                                setUsedPublisherAddress(
+                                                    event.target.value
+                                                )
+                                            }
+                                        >
+                                            {addressOptions()}
+                                        </Select>
+                                    </Box>
+                                </FormControl>
+                            ) : (
+                                ''
+                            )}
+                            <Button type="submit" marginTop="1em">
+                                Submit
+                            </Button>
+                        </form>
+                    </Box>
                 </Box>
             )}
         </Styled>
