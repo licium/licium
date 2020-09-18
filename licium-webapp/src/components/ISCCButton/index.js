@@ -43,7 +43,7 @@ export const ISCCButton = (props) => {
             <PopoverContent zIndex={4} w="1000px" placement={placement}>
                 <PopoverArrow />
                 <PopoverCloseButton />
-                <PopoverHeader>Iscc Content</PopoverHeader>
+                <PopoverHeader>Iscc Info</PopoverHeader>
                 <PopoverBody>
                     <List textAlign="left">
                         {isccCodeList(iscc.iscc)}
