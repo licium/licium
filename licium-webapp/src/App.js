@@ -5,10 +5,7 @@ import { Box } from '@chakra-ui/core'
 import AppHeader from './components/AppHeader/AppHeader'
 import Menu from './components/Menu'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Assets from './components/Assets/Assets'
 import Registration from './components/Registration/Registration'
-import BlockchainContext from './components/BlockchainOutlet/BlockchainContext'
-import RegistrationSuccess from './components/RegistrationSuccess/RegistrationSuccess'
 import Table from './components/EntryTable'
 import { useLocalStorage } from './hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
@@ -41,52 +38,15 @@ function App() {
                     </Box>
                     <Box>
                         <Switch>
-                            <Route path="/assets">
-                                <Assets
-                                    onAssetsSelected={(assets) =>
-                                        setSelectedEntries(assets)
-                                    }
-                                />
-                            </Route>
                             <Route path={'/registration'}>
-                                <Registration
-                                    assetsForRegistration={selectedEntries}
-                                />
+                                <Registration />
                             </Route>
-                            <Route path={'/blockchain'}>
-                                <BlockchainContext />
-                            </Route>
-                            <Route path={'/registrationSuccessful'}>
-                                <RegistrationSuccess />
-                            </Route>
-                            >
                             <Route>
                                 <Table />
                             </Route>
                         </Switch>
                     </Box>
                 </Grid>
-                {/*<AppHeader />
-            <Switch>
-                <Route path="/assets">
-                    <Assets
-                        onAssetsSelected={(assets) => setSelectedAssets(assets)}
-                    />
-                </Route>
-                <Route path={'/registration'}>
-                    <Registration assetsForRegistration={selectedAssets} />
-                </Route>
-                <Route path={'/blockchain'}>
-                    <BlockchainContext />
-                </Route>
-                <Route path={'/registrationSuccessful'}>
-                    <RegistrationSuccess />
-                </Route>
-                >
-                <Route>
-                    <Home />
-                </Route>
-            </Switch>*/}
             </Router>
         </ISCCContext.Provider>
     )
