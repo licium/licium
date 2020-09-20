@@ -3,9 +3,9 @@ import './Registration.scss'
 import { ISCCContext } from '../../App'
 import { Button, FormControl, FormLabel, Select } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
-import { useHistory } from 'react-router-dom'
 import { StyledTable } from '../EntryTable'
-import { ISCCButton } from '../ISCCButton'
+import { useHistory } from 'react-router-dom'
+import { ISCCButton } from '../../components/InfoButton/ISCCButton'
 
 const publisherAddresses = {
     CI: [

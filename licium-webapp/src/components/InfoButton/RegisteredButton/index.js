@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IconButton, ListItem } from '@chakra-ui/core'
-import { BLOCKCHAIN_NETWORKS } from '../../utils/constants'
-import { InfoButton } from '../InfoButton'
+import { BLOCKCHAIN_NETWORKS } from '../../../utils/constants'
+import { InfoButton } from '../index'
 
 export const RegisteredButton = (props) => {
     const [iscc] = useState(props.iscc)

@@ -5,7 +5,6 @@ import { splitEvery } from 'ramda'
 import { InfoButton } from '../index'
 
 export const ISCCButton = (props) => {
-    const [placement] = useState(props.placement || 'bottom')
     const [iscc] = useState(props.iscc)
 
     const isccCodeList = (iscc) => {

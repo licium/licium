@@ -5,11 +5,11 @@ import { Box } from '@chakra-ui/core'
 import AppHeader from './components/AppHeader/AppHeader'
 import Menu from './components/Menu'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Registration from './components/Registration/Registration'
-import Table from './components/EntryTable'
 import { useLocalStorage } from './hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
 import PageTitle from './components/PageTitle/PageTitle'
+import Registration from './pages/Registration/Registration'
+import Table from './pages/EntryTable'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : ''
 
