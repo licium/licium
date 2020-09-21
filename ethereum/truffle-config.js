@@ -4,7 +4,7 @@ const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const privateKey = process.env.PRIVATE_KEY
 
-module.exports = {
+const config = {
 
   contracts_build_directory: path.join(
     __dirname,
@@ -18,16 +18,6 @@ module.exports = {
       port: 8545, // Standard Ethereum port (default: none)
       network_id: "*", // Any network (default: none)
     },
-
-    bloxberg: {
-      provider: new HDWalletProvider(privateKey, 'https://core.bloxberg.org'),
-      //host: "https://core.bloxberg.org",
-     // port: 443, // Standard Ethereum port (default: none)
-      network_id: '*',
-      production: true,
-      //gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
-      gasPrice: 200000000000,  // 200 gwei (default: 100 gwei)
-    }
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -49,4 +39,23 @@ module.exports = {
       // }
     },
   },
+
 };
+
+if (privateKey) {
+  config.networks = {
+    ...config.networks,
+    bloxberg: {
+      provider: new HDWalletProvider(privateKey, 'https://core.bloxberg.org'),
+      //host: "https://core.bloxberg.org",
+      // port: 443, // Standard Ethereum port (default: none)
+      network_id: '*',
+      production: true,
+      //gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
+      gasPrice: 200000000000,  // 200 gwei (default: 100 gwei)
+    }
+  }
+}
+
+
+module.exports = config;
