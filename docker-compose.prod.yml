@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  iscc-service:
+    restart: always
+    labels:
+      - traefik.http.routers.iscc-service.tls=true
+      - traefik.http.routers.iscc-service.tls.certresolver=myresolver
+      - traefik.http.routers.iscc-service.rule=Host(`licium.dev`) && PathPrefix(`/api`)
+  licium-webapp:
+    restart: always
+    labels:
+      - "traefik.http.middlewares.auth.basicauth.users=licium:$$apr1$$vvEtHgQ7$$W3T3O5B.K59N77RnAQd8a/"
+      - traefik.http.routers.licium-webapp.middlewares=auth
+      - traefik.http.routers.licium-webapp.tls=true
+      - traefik.http.routers.licium-webapp.tls.certresolver=myresolver
+      - traefik.http.routers.licium-webapp.rule=Host(`licium.dev`) && PathPrefix(`/`)
+  reverse-proxy:
+    restart: always
+    command:
+      - --providers.docker
+      - --certificatesresolvers.myresolver=true
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.email=kevin@wittek.dev
+      - --certificatesresolvers.myresolver.acme.storage=acme.json
+   #   - --certificatesresolvers.myresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
+    ports:
+      - "443:443"

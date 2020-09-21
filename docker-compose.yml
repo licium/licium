@@ -5,34 +5,16 @@ services:
     labels:
       - traefik.http.routers.iscc-service.rule=PathPrefix(`/api`)
       - traefik.http.services.iscc-service.loadbalancer.server.port=8080
-      - traefik.http.routers.iscc-service.tls=true
-      - traefik.http.routers.iscc-service.tls.certresolver=myresolver
-      - traefik.http.routers.iscc-service.rule=Host(`licium.dev`) && PathPrefix(`/api`)
   licium-webapp:
     build: licium-webapp/.
     labels:
-      - "traefik.http.middlewares.auth.basicauth.users=licium:$$apr1$$vvEtHgQ7$$W3T3O5B.K59N77RnAQd8a/"
-      - traefik.http.routers.licium-webapp.middlewares=auth
-      - traefik.http.routers.licium-webapp.tls=true
-      - traefik.http.routers.licium-webapp.tls.certresolver=myresolver
-      - traefik.http.routers.licium-webapp.rule=Host(`licium.dev`) && PathPrefix(`/`)
+      - traefik.http.routers.licium-webapp.rule=PathPrefix(`/`)
   reverse-proxy:
-    # The official v2 Traefik docker image
     image: traefik:v2.2
-    # Enables the web UI and tells Traefik to listen to docker
     command:
       - --entrypoints.web.address=:80
-      - --entrypoints.websecure.address=:443
       - --providers.docker
-      - --certificatesresolvers.myresolver=true
-      - --certificatesresolvers.myresolver.acme.tlschallenge=true
-      - --certificatesresolvers.myresolver.acme.email=kevin@wittek.dev
-      - --certificatesresolvers.myresolver.acme.storage=acme.json
-      - --certificatesresolvers.myresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
     ports:
-      # The HTTP port
       - "80:80"
-      - "443:443"
     volumes:
-      # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
