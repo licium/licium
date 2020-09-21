@@ -21,13 +21,13 @@ Note that there are some quirks with regards to node version, especially for the
 Just your jolly good old docker-compose:
 
 ```bash
-docker-compose up
+$ docker-compose up
 ```
 
 
 ### In Prod
 
-There is an addition docker-compose override, that configures traefik for HTTPS and `licium.dev` domain.
+There is an additional docker-compose override, that configures traefik for HTTPS and `licium.dev` domain.
 
 Specify base compose file and environment override like this:
 
