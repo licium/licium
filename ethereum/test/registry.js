@@ -9,11 +9,17 @@ contract("ISCCRegistry", accounts => {
 
     it("should emit decleration events", async () => {
         let bytesHex = web3.utils.fromAscii("12345678901234567890123456789012");
-        let bytes = web3.utils.hexToBytes(bytesHex)
-        const register = await registry.declare(bytes);
+        let isccBytes = web3.utils.hexToBytes(bytesHex)
 
-        truffleAssert.eventEmitted(register, 'ISCC', (ev) => {
-            return ev.iscc === bytesHex;
+        let tophashHex = web3.utils.fromAscii("foobarBaz");
+        let tophashBytes = web3.utils.hexToBytes(tophashHex)
+
+        const decleration = await registry.declare(isccBytes, tophashBytes);
+
+        truffleAssert.eventEmitted(decleration, 'ISCC', (ev) => {
+            return ev.iscc === bytesHex 
+              && ev.actor === accounts[0]
+              && ev.tophash ===  tophashHex;
         });
     })
 

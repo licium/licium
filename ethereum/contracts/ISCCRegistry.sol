@@ -3,10 +3,11 @@ pragma solidity >=0.7.1 <0.8.0;
 
 contract ISCCRegistry {
 
-    event ISCC(bytes32 iscc);
+    event ISCC(address indexed actor, bytes iscc, bytes tophash);
 
-    function declare(bytes32 iscc) public {
-        emit ISCC(iscc);
+    function declare(bytes calldata iscc, bytes calldata tophash) public {
+        // TODO: validate iscc
+        emit ISCC(msg.sender, iscc, tophash);
     }
 
 }
