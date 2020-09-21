@@ -1,21 +1,11 @@
-pragma solidity >=0.4.21 <0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.1 <0.8.0;
 
 contract ISCCRegistry {
 
     event ISCC(bytes32 iscc);
 
-    // struct ISCC {
-    //     bytes9 metaId;
-    //     bytes9 contentId;
-    //     bytes9 dataId;
-    //     bytes9 instanceId;
-    // }
-
-    constructor() public {
-
-    }
-
-    function register(bytes32 iscc) public {
+    function declare(bytes32 iscc) public {
         emit ISCC(iscc);
     }
 

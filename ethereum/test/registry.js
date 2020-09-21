@@ -7,22 +7,14 @@ contract("ISCCRegistry", accounts => {
         registry = await ISCCRegistry.deployed();
     })
 
-    it("should emit registration events", async () => {
+    it("should emit decleration events", async () => {
         let bytesHex = web3.utils.fromAscii("12345678901234567890123456789012");
         let bytes = web3.utils.hexToBytes(bytesHex)
-        const register = await registry.register(bytes);
+        const register = await registry.declare(bytes);
 
         truffleAssert.eventEmitted(register, 'ISCC', (ev) => {
             return ev.iscc === bytesHex;
         });
     })
 
-    // it("should greet with new greeting", async () => {
-    //     const newGreeting = "Foobar";
-
-    //     await greeter.setGreeting(newGreeting);
-    //     const greeting = await greeter.greeting();
-
-    //     assert.equal(greeting, newGreeting);
-    // })
 })
