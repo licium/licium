@@ -22,7 +22,7 @@ export const InfoButton = ({
             <IconButton
                 size="sm"
                 icon={icon}
-                variantColor={variantColor || ''}
+                variantColor={variantColor}
                 aria-label={title}
             />
         </PopoverTrigger>

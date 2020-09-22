@@ -48,28 +48,7 @@ $family-sans-serif: 'Source Sans Pro', BlinkMacSystemFont, -apple-system, "Segoe
 "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
 "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
-$comet: #5f637b;
-$abbey:#4b4b4d;
-$fruit-salad:#52985d;
-$brady-punch:#cf8825;
-$pomegranate:#f44336;
 
-
-$primary: $comet;
-$info: $abbey;
-$success: $fruit-salad;
-$warning: $brady-punch;
-$danger: $pomegranate;
-
-
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/base/_all.sass";
-@import "~bulma/sass/components/_all.sass";
-@import "~bulma/sass/elements/_all.sass";
-@import "~bulma/sass/form/_all.sass";
-@import "~bulma/sass/grid/_all.sass";
-@import "~bulma/sass/helpers/_all.sass";
-@import "~bulma/sass/layout/_all.sass";
 
 
 

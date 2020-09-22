@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import '@fortawesome/fontawesome-free/css/all.min.css'
 import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 import { customTheme } from './assets/styles/theme'
-//const drizzle = new Drizzle(drizzleOptions as any)
 
 ReactDOM.render(
     <React.StrictMode>

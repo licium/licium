@@ -12,7 +12,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
-  "proxy": "http://localhost:9088/api",
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -39,12 +39,10 @@
   },
   "devDependencies": {
     "@chakra-ui/core": "^0.8.0",
-    "@drizzle/react-components": "^1.5.1",
     "@drizzle/react-plugin": "^1.5.1",
     "@drizzle/store": "^1.5.1",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
-    "@fortawesome/fontawesome-free": "^5.14.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-storyshots": "^5.3.19",
@@ -54,7 +52,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "bulma": "^0.9.0",
+    "@web3-react/core": "^6.1.1",
     "cross-env": "^7.0.2",
     "cypress": "^4.11.0",
     "cypress-cucumber-preprocessor": "^2.5.4",
@@ -65,8 +63,6 @@
     "husky": "^4.2.5",
     "jest-date-serializer": "^1.0.1",
     "lint-staged": "^10.2.11",
-    "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
     "msw": "^0.21.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",

@@ -6,6 +6,7 @@ import Box from '@chakra-ui/core/dist/Box'
 import { StyledTable } from '../EntryTable'
 import { useHistory } from 'react-router-dom'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
+import { DrizzleComponent } from '../../components/Drizzle'
 
 const publisherAddresses = {
     CI: [
@@ -76,6 +77,7 @@ export default function Registration() {
 
     return (
         <StyledTable>
+            <DrizzleComponent />
             {selectedEntries.length === 0 ? (
                 <span>No entries selected</span>
             ) : (
