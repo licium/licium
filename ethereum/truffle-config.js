@@ -20,12 +20,9 @@ module.exports = {
     },
 
     bloxberg: {
-      provider: new HDWalletProvider(privateKey, 'https://core.bloxberg.org'),
-      //host: "https://core.bloxberg.org",
-     // port: 443, // Standard Ethereum port (default: none)
+      provider: () => new HDWalletProvider(privateKey, 'https://core.bloxberg.org'),
       network_id: '*',
       production: true,
-      //gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
       gasPrice: 200000000000,  // 200 gwei (default: 100 gwei)
     }
   },
