@@ -5,6 +5,8 @@ services:
     labels:
       - traefik.http.routers.iscc-service.rule=PathPrefix(`/api`)
       - traefik.http.services.iscc-service.loadbalancer.server.port=8080
+      - traefik.http.routers.iscc-service.middlewares=iscc-service-stipprefix
+      - traefik.http.middlewares.iscc-service-stipprefix.stripprefix.prefixes=/api
   licium-webapp:
     build: licium-webapp/.
     labels:
