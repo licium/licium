@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, {useContext, useState} from 'react'
 import './Registration.scss'
-import { ISCCContext } from '../../App'
-import { Button, FormControl, FormLabel, Select } from '@chakra-ui/core'
+import {ISCCContext} from '../../App'
+import {Button, FormControl, FormLabel, Select} from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
-import { StyledTable } from '../EntryTable'
-import { useHistory } from 'react-router-dom'
-import { ISCCButton } from '../../components/InfoButton/ISCCButton'
-import { DrizzleComponent } from '../../components/Drizzle'
+import {StyledTable} from '../EntryTable'
+import {useHistory} from 'react-router-dom'
+import {ISCCButton} from '../../components/InfoButton/ISCCButton'
 
 const publisherAddresses = {
     CI: [
@@ -77,7 +76,6 @@ export default function Registration() {
 
     return (
         <StyledTable>
-            <DrizzleComponent />
             {selectedEntries.length === 0 ? (
                 <span>No entries selected</span>
             ) : (

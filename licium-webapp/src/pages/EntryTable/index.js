@@ -1,11 +1,10 @@
-import React, { useContext, useMemo, useState } from 'react'
-import { ISCCContext } from '../../App'
+import React, {useContext, useMemo, useState} from 'react'
+import {ISCCContext} from '../../App'
 import styled from '@emotion/styled'
 import FocusLock from 'react-focus-lock'
 import {
     Button,
     ButtonGroup,
-    Checkbox,
     FormControl,
     FormLabel,
     Icon,
@@ -19,8 +18,8 @@ import {
     Stack,
 } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
-import { ISCCButton } from '../../components/InfoButton/ISCCButton'
-import { RegisteredButton } from '../../components/InfoButton/RegisteredButton'
+import {ISCCButton} from '../../components/InfoButton/ISCCButton'
+import {RegisteredButton} from '../../components/InfoButton/RegisteredButton'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (
@@ -129,28 +128,11 @@ export const StyledTable = styled.div`
 `
 
 const Table = () => {
-    const { isccs, setIsccs, selectedEntries, setSelectedEntries } = useContext(
-        ISCCContext
-    )
+    const { isccs, setIsccs } = useContext(ISCCContext)
 
-    const data = useMemo(() => isccs, [isccs])
+    const data = useMemo(() => isccs, [isccs, setIsccs])
 
-    const toggleSelect = (iscc) => {
-        let newEntries
-        if (selectedEntries.includes(iscc)) {
-            newEntries = selectedEntries.filter((entry) => entry !== iscc)
-        } else {
-            newEntries = [...selectedEntries, iscc]
-        }
-        setSelectedEntries(newEntries)
-    }
-
-    const updateIscc = (id, field, value) => {
-        const isccToUpdate = isccs[id]
-        const newIscc = {
-            ...isccToUpdate,
-            [field]: value,
-        }
+    function updateIscc(id, newIscc) {
         const newIsccs = [
             ...isccs.slice(0, id),
             newIscc,
@@ -159,15 +141,18 @@ const Table = () => {
         setIsccs(newIsccs)
     }
 
+    const updateIsccField = (id, field, value) => {
+        const isccToUpdate = isccs[id]
+        const newIscc = {
+            ...isccToUpdate,
+            [field]: value,
+        }
+        updateIscc(id, newIscc)
+    }
+
     const cells = () =>
         data.map((iscc, id) => (
             <tr key={id}>
-                <td className="centered">
-                    <Checkbox
-                        isChecked={selectedEntries.includes(iscc)}
-                        onChange={() => toggleSelect(iscc)}
-                    />
-                </td>
                 <td className="centered">
                     <Icon name="star" />
                 </td>
@@ -175,7 +160,7 @@ const Table = () => {
 
                 <EditCell
                     value={iscc.extra}
-                    onUpdate={(val) => updateIscc(id, 'extra', val)}
+                    onUpdate={(val) => updateIsccField(id, 'extra', val)}
                 />
                 <td>-</td>
                 <td>{new Date(iscc.date).toISOString().replace('T', ' ')}</td>
@@ -183,7 +168,12 @@ const Table = () => {
                     <ISCCButton iscc={iscc} />
                 </td>
                 <td className="centered">
-                    <RegisteredButton iscc={iscc} />
+                    <RegisteredButton
+                        iscc={iscc}
+                        onIsccWritten={(registeredIscc) =>
+                            updateIscc(id, registeredIscc)
+                        }
+                    />
                 </td>
             </tr>
         ))
@@ -193,7 +183,6 @@ const Table = () => {
             <table>
                 <thead>
                     <tr>
-                        <th className="centered">Select</th>
                         <th className="centered">Star</th>
                         <th>Filename</th>
                         <th>Embedded Title</th>
