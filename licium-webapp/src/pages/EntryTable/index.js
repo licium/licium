@@ -130,7 +130,7 @@ export const StyledTable = styled.div`
 const Table = () => {
     const { isccs, setIsccs } = useContext(ISCCContext)
 
-    const data = useMemo(() => isccs, [isccs, setIsccs])
+    const data = useMemo(() => isccs, [isccs])
 
     function updateIscc(id, newIscc) {
         const newIsccs = [
