@@ -48,6 +48,7 @@ export const RegisteredButton = ({ iscc, onIsccWritten }) => {
             {iscc.transactionLink ? (
                 <Link href={iscc.transactionLink} target="_blank">
                     <IconButton
+                        size="sm"
                         variantColor="green"
                         title="Registered on blockchain"
                         icon="check"
