@@ -18,6 +18,7 @@ services:
     restart: always
     command:
       - --providers.docker
+      - --entrypoints.websecure.address=:443
       - --certificatesresolvers.myresolver=true
       - --certificatesresolvers.myresolver.acme.tlschallenge=true
       - --certificatesresolvers.myresolver.acme.email=kevin@wittek.dev
