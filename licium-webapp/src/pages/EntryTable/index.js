@@ -153,7 +153,7 @@ const Table = () => {
             .on('receipt', async (hash) => {
                 console.log(hash)
                 const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
-                const shortCodeLink = `http://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
+                const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
                 const response = await fetch(shortCodeLink)
                 const shortcode = await response.json()
                 const registrationId = shortcode.iscc_id
