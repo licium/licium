@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
+import { FaUpload } from 'react-icons/all'
 
 export const RegisteredButton = ({ iscc, onIsccWritten }) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -59,9 +60,9 @@ export const RegisteredButton = ({ iscc, onIsccWritten }) => {
                 <IconButton
                     onClick={() => registerISCC()}
                     isLoading={isLoading}
-                    icon="close"
+                    icon={FaUpload}
                     size="sm"
-                    variantColor="red"
+                    variantColor="yellow"
                     aria-label="Not registered"
                 />
             )}
