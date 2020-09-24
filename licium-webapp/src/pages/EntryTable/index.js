@@ -236,7 +236,7 @@ const Table = () => {
                         <th>Tag</th>
                         <th>Date</th>
                         <th className="centered">ISCC</th>
-                        <th className="centered">Registered</th>
+                        <th className="centered">Registration</th>
                         <th className="centered">Registration ID</th>
                     </tr>
                 </thead>
