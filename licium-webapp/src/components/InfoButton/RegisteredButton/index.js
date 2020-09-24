@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {IconButton, Link, useToast} from '@chakra-ui/core'
+import React, { useState } from 'react'
+import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 
 export const RegisteredButton = ({ iscc, onIsccWritten }) => {

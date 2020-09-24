@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {Link, Text} from '@chakra-ui/core'
+import React, { useState } from 'react'
+import { Link, Text } from '@chakra-ui/core'
 import Web3 from 'web3'
 
 export const BlockchainEnabled = (props) => {
@@ -10,9 +10,6 @@ export const BlockchainEnabled = (props) => {
     const bootStrapMetamask = async () => {
         eth.on('connect', () => setMetaMaskUnlocked(true))
         eth.on('disconnect', () => setMetaMaskUnlocked(false))
-        eth.on('chainChanged', () => {
-            window.location.reload()
-        })
         eth.on('accountsChanged', (accounts) => {
             if (accounts.length === 0) {
                 setMetaMaskUnlocked(false)
