@@ -1,5 +1,5 @@
-import React, {useContext, useMemo, useState} from 'react'
-import {ISCCContext} from '../../App'
+import React, { useContext, useMemo, useState } from 'react'
+import { ISCCContext } from '../../App'
 import styled from '@emotion/styled'
 import FocusLock from 'react-focus-lock'
 import {
@@ -16,10 +16,12 @@ import {
     PopoverContent,
     PopoverTrigger,
     Stack,
+    useToast,
 } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
-import {ISCCButton} from '../../components/InfoButton/ISCCButton'
-import {RegisteredButton} from '../../components/InfoButton/RegisteredButton'
+import { ISCCButton } from '../../components/InfoButton/ISCCButton'
+import { RegisteredButton } from '../../components/InfoButton/RegisteredButton'
+import { RegistrationId } from '../../components/RegistrationId'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (
@@ -128,7 +130,10 @@ export const StyledTable = styled.div`
 `
 
 const Table = () => {
+    const toast = useToast()
+
     const { isccs, setIsccs } = useContext(ISCCContext)
+    const [transmittingIsccIds, setTransMittingIsccIds] = useState([])
 
     const data = useMemo(() => isccs, [isccs])
 
@@ -139,6 +144,44 @@ const Table = () => {
             ...isccs.slice(id + 1),
         ]
         setIsccs(newIsccs)
+    }
+
+    const isccSent = async (sendPromise, iscc, id) => {
+        setTransMittingIsccIds([...transmittingIsccIds, id])
+        const accounts = await window.web3.eth.getAccounts()
+        sendPromise
+            .on('receipt', async (hash) => {
+                console.log(hash)
+                const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
+                const shortCodeLink = `http://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
+                const response = await fetch(shortCodeLink)
+                const shortcode = await response.json()
+                const registrationId = shortcode.iscc_id
+
+                const registeredIscc = {
+                    ...iscc,
+                    transactionLink,
+                    registrationId,
+                }
+                updateIscc(id, registeredIscc)
+                setTransMittingIsccIds(
+                    transmittingIsccIds.filter((i) => i !== id)
+                )
+            })
+            .on('error', (err) => {
+                console.error(err)
+                toast({
+                    title: 'An error occurred.',
+                    description: err.message,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-right',
+                })
+                setTransMittingIsccIds(
+                    transmittingIsccIds.filter((i) => i !== id)
+                )
+            })
     }
 
     const updateIsccField = (id, field, value) => {
@@ -169,11 +212,15 @@ const Table = () => {
                 </td>
                 <td className="centered">
                     <RegisteredButton
+                        isLoading={transmittingIsccIds.includes(id)}
                         iscc={iscc}
-                        onIsccWritten={(registeredIscc) =>
-                            updateIscc(id, registeredIscc)
+                        onIsccSent={(sendPromise) =>
+                            isccSent(sendPromise, iscc, id)
                         }
                     />
+                </td>
+                <td className="centered">
+                    <RegistrationId iscc={iscc} />
                 </td>
             </tr>
         ))
@@ -190,6 +237,7 @@ const Table = () => {
                         <th>Date</th>
                         <th className="centered">ISCC</th>
                         <th className="centered">Registered</th>
+                        <th className="centered">Registration ID</th>
                     </tr>
                 </thead>
                 <tbody>{cells()}</tbody>

@@ -7,6 +7,8 @@ import { LOCAL_STORAGE_KEY_ISSCS } from '../../utils/constants'
 import { StyledButton } from '../Menu'
 
 const GenerateISCCButton = () => {
+    const [counter, setCounter] = useState(0)
+
     const [isLoading, setIsLoading] = useState(false)
     const [isccCodes, setIsccCodes] = useLocalStorage(
         LOCAL_STORAGE_KEY_ISSCS,
@@ -16,6 +18,8 @@ const GenerateISCCButton = () => {
     const { setIsccs } = useContext(ISCCContext)
 
     const handleFiles = async (files) => {
+        let counter = 0
+        setCounter(0)
         const newCodes = await Promise.all(
             files.map(async (file) => {
                 const formData = new FormData()
@@ -30,11 +34,12 @@ const GenerateISCCButton = () => {
                             body: formData,
                         }
                     )
+                    setCounter(++counter)
                     return await response.json()
                 } catch (e) {
                     toast({
                         title: 'An error occurred.',
-                        description: `Something went wrong.`,
+                        description: `Something went wrong. ${e.message}`,
                         status: 'error',
                         duration: 5000,
                         isClosable: true,
@@ -55,6 +60,8 @@ const GenerateISCCButton = () => {
         setIsccCodes([...codesWithDate, ...isccCodes])
     }
 
+    const loadingText = () => (isLoading ? `Submitting (${counter})` : '')
+
     return (
         <Dropzone
             onDrop={(acceptedFiles) => handleFiles(acceptedFiles)}
@@ -66,7 +73,7 @@ const GenerateISCCButton = () => {
                         <input {...getInputProps()} />
                         <StyledButton
                             isLoading={isLoading}
-                            loadingText="Submitting"
+                            loadingText={loadingText()}
                             onClick={() => setIsLoading(true)}
                         >
                             Generate ISCCs

@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
-import { IconButton, Link, useToast } from '@chakra-ui/core'
+import React from 'react'
+import { IconButton, Link } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
 
-export const RegisteredButton = ({ iscc, onIsccWritten }) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const toast = useToast()
-
+export const RegisteredButton = ({ iscc, isLoading, onIsccSent }) => {
     const web3 = window.web3
     const contract = new web3.eth.Contract(
         ISCCRegistry.abi,
@@ -17,31 +14,11 @@ export const RegisteredButton = ({ iscc, onIsccWritten }) => {
         const iscc_hex = web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
         const tophash_hex = web3.utils.hexToBytes(`0x${iscc.tophash}`)
 
-        contract.methods
-            .declare(iscc_hex, tophash_hex)
-            .send({ from: web3.givenProvider.selectedAddress })
-            .on('sent', () => setIsLoading(true))
-            .on('receipt', (hash) => {
-                const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
-                const registeredIscc = {
-                    ...iscc,
-                    transactionLink,
-                }
-                console.log(hash)
-                onIsccWritten(registeredIscc)
-            })
-            .on('error', (err) => {
-                console.error(err)
-                toast({
-                    title: 'An error occurred.',
-                    description: err.message,
-                    status: 'error',
-                    duration: 5000,
-                    isClosable: true,
-                    position: 'top-right',
-                })
-                setIsLoading(false)
-            })
+        const contractMethod = contract.methods.declare(iscc_hex, tophash_hex)
+
+        onIsccSent(
+            contractMethod.send({ from: web3.givenProvider.selectedAddress })
+        )
     }
 
     return (

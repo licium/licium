@@ -1,18 +1,18 @@
-import React, {createContext, useState} from 'react'
+import React, { createContext, useState } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
-import {Box} from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 import AppHeader from './components/AppHeader/AppHeader'
 import Menu from './components/Menu'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import {useLocalStorage} from './hooks/localstorage'
-import {LOCAL_STORAGE_KEY_ISSCS} from './utils/constants'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useLocalStorage } from './hooks/localstorage'
+import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
 import PageTitle from './components/PageTitle/PageTitle'
 import Registration from './pages/Registration/Registration'
 import Table from './pages/EntryTable'
-import {BlockchainEnabled} from './components/BlockchainEnabled'
+import { BlockchainEnabled } from './components/BlockchainEnabled'
 
-export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : ''
+export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
 export const ISCCContext = createContext({})
 
