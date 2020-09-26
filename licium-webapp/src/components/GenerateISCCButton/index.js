@@ -20,7 +20,8 @@ const GenerateISCCButton = () => {
     const handleFiles = async (files) => {
         let counter = 0
         setCounter(0)
-        const newCodes = await Promise.all(
+        const mutableCodes = isccCodes
+        await Promise.all(
             files.map(async (file) => {
                 const formData = new FormData()
                 formData.append('file', file)
@@ -35,7 +36,14 @@ const GenerateISCCButton = () => {
                         }
                     )
                     setCounter(++counter)
-                    return await response.json()
+                    const iscc = await response.json()
+                    const isccWithDate = {
+                        ...iscc,
+                        date: new Date().toISOString(),
+                    }
+                    mutableCodes.unshift(isccWithDate)
+                    setIsccs([...mutableCodes])
+                    setIsccCodes([...mutableCodes])
                 } catch (e) {
                     toast({
                         title: 'An error occurred.',
@@ -49,15 +57,6 @@ const GenerateISCCButton = () => {
             })
         )
         setIsLoading(false)
-        const codesWithDate = newCodes
-            .filter((code) => !!code)
-            .map((code) => ({
-                ...code,
-                date: new Date().toISOString(),
-            }))
-        setIsccs([...codesWithDate, ...isccCodes])
-
-        setIsccCodes([...codesWithDate, ...isccCodes])
     }
 
     const loadingText = () => (isLoading ? `Submitting (${counter})` : '')

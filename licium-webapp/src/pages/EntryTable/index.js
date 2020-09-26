@@ -20,8 +20,9 @@ import {
 } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
-import { RegisteredButton } from '../../components/InfoButton/RegisteredButton'
+
 import { RegistrationId } from '../../components/RegistrationId'
+import RegisteredButton from '../../components/InfoButton/RegisteredButton'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (

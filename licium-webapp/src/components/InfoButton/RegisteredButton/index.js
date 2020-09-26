@@ -3,7 +3,7 @@ import { IconButton, Link } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
 
-export const RegisteredButton = ({ iscc, isLoading, onIsccSent }) => {
+const RegisteredButton = ({ iscc, isLoading, onIsccSent }) => {
     const web3 = window.web3
     const contract = new web3.eth.Contract(
         ISCCRegistry.abi,
@@ -46,3 +46,4 @@ export const RegisteredButton = ({ iscc, isLoading, onIsccSent }) => {
         </>
     )
 }
+export default RegisteredButton
