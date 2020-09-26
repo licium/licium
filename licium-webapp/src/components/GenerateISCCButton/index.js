@@ -36,6 +36,10 @@ const GenerateISCCButton = () => {
                         }
                     )
                     setCounter(++counter)
+                    if (response.status !== 200) {
+                        displayError(response.status)
+                        return
+                    }
                     const iscc = await response.json()
                     const isccWithDate = {
                         ...iscc,
@@ -45,18 +49,22 @@ const GenerateISCCButton = () => {
                     setIsccs([...mutableCodes])
                     setIsccCodes([...mutableCodes])
                 } catch (e) {
-                    toast({
-                        title: 'An error occurred.',
-                        description: `Something went wrong. ${e.message}`,
-                        status: 'error',
-                        duration: 5000,
-                        isClosable: true,
-                        position: 'top-right',
-                    })
+                    displayError(e.message())
                 }
             })
         )
         setIsLoading(false)
+    }
+
+    const displayError = (message) => {
+        toast({
+            title: 'An error occurred.',
+            description: `Something went wrong. ${message}`,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-right',
+        })
     }
 
     const loadingText = () => (isLoading ? `Submitting (${counter})` : '')
@@ -67,7 +75,7 @@ const GenerateISCCButton = () => {
             onFileDialogCancel={() => setIsLoading(false)}
         >
             {({ getRootProps, getInputProps }) => (
-                <section w="100%">
+                <section>
                     <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <StyledButton
