@@ -1,11 +1,11 @@
-import React, {useContext, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import './Registration.scss'
-import {ISCCContext} from '../../App'
-import {Button, FormControl, FormLabel, Select} from '@chakra-ui/core'
+import { ISCCContext } from '../../App'
+import { Button, FormControl, FormLabel, Select } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
-import {StyledTable} from '../EntryTable'
-import {useHistory} from 'react-router-dom'
-import {ISCCButton} from '../../components/InfoButton/ISCCButton'
+import { useHistory } from 'react-router-dom'
+import { ISCCButton } from '../../components/InfoButton/ISCCButton'
+import { StyledTable } from '../EntryTable/elements'
 
 const publisherAddresses = {
     CI: [
