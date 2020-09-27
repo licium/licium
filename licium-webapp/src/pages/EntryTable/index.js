@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { ISCCContext } from '../../App'
 import { Icon } from '@chakra-ui/core'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
@@ -13,13 +13,8 @@ const Table = () => {
 
     const data = useMemo(() => isccs, [isccs])
 
-    let mutableIsccs
-
-    useEffect(() => {
-        mutableIsccs = isccs
-    }, [isccs])
-
     const updateIscc = (id, newIscc) => {
+        const mutableIsccs = isccs
         mutableIsccs[id] = newIscc
         setIsccs([...mutableIsccs])
     }

@@ -19,7 +19,6 @@ const GenerateISCCButton = () => {
 
     const handleFiles = async (files) => {
         let counter = 0
-        setCounter(0)
         const mutableCodes = isccCodes
         await Promise.all(
             files.map(async (file) => {
@@ -35,7 +34,7 @@ const GenerateISCCButton = () => {
                             body: formData,
                         }
                     )
-                    setCounter(++counter)
+                    setCounter(Math.round((++counter / files.length) * 100))
                     if (response.status !== 200) {
                         displayError(response.status)
                         return
@@ -67,7 +66,7 @@ const GenerateISCCButton = () => {
         })
     }
 
-    const loadingText = () => (isLoading ? `Submitting (${counter})` : '')
+    const loadingText = () => (isLoading ? `Submitting (${counter}%)` : '')
 
     return (
         <Dropzone
@@ -81,7 +80,10 @@ const GenerateISCCButton = () => {
                         <StyledButton
                             isLoading={isLoading}
                             loadingText={loadingText()}
-                            onClick={() => setIsLoading(true)}
+                            onClick={() => {
+                                setIsLoading(true)
+                                setCounter(0)
+                            }}
                         >
                             Generate ISCCs
                         </StyledButton>
