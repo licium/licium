@@ -9,7 +9,7 @@ import { useLocalStorage } from './hooks/localstorage'
 import { LOCAL_STORAGE_KEY_ISSCS } from './utils/constants'
 import PageTitle from './components/PageTitle/PageTitle'
 import Registration from './pages/Registration/Registration'
-import Table from './pages/EntryTable'
+import EntryTable from './pages/EntryTable'
 import { BlockchainEnabled } from './components/BlockchainEnabled'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
@@ -44,7 +44,7 @@ function App() {
                                     <Registration />
                                 </Route>
                                 <Route>
-                                    <Table />
+                                    <EntryTable />
                                 </Route>
                             </Switch>
                         </Box>

@@ -66,7 +66,7 @@ const EditableCell = ({ value, onUpdate }) => {
     const [text, setText] = useState(value)
 
     return (
-        <td>
+        <>
             <Box d="inline-block" mr={3}>
                 {text}
             </Box>
@@ -98,7 +98,7 @@ const EditableCell = ({ value, onUpdate }) => {
                     </FocusLock>
                 </PopoverContent>
             </Popover>
-        </td>
+        </>
     )
 }
 

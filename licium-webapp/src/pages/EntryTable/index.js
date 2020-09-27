@@ -7,11 +7,10 @@ import { RegistrationId } from '../../components/RegistrationId'
 import RegisteredButton from '../../components/InfoButton/RegisteredButton'
 import { StyledTable } from './elements'
 import EditableCell from '../../components/EditableTableCell'
+import Table from '../../components/Table'
 
-const Table = () => {
+const EntryTable = () => {
     const { isccs, setIsccs } = useContext(ISCCContext)
-
-    const data = useMemo(() => isccs, [isccs])
 
     const updateIscc = (id, newIscc) => {
         const mutableIsccs = isccs
@@ -27,55 +26,75 @@ const Table = () => {
         updateIscc(id, newIscc)
     }
 
-    const cells = () =>
-        data.map((iscc, id) => (
-            <tr key={id}>
-                <td className="centered">
-                    <Icon name="star" />
-                </td>
-                <td>{iscc.title}</td>
-
-                <EditableCell
-                    value={iscc.extra}
-                    onUpdate={(val) => updateIsccField(id, 'extra', val)}
-                />
-                <td>-</td>
-                <td>{new Date(iscc.date).toISOString().replace('T', ' ')}</td>
-                <td className="centered">
-                    <ISCCButton iscc={iscc} />
-                </td>
-                <td className="centered">
-                    <RegisteredButton
-                        id={id}
-                        iscc={iscc}
-                        updateIscc={updateIscc}
+    const data = useMemo(
+        () =>
+            isccs.map((iscc, id) => ({
+                star: <Icon name="star" />,
+                filename: iscc.title,
+                title: (
+                    <EditableCell
+                        value={iscc.extra}
+                        onUpdate={(val) => updateIsccField(id, 'extra', val)}
                     />
-                </td>
-                <td className="centered">
-                    <RegistrationId iscc={iscc} />
-                </td>
-            </tr>
-        ))
+                ),
+                tag: '-',
+                date: new Date(iscc.date).toISOString().replace('T', ' '),
+                iscc: <ISCCButton iscc={iscc} />,
+                registration: (
+                    <RegisteredButton iscc={iscc} updateIscc={updateIscc} />
+                ),
+                registrationId: <RegistrationId iscc={iscc} />,
+            })),
+        [isccs]
+    )
+
+    const columns = useMemo(
+        () => [
+            {
+                Header: 'Star',
+                accessor: 'star',
+                className: 'centered',
+            },
+            {
+                Header: 'Filename',
+                accessor: 'filename',
+            },
+            {
+                Header: 'Embedded Title',
+                accessor: 'title',
+            },
+            {
+                Header: 'Tag',
+                accessor: 'tag',
+            },
+            {
+                Header: 'Date',
+                accessor: 'date',
+            },
+            {
+                Header: 'ISCC',
+                accessor: 'iscc',
+                className: 'centered',
+            },
+            {
+                Header: 'Registration',
+                accessor: 'registration',
+                className: 'centered',
+            },
+            {
+                Header: 'Registration ID',
+                accessor: 'registrationId',
+                className: 'centered',
+            },
+        ],
+        []
+    )
 
     return (
         <StyledTable>
-            <table>
-                <thead>
-                    <tr>
-                        <th className="centered">Star</th>
-                        <th>Filename</th>
-                        <th>Embedded Title</th>
-                        <th>Tag</th>
-                        <th>Date</th>
-                        <th className="centered">ISCC</th>
-                        <th className="centered">Registration</th>
-                        <th className="centered">Registration ID</th>
-                    </tr>
-                </thead>
-                <tbody>{cells()}</tbody>
-            </table>
+            <Table columns={columns} data={data} />
         </StyledTable>
     )
 }
 
-export default Table
+export default EntryTable
