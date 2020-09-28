@@ -41,7 +41,11 @@ const EntryTable = () => {
                 date: new Date(iscc.date).toISOString().replace('T', ' '),
                 iscc: <ISCCButton iscc={iscc} />,
                 registration: (
-                    <RegisteredButton iscc={iscc} updateIscc={updateIscc} />
+                    <RegisteredButton
+                        iscc={iscc}
+                        updateIscc={updateIscc}
+                        id={id}
+                    />
                 ),
                 registrationId: <RegistrationId iscc={iscc} />,
             })),
