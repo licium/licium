@@ -1,14 +1,47 @@
-import React from 'react'
-import { useTable } from 'react-table'
+import React, { useMemo } from 'react'
+import { useRowSelect, useTable } from 'react-table'
+import IndeterminateCheckbox from './IndeterminateCheckbox'
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, onEntriesSelected = () => {} }) => {
     const {
         getTableProps,
         getTableBodyProps,
         headerGroups,
         rows,
         prepareRow,
-    } = useTable({ columns, data })
+        selectedFlatRows,
+    } = useTable({ columns, data }, useRowSelect, (hooks) => {
+        hooks.visibleColumns.push((columns) => [
+            // Let's make a column for selection
+            {
+                id: 'selection',
+                // The header can use the table's getToggleAllRowsSelectedProps method
+                // to render a checkbox
+                Header: ({ getToggleAllRowsSelectedProps }) => (
+                    <div className="centered">
+                        <IndeterminateCheckbox
+                            {...getToggleAllRowsSelectedProps()}
+                        />
+                    </div>
+                ),
+                // The cell can use the individual row's getToggleRowSelectedProps method
+                // to the render a checkbox
+                Cell: ({ row }) => (
+                    <div className="centered">
+                        <IndeterminateCheckbox
+                            {...row.getToggleRowSelectedProps()}
+                        />
+                    </div>
+                ),
+            },
+            ...columns,
+        ])
+    })
+
+    useMemo(
+        () => onEntriesSelected(selectedFlatRows.map((row) => row.original)),
+        [selectedFlatRows]
+    )
 
     return (
         <table {...getTableProps()}>

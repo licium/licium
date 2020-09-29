@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
 import { Box } from '@chakra-ui/core'
@@ -13,6 +13,8 @@ import ISCCContextProvider from './contexts/ISCCContext'
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
 function App() {
+    const [selectedEntries, setSelectedEntries] = useState()
+
     return (
         <BlockchainEnabled>
             <ISCCContextProvider>
@@ -27,12 +29,16 @@ function App() {
                         </Box>
                         <PageTitle />
                         <Box>
-                            <Menu />
+                            <Menu selectedEntries={selectedEntries} />
                         </Box>
                         <Box>
                             <Switch>
                                 <Route>
-                                    <EntryTable />
+                                    <EntryTable
+                                        onEntriesSelected={(entries) =>
+                                            setSelectedEntries(entries)
+                                        }
+                                    />
                                 </Route>
                             </Switch>
                         </Box>

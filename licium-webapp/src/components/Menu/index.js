@@ -10,12 +10,18 @@ export const StyledButton = styled(Button)`
     background: #d3d6ed;
 `
 
-const Menu = () => {
-    const { isccs } = useContext(ISCCContext)
+const Menu = ({ selectedEntries = [] }) => {
+    const { isccs, deleteIsccs } = useContext(ISCCContext)
 
     return (
         <Flex direction="column" alignItems="center" marginTop="1em">
             <GenerateISCCButton />
+            <StyledButton
+                disabled={selectedEntries.length === 0}
+                onClick={() => deleteIsccs(selectedEntries)}
+            >
+                Delete Selected Entries
+            </StyledButton>
             <a
                 href={`data:text/json;charset=utf-8,${encodeURIComponent(
                     JSON.stringify(isccs)

@@ -9,61 +9,53 @@ import EditableCell from '../../components/EditableTableCell'
 import Table from '../../components/Table'
 import { ISCCContext } from '../../contexts/ISCCContext'
 
-const EntryTable = () => {
+const EntryTable = ({ onEntriesSelected = () => {} }) => {
     const { isccs } = useContext(ISCCContext)
 
-    const data = useMemo(
-        () =>
-            isccs.map((iscc) => ({
-                star: <Icon name="star" />,
-                filename: iscc.title,
-                title: <EditableCell iscc={iscc} />,
-                tag: '-',
-                date: new Date(iscc.date).toISOString().replace('T', ' '),
-                iscc: <ISCCButton iscc={iscc} />,
-                registration: <RegisteredButton iscc={iscc} />,
-                registrationId: <RegistrationId iscc={iscc} />,
-            })),
-        [isccs]
-    )
+    const data = useMemo(() => isccs, [isccs])
 
     const columns = useMemo(
         () => [
             {
                 Header: 'Star',
-                accessor: 'star',
                 className: 'centered',
+                Cell: () => <Icon name="star" />,
             },
             {
                 Header: 'Filename',
-                accessor: 'filename',
+                accessor: 'title',
             },
             {
                 Header: 'Embedded Title',
-                accessor: 'title',
+                accessor: (row) => row,
+                Cell: ({ value }) => <EditableCell iscc={value} />,
             },
             {
                 Header: 'Tag',
                 accessor: 'tag',
+                Cell: () => '-',
             },
             {
                 Header: 'Date',
                 accessor: 'date',
             },
             {
+                accessor: (row) => row,
                 Header: 'ISCC',
-                accessor: 'iscc',
                 className: 'centered',
+                Cell: ({ value }) => <ISCCButton iscc={value} />,
             },
             {
                 Header: 'Registration',
-                accessor: 'registration',
+                accessor: (row) => row,
                 className: 'centered',
+                Cell: ({ value }) => <RegisteredButton iscc={value} />,
             },
             {
                 Header: 'Registration ID',
-                accessor: 'registrationId',
+                accessor: (row) => row,
                 className: 'centered',
+                Cell: ({ value }) => <RegistrationId iscc={value} />,
             },
         ],
         []
@@ -71,7 +63,11 @@ const EntryTable = () => {
 
     return (
         <StyledTable>
-            <Table columns={columns} data={data} />
+            <Table
+                columns={columns}
+                data={data}
+                onEntriesSelected={(entries) => onEntriesSelected(entries)}
+            />
         </StyledTable>
     )
 }

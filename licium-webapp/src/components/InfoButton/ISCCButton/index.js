@@ -25,7 +25,7 @@ export const ISCCButton = (props) => {
     const breakTophash = (tophash) => splitEvery(32, tophash).join(' ')
 
     return (
-        <InfoButton icon={FaQrcode} placement="bottom" title="ISCC Information">
+        <InfoButton icon={FaQrcode} placement="left" title="ISCC Information">
             <List textAlign="left">
                 {isccCodeList(iscc.iscc)}
                 <ListItem>

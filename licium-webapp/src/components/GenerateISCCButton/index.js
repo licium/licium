@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone'
 import { API_PATH } from '../../App'
 import { StyledButton } from '../Menu'
 import { ISCCContext } from '../../contexts/ISCCContext'
+import { v4 as uuidv4 } from 'uuid'
 
 const GenerateISCCButton = () => {
     const [counter, setCounter] = useState(0)
@@ -37,12 +38,14 @@ const GenerateISCCButton = () => {
                     const iscc = await response.json()
                     const isccWithDate = {
                         ...iscc,
+                        id: uuidv4(),
                         date: new Date().toISOString(),
                     }
                     mutableCodes.unshift(isccWithDate)
                     setIsccs([...mutableCodes])
                 } catch (e) {
-                    displayError(e.message())
+                    console.error(e)
+                    displayError(e.message)
                 }
             })
         )

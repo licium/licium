@@ -16,7 +16,14 @@ const ISCCContextProvider = ({ children }) => {
         setIsccs([...mutableIsccs])
     }
 
-    const value = { isccs, setIsccs, updateIscc }
+    const deleteIsccs = (isccsToDelete) => {
+        const mutableIsccs = isccs.filter(
+            (iscc) => !isccsToDelete.includes(iscc)
+        )
+        setIsccs([...mutableIsccs])
+    }
+
+    const value = { isccs, setIsccs, updateIscc, deleteIsccs }
 
     return <ISCCContext.Provider value={value}>{children}</ISCCContext.Provider>
 }

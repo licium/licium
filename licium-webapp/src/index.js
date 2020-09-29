@@ -7,12 +7,10 @@ import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 import { customTheme } from './assets/styles/theme'
 
 ReactDOM.render(
-    <React.StrictMode>
-        <ThemeProvider theme={customTheme}>
-            <CSSReset />
-            <App />
-        </ThemeProvider>
-    </React.StrictMode>,
+    <ThemeProvider theme={customTheme}>
+        <CSSReset />
+        <App />
+    </ThemeProvider>,
     document.getElementById('root')
 )
 
