@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import {Button, Flex} from '@chakra-ui/core'
+import React, { useContext } from 'react'
+import { Button, Flex } from '@chakra-ui/core'
 import GenerateISCCButton from '../GenerateISCCButton'
-import {ISCCContext} from '../../App'
 import styled from '@emotion/styled'
+import { ISCCContext } from '../../contexts/ISCCContext'
 
 export const StyledButton = styled(Button)`
     width: 11.5em;

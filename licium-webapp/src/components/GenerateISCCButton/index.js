@@ -1,25 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { useToast } from '@chakra-ui/core'
 import Dropzone from 'react-dropzone'
-import { API_PATH, ISCCContext } from '../../App'
-import { useLocalStorage } from '../../hooks/localstorage'
-import { LOCAL_STORAGE_KEY_ISSCS } from '../../utils/constants'
+import { API_PATH } from '../../App'
 import { StyledButton } from '../Menu'
+import { ISCCContext } from '../../contexts/ISCCContext'
 
 const GenerateISCCButton = () => {
     const [counter, setCounter] = useState(0)
 
     const [isLoading, setIsLoading] = useState(false)
-    const [isccCodes, setIsccCodes] = useLocalStorage(
-        LOCAL_STORAGE_KEY_ISSCS,
-        []
-    )
     const toast = useToast()
-    const { setIsccs } = useContext(ISCCContext)
+    const { isccs, setIsccs } = useContext(ISCCContext)
 
     const handleFiles = async (files) => {
         let counter = 0
-        const mutableCodes = isccCodes
+        const mutableCodes = isccs
         await Promise.all(
             files.map(async (file) => {
                 const formData = new FormData()
@@ -46,7 +41,6 @@ const GenerateISCCButton = () => {
                     }
                     mutableCodes.unshift(isccWithDate)
                     setIsccs([...mutableCodes])
-                    setIsccCodes([...mutableCodes])
                 } catch (e) {
                     displayError(e.message())
                 }

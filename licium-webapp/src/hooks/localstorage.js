@@ -13,7 +13,6 @@ export function useLocalStorage(key, initialValue) {
             return item ? JSON.parse(item) : initialValue
         } catch (error) {
             // If error also return initialValue
-            console.log(error)
             return initialValue
         }
     })
@@ -30,7 +29,7 @@ export function useLocalStorage(key, initialValue) {
             // Save to local storage
             window.localStorage.setItem(key, JSON.stringify(valueToStore))
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     Button,
     ButtonGroup,
@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
 import FocusLock from 'react-focus-lock'
+import { ISCCContext } from '../../contexts/ISCCContext'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (
@@ -58,17 +59,17 @@ const TitleForm = ({ firstFieldRef, value, onCancel, onSave }) => {
     )
 }
 
-const EditableCell = ({ value, onUpdate }) => {
+const EditableCell = ({ iscc }) => {
+    const { updateIscc } = useContext(ISCCContext)
     const [isOpen, setIsOpen] = React.useState(false)
     const firstFieldRef = React.useRef(null)
     const open = () => setIsOpen(true)
     const close = () => setIsOpen(false)
-    const [text, setText] = useState(value)
 
     return (
         <>
             <Box d="inline-block" mr={3}>
-                {text}
+                {iscc.extra}
             </Box>
             <Popover
                 isOpen={isOpen}
@@ -87,12 +88,15 @@ const EditableCell = ({ value, onUpdate }) => {
                         <PopoverCloseButton />
                         <TitleForm
                             firstFieldRef={firstFieldRef}
-                            value={text}
+                            value={iscc.extra}
                             onCancel={close}
                             onSave={(val) => {
+                                const updatedIscc = {
+                                    ...iscc,
+                                    extra: val,
+                                }
                                 close()
-                                setText(val)
-                                onUpdate(val)
+                                updateIscc(updatedIscc)
                             }}
                         />
                     </FocusLock>

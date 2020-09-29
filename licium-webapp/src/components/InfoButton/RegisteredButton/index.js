@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
+import { ISCCContext } from '../../../contexts/ISCCContext'
 
-const RegisteredButton = ({ iscc, id, updateIscc }) => {
+const RegisteredButton = ({ iscc }) => {
     const web3 = window.web3
+
+    const { updateIscc } = useContext(ISCCContext)
 
     const [isLoading, setLoading] = useState(false)
     const contract = new web3.eth.Contract(
@@ -14,7 +17,6 @@ const RegisteredButton = ({ iscc, id, updateIscc }) => {
     const toast = useToast()
 
     const registerISCC = async () => {
-        console.log(`start with id ${id}`)
         setLoading(true)
         const iscc_hex = web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
         const tophash_hex = web3.utils.hexToBytes(`0x${iscc.tophash}`)
@@ -26,7 +28,6 @@ const RegisteredButton = ({ iscc, id, updateIscc }) => {
             const hash = await contractMethod.send({
                 from: web3.givenProvider.selectedAddress,
             })
-            console.log(hash)
             const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
             const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
             const response = await fetch(shortCodeLink)
@@ -39,7 +40,7 @@ const RegisteredButton = ({ iscc, id, updateIscc }) => {
                 registrationId,
             }
 
-            updateIscc(id, registeredIscc)
+            updateIscc(registeredIscc)
         } catch (err) {
             console.error(err)
             toast({
@@ -52,7 +53,6 @@ const RegisteredButton = ({ iscc, id, updateIscc }) => {
             })
         }
         setLoading(false)
-        console.log(`end with id ${id}`)
     }
 
     return (

@@ -1,5 +1,4 @@
 import React, { useContext, useMemo } from 'react'
-import { ISCCContext } from '../../App'
 import { Icon } from '@chakra-ui/core'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
 
@@ -8,45 +7,21 @@ import RegisteredButton from '../../components/InfoButton/RegisteredButton'
 import { StyledTable } from './elements'
 import EditableCell from '../../components/EditableTableCell'
 import Table from '../../components/Table'
+import { ISCCContext } from '../../contexts/ISCCContext'
 
 const EntryTable = () => {
-    const { isccs, setIsccs } = useContext(ISCCContext)
-
-    const updateIscc = (id, newIscc) => {
-        const mutableIsccs = isccs
-        mutableIsccs[id] = newIscc
-        setIsccs([...mutableIsccs])
-    }
-    const updateIsccField = (id, field, value) => {
-        const isccToUpdate = isccs[id]
-        const newIscc = {
-            ...isccToUpdate,
-            [field]: value,
-        }
-        updateIscc(id, newIscc)
-    }
+    const { isccs } = useContext(ISCCContext)
 
     const data = useMemo(
         () =>
-            isccs.map((iscc, id) => ({
+            isccs.map((iscc) => ({
                 star: <Icon name="star" />,
                 filename: iscc.title,
-                title: (
-                    <EditableCell
-                        value={iscc.extra}
-                        onUpdate={(val) => updateIsccField(id, 'extra', val)}
-                    />
-                ),
+                title: <EditableCell iscc={iscc} />,
                 tag: '-',
                 date: new Date(iscc.date).toISOString().replace('T', ' '),
                 iscc: <ISCCButton iscc={iscc} />,
-                registration: (
-                    <RegisteredButton
-                        iscc={iscc}
-                        updateIscc={updateIscc}
-                        id={id}
-                    />
-                ),
+                registration: <RegisteredButton iscc={iscc} />,
                 registrationId: <RegistrationId iscc={iscc} />,
             })),
         [isccs]
