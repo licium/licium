@@ -16,6 +16,18 @@ const RegisteredButton = ({ iscc }) => {
     )
     const toast = useToast()
 
+    const showError = (msg) => {
+        console.error(msg)
+        toast({
+            title: 'An error occurred.',
+            description: msg,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-right',
+        })
+    }
+
     const registerISCC = async () => {
         setLoading(true)
         const iscc_hex = web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
@@ -29,30 +41,25 @@ const RegisteredButton = ({ iscc }) => {
                 from: web3.givenProvider.selectedAddress,
             })
             const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
+
             const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
             const response = await fetch(shortCodeLink)
-            const shortcode = await response.json()
-            const registrationId = shortcode.iscc_id
-
-            const registeredIscc = {
-                ...iscc,
-                transactionLink,
-                registrationId,
+            if (response.status === 200) {
+                const shortcode = await response.json()
+                const registrationId = shortcode.iscc_id
+                updateIscc({
+                    ...iscc,
+                    transactionLink,
+                    registrationId,
+                })
+            } else {
+                showError('Fetching data from Metaregistry failed')
             }
-
-            updateIscc(registeredIscc)
         } catch (err) {
-            console.error(err)
-            toast({
-                title: 'An error occurred.',
-                description: err.message,
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-                position: 'top-right',
-            })
+            showError(err)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
