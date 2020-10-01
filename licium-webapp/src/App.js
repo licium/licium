@@ -20,9 +20,10 @@ function App() {
             <ISCCContextProvider>
                 <Router>
                     <Grid
-                        templateRows="100px 1fr"
-                        templateColumns="200px 1fr"
-                        padding="5px"
+                        p="0.5em"
+                        templateRows={['auto', 'auto 1fr']}
+                        templateColumns={['auto', 'auto 1fr']}
+                        gridGap="0.5em"
                     >
                         <Box>
                             <AppHeader />
