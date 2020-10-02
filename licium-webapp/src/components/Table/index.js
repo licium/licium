@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { useRowSelect, useTable } from 'react-table'
 import IndeterminateCheckbox from './IndeterminateCheckbox'
 
@@ -38,9 +38,9 @@ const Table = ({ columns, data, onEntriesSelected = () => {} }) => {
         ])
     })
 
-    useMemo(
+    useEffect(
         () => onEntriesSelected(selectedFlatRows.map((row) => row.original)),
-        [selectedFlatRows]
+        [selectedFlatRows, onEntriesSelected]
     )
 
     return (

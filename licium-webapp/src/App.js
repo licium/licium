@@ -36,9 +36,7 @@ function App() {
                             <Switch>
                                 <Route>
                                     <EntryTable
-                                        onEntriesSelected={(entries) =>
-                                            setSelectedEntries(entries)
-                                        }
+                                        onEntriesSelected={setSelectedEntries}
                                     />
                                 </Route>
                             </Switch>

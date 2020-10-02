@@ -66,7 +66,7 @@ const EntryTable = ({ onEntriesSelected = () => {} }) => {
             <Table
                 columns={columns}
                 data={data}
-                onEntriesSelected={(entries) => onEntriesSelected(entries)}
+                onEntriesSelected={onEntriesSelected}
             />
         </StyledTable>
     )
