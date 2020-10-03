@@ -16,21 +16,18 @@ export const BlockchainEnabled = ({ children }) => {
     const activateMagicLink = async (event) => {
         event.preventDefault()
         setLoading(true)
-
         const network = {
             rpcUrl: 'https://core.bloxberg.org',
         }
-
         const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
             network,
         })
         window.web3 = new Web3(magic.rpcProvider)
-        await magic.auth.loginWithMagicLink({ email })
         try {
-            await window.web3.eth.getAccounts()
+            await magic.auth.loginWithMagicLink({ email })
             setProviderChosen(true)
         } catch (e) {
-            console.error(e)
+            console.error(e.message)
         } finally {
             setLoading(false)
         }
