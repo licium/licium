@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Web3 from 'web3'
-import { Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
+import { Box, Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
 import Flex from '@chakra-ui/core/dist/Flex'
 import { Logo } from '../Logo/Logo'
 import { ReactComponent as MetamaskLogo } from './metamask-fox.svg'
@@ -12,6 +12,7 @@ export const BlockchainEnabled = ({ children }) => {
     )
     const [email, setEmail] = useState('')
     const [isLoading, setLoading] = useState(false)
+    const [walletAddress, setWalletAddress] = useState('')
 
     const activateMagicLink = async (event) => {
         event.preventDefault()
@@ -26,6 +27,8 @@ export const BlockchainEnabled = ({ children }) => {
             })
             window.web3 = new Web3(magic.rpcProvider)
             await magic.auth.loginWithMagicLink({ email })
+            const address = (await window.web3.eth.getAccounts())[0]
+            setWalletAddress(address)
             setProviderChosen(true)
         } catch (e) {
             console.error(e.message)
@@ -48,6 +51,9 @@ export const BlockchainEnabled = ({ children }) => {
             setLoading(false)
             if (isLoggedIn) {
                 window.web3 = new Web3(magic.rpcProvider)
+                const address = (await window.web3.eth.getAccounts())[0]
+
+                setWalletAddress(address)
                 setProviderChosen(true)
             }
         }
@@ -57,10 +63,16 @@ export const BlockchainEnabled = ({ children }) => {
     const activateMetamask = async () => {
         window.web3 = new Web3(window.ethereum)
         await window.web3.eth.requestAccounts()
+        const address = (await window.web3.eth.getAccounts())[0]
+        console.log(address)
+        setWalletAddress(address)
         setProviderChosen(true)
     }
     return providerChosen ? (
-        children
+        <Box>
+            <Box>Your current Wallet address: {walletAddress}</Box>
+            <Box>{children}</Box>
+        </Box>
     ) : (
         <Flex
             h="100vh"
