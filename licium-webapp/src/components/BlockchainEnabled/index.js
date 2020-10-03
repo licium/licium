@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Web3 from 'web3'
 import { Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
 import Flex from '@chakra-ui/core/dist/Flex'
@@ -16,14 +16,15 @@ export const BlockchainEnabled = ({ children }) => {
     const activateMagicLink = async (event) => {
         event.preventDefault()
         setLoading(true)
-        const network = {
-            rpcUrl: 'https://core.bloxberg.org',
-        }
-        const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
-            network,
-        })
-        window.web3 = new Web3(magic.rpcProvider)
+
         try {
+            const network = {
+                rpcUrl: 'https://core.bloxberg.org',
+            }
+            const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
+                network,
+            })
+            window.web3 = new Web3(magic.rpcProvider)
             await magic.auth.loginWithMagicLink({ email })
             setProviderChosen(true)
         } catch (e) {
@@ -32,6 +33,26 @@ export const BlockchainEnabled = ({ children }) => {
             setLoading(false)
         }
     }
+
+    useEffect(() => {
+        const checkLogin = async () => {
+            setLoading(true)
+            const network = {
+                rpcUrl: 'https://core.bloxberg.org',
+            }
+            const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
+                network,
+            })
+            const isLoggedIn = await magic.user.isLoggedIn()
+
+            setLoading(false)
+            if (isLoggedIn) {
+                window.web3 = new Web3(magic.rpcProvider)
+                setProviderChosen(true)
+            }
+        }
+        checkLogin()
+    }, [])
 
     const activateMetamask = async () => {
         window.web3 = new Web3(window.ethereum)

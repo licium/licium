@@ -34,15 +34,17 @@ const RegisteredButton = ({ iscc }) => {
         const tophash_hex = web3.utils.hexToBytes(`0x${iscc.tophash}`)
 
         const contractMethod = contract.methods.declare(iscc_hex, tophash_hex)
-        const accounts = await window.web3.eth.getAccounts()
+        const account = (await window.web3.eth.getAccounts())[0]
+
+        console.log(web3.eth.givenProvider.selectedAddress)
 
         try {
             const hash = await contractMethod.send({
-                from: web3.givenProvider.selectedAddress,
+                from: account,
             })
             const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
 
-            const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${accounts[0]}`
+            const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
             const response = await fetch(shortCodeLink)
             if (response.status === 200) {
                 const shortcode = await response.json()
@@ -56,7 +58,7 @@ const RegisteredButton = ({ iscc }) => {
                 showError('Fetching data from Metaregistry failed')
             }
         } catch (err) {
-            showError(err)
+            showError(err.message)
         } finally {
             setLoading(false)
         }
