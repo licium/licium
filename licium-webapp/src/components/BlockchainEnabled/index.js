@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
 import Web3 from 'web3'
-import {
-    Button,
-    Heading,
-    Input,
-    Link,
-    Stack,
-    Text,
-    Tooltip,
-} from '@chakra-ui/core'
+import { Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
 import Flex from '@chakra-ui/core/dist/Flex'
 import { Logo } from '../Logo/Logo'
 import { ReactComponent as MetamaskLogo } from './metamask-fox.svg'
+import { Magic } from 'magic-sdk'
 
 export const BlockchainEnabled = ({ children }) => {
     const [providerChosen, setProviderChosen] = useState(
-        () => !!window.web3.eth.currentProvider
+        !!window.web3 && !!window.web3.eth.currentProvider
     )
+    const [email, setEmail] = useState('')
+    const [isLoading, setLoading] = useState(false)
+
+    const activateMagicLink = async (event) => {
+        event.preventDefault()
+        setLoading(true)
+
+        const network = {
+            rpcUrl: 'https://core.bloxberg.org',
+        }
+
+        const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
+            network,
+        })
+        window.web3 = new Web3(magic.rpcProvider)
+        await magic.auth.loginWithMagicLink({ email })
+        try {
+            await window.web3.eth.getAccounts()
+            setProviderChosen(true)
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const activateMetamask = async () => {
         window.web3 = new Web3(window.ethereum)
@@ -36,18 +54,22 @@ export const BlockchainEnabled = ({ children }) => {
             <Heading as="h1" size="lg">
                 Welcome to licium
             </Heading>
-            <Tooltip label="Available soon" aria-label="Available soon">
-                <form>
-                    <Stack spacing={2}>
-                        <Input disabled placeholder="Please enter your email" />
-                        <Button disabled type="submit">
-                            Login
-                        </Button>
-                    </Stack>
-                </form>
-            </Tooltip>
-            <div>-</div>
-            <Link onClick={() => activateMetamask()}>
+            <form onSubmit={(event) => activateMagicLink(event)}>
+                <Stack spacing={2}>
+                    <Input
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        isRequired={true}
+                        isDisabled={isLoading}
+                        placeholder="Please enter your email"
+                    />
+                    <Button type="submit" isLoading={isLoading}>
+                        Login
+                    </Button>
+                </Stack>
+            </form>
+            <div hidden={isLoading}>-</div>
+            <Link onClick={() => activateMetamask()} hidden={isLoading}>
                 <Flex flexDir="column" alignItems="center">
                     <MetamaskLogo />
                     <Text fontSize="sm">

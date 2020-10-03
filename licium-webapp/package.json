@@ -62,6 +62,7 @@
     "husky": "^4.2.5",
     "jest-date-serializer": "^1.0.1",
     "lint-staged": "^10.2.11",
+    "magic-sdk": "^2.7.0",
     "msw": "^0.21.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
