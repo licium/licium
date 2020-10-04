@@ -43,19 +43,13 @@ const RegisteredButton = ({ iscc }) => {
             })
             const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
 
-            const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
-            const response = await fetch(shortCodeLink)
-            if (response.status === 200) {
-                const shortcode = await response.json()
-                const registrationId = shortcode.iscc_id
-                updateIscc({
-                    ...iscc,
-                    transactionLink,
-                    registrationId,
-                })
-            } else {
-                showError('Fetching data from Metaregistry failed')
-            }
+            //const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
+            //const response = await fetch(shortCodeLink)
+            //const registrationId = shortcode.iscc_id
+            updateIscc({
+                ...iscc,
+                transactionLink,
+            })
         } catch (err) {
             showError(err.message)
         } finally {
