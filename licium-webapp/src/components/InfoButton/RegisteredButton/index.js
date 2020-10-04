@@ -3,14 +3,15 @@ import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
 import { ISCCContext } from '../../../contexts/ISCCContext'
+import { BlockchainContext } from '../../../contexts/BlockchainContext'
 
 const RegisteredButton = ({ iscc }) => {
-    const web3 = window.web3
+    const { provider } = useContext(BlockchainContext)
 
     const { updateIscc } = useContext(ISCCContext)
 
     const [isLoading, setLoading] = useState(false)
-    const contract = new web3.eth.Contract(
+    const contract = new provider.web3.eth.Contract(
         ISCCRegistry.abi,
         ISCCRegistry.networks['8995'].address
     )
@@ -30,13 +31,11 @@ const RegisteredButton = ({ iscc }) => {
 
     const registerISCC = async () => {
         setLoading(true)
-        const iscc_hex = web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
-        const tophash_hex = web3.utils.hexToBytes(`0x${iscc.tophash}`)
+        const iscc_hex = provider.web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
+        const tophash_hex = provider.web3.utils.hexToBytes(`0x${iscc.tophash}`)
 
         const contractMethod = contract.methods.declare(iscc_hex, tophash_hex)
-        const account = (await window.web3.eth.getAccounts())[0]
-
-        console.log(web3.eth.givenProvider.selectedAddress)
+        const account = (await provider.web3.eth.getAccounts())[0]
 
         try {
             const hash = await contractMethod.send({

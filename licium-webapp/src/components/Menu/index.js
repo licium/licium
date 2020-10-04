@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Flex } from '@chakra-ui/core'
 import GenerateISCCButton from '../GenerateISCCButton'
 import styled from '@emotion/styled'
 import { ISCCContext } from '../../contexts/ISCCContext'
-import { Magic } from 'magic-sdk'
+import {
+    BlockchainContext,
+    BlockchainProviderName,
+} from '../../contexts/BlockchainContext'
 
 export const StyledButton = styled(Button)`
     width: 11.5em;
@@ -13,22 +16,20 @@ export const StyledButton = styled(Button)`
 
 const Menu = ({ selectedEntries = [] }) => {
     const { isccs, deleteIsccs } = useContext(ISCCContext)
+    const { provider } = useContext(BlockchainContext)
+    const [isMenuDisabled, setMenuDisabled] = useState(false)
 
-    const logout = () => {
-        const network = {
-            rpcUrl: 'https://core.bloxberg.org',
-        }
-        const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
-            network,
-        })
-        magic.user.logout()
+    const logout = async () => {
+        setMenuDisabled(true)
+        await provider.logout()
+        setMenuDisabled(false)
     }
 
     return (
         <Flex direction="column" alignItems="center" marginTop="1em">
-            <GenerateISCCButton />
+            <GenerateISCCButton disabled={isMenuDisabled} />
             <StyledButton
-                disabled={selectedEntries.length === 0}
+                disabled={selectedEntries.length === 0 || isMenuDisabled}
                 onClick={() => deleteIsccs(selectedEntries)}
             >
                 Delete Selected Entries
@@ -39,9 +40,16 @@ const Menu = ({ selectedEntries = [] }) => {
                 )}`}
                 download="filename.json"
             >
-                <StyledButton> {`Download JSON`}</StyledButton>
+                <StyledButton disabled={isMenuDisabled}>
+                    {' '}
+                    {`Download JSON`}
+                </StyledButton>
             </a>
-            <StyledButton onClick={() => logout()}>Logout</StyledButton>
+            {provider.providerName === BlockchainProviderName.MAGIC ? (
+                <StyledButton onClick={() => logout()}>Logout</StyledButton>
+            ) : (
+                ''
+            )}
         </Flex>
     )
 }

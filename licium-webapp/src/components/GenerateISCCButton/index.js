@@ -6,7 +6,7 @@ import { StyledButton } from '../Menu'
 import { ISCCContext } from '../../contexts/ISCCContext'
 import { v4 as uuidv4 } from 'uuid'
 
-const GenerateISCCButton = () => {
+const GenerateISCCButton = ({ disabled }) => {
     const [counter, setCounter] = useState(0)
 
     const [isLoading, setIsLoading] = useState(false)
@@ -75,6 +75,7 @@ const GenerateISCCButton = () => {
                     <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <StyledButton
+                            disabled={disabled}
                             isLoading={isLoading}
                             loadingText={loadingText()}
                             onClick={() => {
