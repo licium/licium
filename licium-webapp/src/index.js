@@ -5,12 +5,21 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 import { customTheme } from './assets/styles/theme'
+import { createOvermind } from 'overmind'
+import { config } from './overmind'
+import { Provider } from 'overmind-react'
+const overmind = createOvermind(config, {
+    devtools: 'localhost:3031',
+})
 
 ReactDOM.render(
-    <ThemeProvider theme={customTheme}>
-        <CSSReset />
-        <App />
-    </ThemeProvider>,
+    <Provider value={overmind}>
+        <ThemeProvider theme={customTheme}>
+            <CSSReset />
+            <App />
+        </ThemeProvider>
+    </Provider>,
+
     document.getElementById('root')
 )
 

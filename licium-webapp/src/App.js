@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
 import { Box } from '@chakra-ui/core'
@@ -10,11 +10,18 @@ import EntryTable from './pages/EntryTable'
 import { BlockchainEnabled } from './components/BlockchainEnabled'
 import ISCCContextProvider from './contexts/ISCCContext'
 import BlockchainContextProvider from './contexts/BlockchainContext'
+import { useActions } from './overmind'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
 function App() {
     const [selectedEntries, setSelectedEntries] = useState()
+
+    const actions = useActions()
+
+    useEffect(() => {
+        actions.isccs.loadIsccs()
+    }, [actions])
 
     return (
         <BlockchainContextProvider>
