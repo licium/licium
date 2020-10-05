@@ -65,6 +65,8 @@
     "magic-sdk": "^2.7.0",
     "msw": "^0.21.2",
     "node-sass": "^4.14.1",
+    "overmind": "^25.0.2",
+    "overmind-react": "^26.0.2",
     "prettier": "^2.0.5",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
