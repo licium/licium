@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Button,
     ButtonGroup,
@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/core'
 import Box from '@chakra-ui/core/dist/Box'
 import FocusLock from 'react-focus-lock'
-import { ISCCContext } from '../../contexts/ISCCContext'
+import { useActions } from '../../overmind'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (
@@ -60,11 +60,11 @@ const TitleForm = ({ firstFieldRef, value, onCancel, onSave }) => {
 }
 
 const EditableCell = ({ iscc }) => {
-    const { updateIscc } = useContext(ISCCContext)
     const [isOpen, setIsOpen] = React.useState(false)
     const firstFieldRef = React.useRef(null)
     const open = () => setIsOpen(true)
     const close = () => setIsOpen(false)
+    const actions = useActions()
 
     return (
         <>
@@ -96,7 +96,7 @@ const EditableCell = ({ iscc }) => {
                                     extra: val,
                                 }
                                 close()
-                                updateIscc(updatedIscc)
+                                actions.isccs.updateIscc(updatedIscc)
                             }}
                         />
                     </FocusLock>

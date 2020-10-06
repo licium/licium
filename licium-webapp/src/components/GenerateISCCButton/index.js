@@ -1,21 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useToast } from '@chakra-ui/core'
 import Dropzone from 'react-dropzone'
 import { API_PATH } from '../../App'
 import { StyledButton } from '../Menu'
-import { ISCCContext } from '../../contexts/ISCCContext'
 import { v4 as uuidv4 } from 'uuid'
+import { useActions } from '../../overmind'
 
 const GenerateISCCButton = ({ disabled }) => {
     const [counter, setCounter] = useState(0)
 
     const [isLoading, setIsLoading] = useState(false)
     const toast = useToast()
-    const { isccs, setIsccs } = useContext(ISCCContext)
+
+    const actions = useActions()
 
     const handleFiles = async (files) => {
         let counter = 0
-        const mutableCodes = isccs
         await Promise.all(
             files.map(async (file) => {
                 const formData = new FormData()
@@ -41,8 +41,7 @@ const GenerateISCCButton = ({ disabled }) => {
                         id: uuidv4(),
                         date: new Date().toISOString(),
                     }
-                    mutableCodes.unshift(isccWithDate)
-                    setIsccs([...mutableCodes])
+                    actions.isccs.addIscc(isccWithDate)
                 } catch (e) {
                     console.error(e)
                     displayError(e.message)

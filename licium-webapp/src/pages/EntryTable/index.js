@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Icon } from '@chakra-ui/core'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
 
@@ -7,12 +7,12 @@ import RegisteredButton from '../../components/InfoButton/RegisteredButton'
 import { StyledTable } from './elements'
 import EditableCell from '../../components/EditableTableCell'
 import Table from '../../components/Table'
-import { ISCCContext } from '../../contexts/ISCCContext'
+import { useState } from '../../overmind'
 
 const EntryTable = ({ onEntriesSelected = () => {} }) => {
-    const { isccs } = useContext(ISCCContext)
+    const state = useState()
 
-    const data = useMemo(() => isccs, [isccs])
+    const data = useMemo(() => state.isccs.isccList, [state.isccs.isccList])
 
     const columns = useMemo(
         () => [

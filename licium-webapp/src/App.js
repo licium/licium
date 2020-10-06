@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PageTitle from './components/PageTitle/PageTitle'
 import EntryTable from './pages/EntryTable'
 import { BlockchainEnabled } from './components/BlockchainEnabled'
-import ISCCContextProvider from './contexts/ISCCContext'
 import BlockchainContextProvider from './contexts/BlockchainContext'
 import { useActions } from './overmind'
 
@@ -26,35 +25,31 @@ function App() {
     return (
         <BlockchainContextProvider>
             <BlockchainEnabled>
-                <ISCCContextProvider>
-                    <Router>
-                        <Grid
-                            p="0.5em"
-                            templateRows={['auto', 'auto 1fr']}
-                            templateColumns={['auto', 'auto 1fr']}
-                            gridGap="0.5em"
-                        >
-                            <Box>
-                                <AppHeader />
-                            </Box>
-                            <PageTitle />
-                            <Box>
-                                <Menu selectedEntries={selectedEntries} />
-                            </Box>
-                            <Box>
-                                <Switch>
-                                    <Route>
-                                        <EntryTable
-                                            onEntriesSelected={
-                                                setSelectedEntries
-                                            }
-                                        />
-                                    </Route>
-                                </Switch>
-                            </Box>
-                        </Grid>
-                    </Router>
-                </ISCCContextProvider>
+                <Router>
+                    <Grid
+                        p="0.5em"
+                        templateRows={['auto', 'auto 1fr']}
+                        templateColumns={['auto', 'auto 1fr']}
+                        gridGap="0.5em"
+                    >
+                        <Box>
+                            <AppHeader />
+                        </Box>
+                        <PageTitle />
+                        <Box>
+                            <Menu selectedEntries={selectedEntries} />
+                        </Box>
+                        <Box>
+                            <Switch>
+                                <Route>
+                                    <EntryTable
+                                        onEntriesSelected={setSelectedEntries}
+                                    />
+                                </Route>
+                            </Switch>
+                        </Box>
+                    </Grid>
+                </Router>
             </BlockchainEnabled>
         </BlockchainContextProvider>
     )

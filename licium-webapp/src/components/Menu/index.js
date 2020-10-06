@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Button, Flex } from '@chakra-ui/core'
 import GenerateISCCButton from '../GenerateISCCButton'
 import styled from '@emotion/styled'
-import { ISCCContext } from '../../contexts/ISCCContext'
 import {
     BlockchainContext,
     BlockchainProviderName,
 } from '../../contexts/BlockchainContext'
+import { useActions, useState } from '../../overmind'
 
 export const StyledButton = styled(Button)`
     width: 11.5em;
@@ -15,9 +15,10 @@ export const StyledButton = styled(Button)`
 `
 
 const Menu = ({ selectedEntries = [] }) => {
-    const { isccs, deleteIsccs } = useContext(ISCCContext)
+    const state = useState()
+    const actions = useActions()
     const { provider } = useContext(BlockchainContext)
-    const [isMenuDisabled, setMenuDisabled] = useState(false)
+    const [isMenuDisabled, setMenuDisabled] = React.useState(false)
 
     const logout = async () => {
         setMenuDisabled(true)
@@ -30,13 +31,13 @@ const Menu = ({ selectedEntries = [] }) => {
             <GenerateISCCButton disabled={isMenuDisabled} />
             <StyledButton
                 disabled={selectedEntries.length === 0 || isMenuDisabled}
-                onClick={() => deleteIsccs(selectedEntries)}
+                onClick={() => actions.isccs.deleteIsccs(selectedEntries)}
             >
                 Delete Selected Entries
             </StyledButton>
             <a
                 href={`data:text/json;charset=utf-8,${encodeURIComponent(
-                    JSON.stringify(isccs)
+                    JSON.stringify(state.isccs.isccList)
                 )}`}
                 download="filename.json"
             >

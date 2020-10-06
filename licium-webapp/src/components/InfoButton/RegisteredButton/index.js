@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react'
 import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
-import { ISCCContext } from '../../../contexts/ISCCContext'
 import { BlockchainContext } from '../../../contexts/BlockchainContext'
+import { useActions } from '../../../overmind'
 
 const RegisteredButton = ({ iscc }) => {
     const { provider } = useContext(BlockchainContext)
 
-    const { updateIscc } = useContext(ISCCContext)
+    const actions = useActions()
 
     const [isLoading, setLoading] = useState(false)
     const contract = new provider.web3.eth.Contract(
@@ -46,7 +46,7 @@ const RegisteredButton = ({ iscc }) => {
             //const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
             //const response = await fetch(shortCodeLink)
             //const registrationId = shortcode.iscc_id
-            updateIscc({
+            actions.isccs.updateIscc({
                 ...iscc,
                 transactionLink,
             })
