@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
     Button,
     ButtonGroup,
+    Flex,
     FormControl,
     FormLabel,
     IconButton,
@@ -67,10 +68,9 @@ const EditableCell = ({ iscc }) => {
     const actions = useActions()
 
     return (
-        <>
-            <Box d="inline-block" mr={3}>
-                {iscc.extra}
-            </Box>
+        <Flex minW="25em" justifyContent="space-between">
+            <Box mr={3}>{iscc.extra}</Box>
+
             <Popover
                 isOpen={isOpen}
                 initialFocusRef={firstFieldRef}
@@ -102,7 +102,7 @@ const EditableCell = ({ iscc }) => {
                     </FocusLock>
                 </PopoverContent>
             </Popover>
-        </>
+        </Flex>
     )
 }
 
