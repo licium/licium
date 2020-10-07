@@ -31,11 +31,6 @@ const EntryTable = ({ onEntriesSelected = () => {} }) => {
                 Cell: ({ value }) => <EditableCell iscc={value} />,
             },
             {
-                Header: 'Tag',
-                accessor: 'tag',
-                Cell: () => '-',
-            },
-            {
                 Header: 'Date',
                 accessor: 'date',
             },
