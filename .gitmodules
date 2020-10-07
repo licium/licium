@@ -1,3 +1,4 @@
 [submodule "iscc-service"]
 	path = iscc-service
 	url = https://github.com/iscc/iscc-service.git
+	branch = develop
