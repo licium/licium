@@ -23,7 +23,7 @@ const EntryTable = ({ onEntriesSelected = () => {} }) => {
             },
             {
                 Header: 'Filename',
-                accessor: 'title',
+                accessor: 'filename',
             },
             {
                 Header: 'Embedded Title',

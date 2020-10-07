@@ -69,7 +69,7 @@ const EditableCell = ({ iscc }) => {
 
     return (
         <Flex minW="25em" justifyContent="space-between">
-            <Box mr={3}>{iscc.extra}</Box>
+            <Box mr={3}>{iscc.title}</Box>
 
             <Popover
                 isOpen={isOpen}
@@ -88,12 +88,12 @@ const EditableCell = ({ iscc }) => {
                         <PopoverCloseButton />
                         <TitleForm
                             firstFieldRef={firstFieldRef}
-                            value={iscc.extra}
+                            value={iscc.title}
                             onCancel={close}
                             onSave={(val) => {
                                 const updatedIscc = {
                                     ...iscc,
-                                    extra: val,
+                                    title: val,
                                 }
                                 close()
                                 actions.isccs.updateIscc(updatedIscc)

@@ -20,7 +20,8 @@ const GenerateISCCButton = ({ disabled }) => {
             files.map(async (file) => {
                 const formData = new FormData()
                 formData.append('file', file)
-                formData.append('title', file.name)
+                formData.append('title', '')
+                formData.append('extra', '')
 
                 try {
                     const response = await fetch(
@@ -38,6 +39,7 @@ const GenerateISCCButton = ({ disabled }) => {
                     const iscc = await response.json()
                     const isccWithDate = {
                         ...iscc,
+                        filename: file.name,
                         id: uuidv4(),
                         date: new Date().toISOString(),
                     }
