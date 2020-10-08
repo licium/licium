@@ -22,6 +22,7 @@ const BlockchainContextProvider = ({ children }) => {
 
     const activateWeb3 = async (providerName, web3, logout = undefined) => {
         const walletAddress = (await web3.eth.getAccounts())[0]
+        console.log(walletAddress)
         setProvider({
             providerName,
             web3,
