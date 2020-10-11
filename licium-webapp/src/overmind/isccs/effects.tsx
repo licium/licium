@@ -1,6 +1,6 @@
 const KEY = 'ISCCS'
 
-export const loadIsccsFromLocalstorage = () => {
+export const loadIsccsFromLocalstorage = (): IndexedISCCS => {
     const initialValue = {}
     try {
         const item = window.localStorage.getItem(KEY)
@@ -12,7 +12,7 @@ export const loadIsccsFromLocalstorage = () => {
     }
 }
 
-export const storeIsccsToLocalStorage = (isccs) => {
+export const storeIsccsToLocalStorage = (isccs: IndexedISCCS) => {
     try {
         window.localStorage.setItem(KEY, JSON.stringify(isccs))
     } catch (error) {

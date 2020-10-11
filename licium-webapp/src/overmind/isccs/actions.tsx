@@ -1,18 +1,20 @@
-export const loadIsccs = ({ effects, state }) => {
+import { Action } from 'overmind'
+
+export const loadIsccs: Action = ({ effects, state }) => {
     state.isccs.isccs = effects.isccs.loadIsccsFromLocalstorage()
 }
 
-export const addIscc = ({ effects, state }, iscc) => {
+export const addIscc: Action<ISCC> = ({ effects, state }, iscc) => {
     state.isccs.isccs[iscc.id] = iscc
     effects.isccs.storeIsccsToLocalStorage(state.isccs.isccs)
 }
 
-export const updateIscc = ({ effects, state }, iscc) => {
+export const updateIscc: Action<ISCC> = ({ effects, state }, iscc) => {
     state.isccs.isccs[iscc.id] = iscc
     effects.isccs.storeIsccsToLocalStorage(state.isccs.isccs)
 }
 
-export const deleteIsccs = ({ effects, state }, toDelete) => {
+export const deleteIsccs: Action<ISCC[]> = ({ effects, state }, toDelete) => {
     toDelete
         .map((item) => item.id)
         .forEach((id) => delete state.isccs.isccs[id])
