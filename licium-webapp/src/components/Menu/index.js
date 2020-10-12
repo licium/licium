@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Button, Flex } from '@chakra-ui/core'
+import { Box, Button, Flex } from '@chakra-ui/core'
 import GenerateISCCButton from '../GenerateISCCButton'
 import styled from '@emotion/styled'
 import {
@@ -19,6 +19,12 @@ const Menu = ({ selectedEntries = [] }) => {
     const actions = useActions()
     const { provider } = useContext(BlockchainContext)
     const [isMenuDisabled, setMenuDisabled] = React.useState(false)
+
+    const WalletBox = styled(Box)`
+        line-break: anywhere;
+        width: 50%;
+        font-family: monospace;
+    `
 
     const logout = async () => {
         setMenuDisabled(true)
@@ -51,6 +57,8 @@ const Menu = ({ selectedEntries = [] }) => {
             ) : (
                 ''
             )}
+            <Box>Your Wallet Address:</Box>
+            <WalletBox>{provider.walletAddress}</WalletBox>
         </Flex>
     )
 }
