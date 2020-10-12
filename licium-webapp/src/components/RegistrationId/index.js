@@ -52,6 +52,8 @@ export const RegistrationId = ({ iscc }) => {
         if (iscc.transactionLink && !iscc.registrationId) {
             registerId()
         }
+        // TODO: Fix with state management
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [iscc.transactionLink])
 
     const renderLink = () => (
