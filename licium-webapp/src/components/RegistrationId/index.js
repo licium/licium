@@ -1,17 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { IconButton, useToast } from '@chakra-ui/core'
 import Link from '@chakra-ui/core/dist/Link'
-import { BlockchainContext } from '../../contexts/BlockchainContext'
-import { useActions } from '../../overmind'
+import { useActions, useState } from '../../overmind'
 
 export const RegistrationId = ({ iscc }) => {
     const isSuccessfullyRegistered = () => iscc.registrationId
     const isRegisteredOnBlockchain = () => iscc.transactionLink
-    const { provider } = useContext(BlockchainContext)
-    const [isRegistrationRunning, setRegistrationRunning] = useState(false)
+    const [isRegistrationRunning, setRegistrationRunning] = React.useState(
+        false
+    )
     const actions = useActions()
 
     const toast = useToast()
+
+    const state = useState()
 
     const showError = (msg) => {
         console.error(msg)
@@ -28,7 +30,7 @@ export const RegistrationId = ({ iscc }) => {
     const registerId = async () => {
         setRegistrationRunning(true)
         try {
-            const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${provider.walletAddress}`
+            const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${state.blockchain.walletAddress}`
             const response = await fetch(shortCodeLink)
 
             if (response.status === 200) {

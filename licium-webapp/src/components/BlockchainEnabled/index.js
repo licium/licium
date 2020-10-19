@@ -1,35 +1,31 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { Box, Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
 import Flex from '@chakra-ui/core/dist/Flex'
 import { Logo } from '../Logo/Logo'
 import { ReactComponent as MetamaskLogo } from './metamask-fox.svg'
-import { BlockchainContext } from '../../contexts/BlockchainContext'
+import { useActions, useState } from '../../overmind'
 
 export const BlockchainEnabled = ({ children }) => {
-    const {
-        provider,
-        loginToMagic,
-        activateMetamask,
-        isMetamaskAvailable,
-    } = useContext(BlockchainContext)
+    const state = useState()
+    const actions = useActions()
 
-    const [email, setEmail] = useState('')
-    const [isLoading, setLoading] = useState(false)
+    const [email, setEmail] = React.useState('')
+    const [isLoading, setLoading] = React.useState(false)
 
     const submitEmail = async (e) => {
         e.preventDefault()
         setLoading(true)
-        await loginToMagic(email)
+        await actions.blockchain.loginToMagic(email)
         setLoading(false)
     }
 
     const enableMetamask = async () => {
         setLoading(true)
-        await activateMetamask()
+        await actions.blockchain.activateMetaMask()
         setLoading(false)
     }
 
-    return provider ? (
+    return state.blockchain.provider ? (
         children
     ) : (
         <Flex
@@ -38,7 +34,7 @@ export const BlockchainEnabled = ({ children }) => {
             alignItems="center"
             flexDir="column"
         >
-            {provider}
+            {actions.blockchain.provider}
             <Logo size="sm" />
             <Heading as="h1" size="lg">
                 Welcome to licium
@@ -57,10 +53,12 @@ export const BlockchainEnabled = ({ children }) => {
                     </Button>
                 </Stack>
             </form>
-            <Box hidden={isLoading || !isMetamaskAvailable}>-</Box>
+            <Box hidden={isLoading || !state.blockchain.isMetamaskAvailable}>
+                -
+            </Box>
             <Link
                 onClick={() => enableMetamask()}
-                hidden={isLoading || !isMetamaskAvailable}
+                hidden={isLoading || !state.blockchain.isMetamaskAvailable}
             >
                 <Flex flexDir="column" alignItems="center">
                     <MetamaskLogo />

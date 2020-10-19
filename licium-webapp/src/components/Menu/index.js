@@ -1,11 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Box, Button, Flex } from '@chakra-ui/core'
 import GenerateISCCButton from '../GenerateISCCButton'
 import styled from '@emotion/styled'
-import {
-    BlockchainContext,
-    BlockchainProviderName,
-} from '../../contexts/BlockchainContext'
 import { useActions, useState } from '../../overmind'
 
 export const StyledButton = styled(Button)`
@@ -17,7 +13,6 @@ export const StyledButton = styled(Button)`
 const Menu = ({ selectedEntries = [] }) => {
     const state = useState()
     const actions = useActions()
-    const { provider } = useContext(BlockchainContext)
     const [isMenuDisabled, setMenuDisabled] = React.useState(false)
 
     const WalletBox = styled(Box)`
@@ -28,7 +23,7 @@ const Menu = ({ selectedEntries = [] }) => {
 
     const logout = async () => {
         setMenuDisabled(true)
-        await provider.logout()
+        await actions.blockchain.logout()
         setMenuDisabled(false)
     }
 
@@ -52,13 +47,13 @@ const Menu = ({ selectedEntries = [] }) => {
                     {`Download JSON`}
                 </StyledButton>
             </a>
-            {provider.providerName === BlockchainProviderName.MAGIC ? (
+            {state.blockchain.provider === 'magic' ? (
                 <StyledButton onClick={() => logout()}>Logout</StyledButton>
             ) : (
                 ''
             )}
             <Box>Your Wallet Address:</Box>
-            <WalletBox>{provider.walletAddress}</WalletBox>
+            <WalletBox>{state.blockchain.walletAddress}</WalletBox>
         </Flex>
     )
 }

@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { IconButton, Link, useToast } from '@chakra-ui/core'
 import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
 import { FaUpload } from 'react-icons/all'
-import { BlockchainContext } from '../../../contexts/BlockchainContext'
-import { useActions } from '../../../overmind'
+import { useActions, useState } from '../../../overmind'
 
 const RegisteredButton = ({ iscc }) => {
-    const { provider } = useContext(BlockchainContext)
-
     const actions = useActions()
 
-    const [isLoading, setLoading] = useState(false)
-    const contract = new provider.web3.eth.Contract(
+    const state = useState()
+
+    const [isLoading, setLoading] = React.useState(false)
+    const contract = new state.blockchain.web3.eth.Contract(
         ISCCRegistry.abi,
         ISCCRegistry.networks['8995'].address
     )
@@ -31,11 +30,15 @@ const RegisteredButton = ({ iscc }) => {
 
     const registerISCC = async () => {
         setLoading(true)
-        const iscc_hex = provider.web3.utils.hexToBytes(`0x${iscc.iscc_raw}`)
-        const tophash_hex = provider.web3.utils.hexToBytes(`0x${iscc.tophash}`)
+        const iscc_hex = state.blockchain.web3.utils.hexToBytes(
+            `0x${iscc.iscc_raw}`
+        )
+        const tophash_hex = state.blockchain.web3.utils.hexToBytes(
+            `0x${iscc.tophash}`
+        )
 
         const contractMethod = contract.methods.declare(iscc_hex, tophash_hex)
-        const account = (await provider.web3.eth.getAccounts())[0]
+        const account = (await state.blockchain.web3.eth.getAccounts())[0]
 
         try {
             const hash = await contractMethod.send({
