@@ -1,6 +1,7 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext } from 'react'
 import { Magic } from 'magic-sdk'
 import Web3 from 'web3'
+import { useActions, useState } from '../../overmind'
 
 export const BlockchainContext = createContext({})
 
@@ -11,8 +12,14 @@ export const BlockchainProviderName = {
 }
 
 const BlockchainContextProvider = ({ children }) => {
-    const [provider, setProvider] = useState(undefined)
-    const [isMetamaskAvailable] = useState(() => !!window.ethereum)
+    const [provider, setProvider] = React.useState(undefined)
+
+    const actions = useActions()
+    const state = useState()
+
+    React.useEffect(() => {
+        actions.blockchain.initialize()
+    }, [])
 
     const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
         network: {
@@ -54,7 +61,7 @@ const BlockchainContextProvider = ({ children }) => {
     const value = {
         provider,
         loginToMagic,
-        isMetamaskAvailable,
+        isMetamaskAvailable: state.blockchain.isMetamaskAvailable,
         activateMetamask,
     }
 

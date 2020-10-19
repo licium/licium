@@ -1,5 +1,6 @@
 import { namespaced } from 'overmind/config'
 import * as isccs from './isccs'
+import * as blockchain from './blockchain'
 import {
     createActionsHook,
     createEffectsHook,
@@ -9,6 +10,7 @@ import {
 import { IConfig } from 'overmind'
 
 export const config = namespaced({
+    blockchain,
     isccs,
 })
 
