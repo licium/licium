@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import Grid from '@chakra-ui/core/dist/Grid'
 import { Box } from '@chakra-ui/core'
@@ -13,8 +13,6 @@ import { Login } from './pages/Login'
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
 function App() {
-    const [selectedEntries, setSelectedEntries] = useState()
-
     const actions = useActions()
 
     useEffect(() => {
@@ -36,14 +34,12 @@ function App() {
                     </Box>
                     <PageTitle />
                     <Box>
-                        <Menu selectedEntries={selectedEntries} />
+                        <Menu />
                     </Box>
                     <Box>
                         <Switch>
                             <Route>
-                                <EntryTable
-                                    onEntriesSelected={setSelectedEntries}
-                                />
+                                <EntryTable />
                             </Route>
                         </Switch>
                     </Box>

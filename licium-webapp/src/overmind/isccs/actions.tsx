@@ -14,9 +14,13 @@ export const updateIscc: Action<ISCC> = ({ effects, state }, iscc) => {
     effects.isccs.storeIsccsToLocalStorage(state.isccs.isccs)
 }
 
-export const deleteIsccs: Action<ISCC[]> = ({ effects, state }, toDelete) => {
-    toDelete
+export const deleteIsccs: Action<ISCC[]> = ({ effects, state }) => {
+    state.isccs.selectedIsccs
         .map((item) => item.id)
         .forEach((id) => delete state.isccs.isccs[id])
     effects.isccs.storeIsccsToLocalStorage(state.isccs.isccs)
+}
+
+export const setSelectedISCCs: Action<ISCC[]> = ({ state }, selectedISCCs) => {
+    state.isccs.selectedIsccs = selectedISCCs
 }

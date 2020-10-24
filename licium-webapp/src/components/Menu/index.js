@@ -10,7 +10,7 @@ export const StyledButton = styled(Button)`
     background: #d3d6ed;
 `
 
-const Menu = ({ selectedEntries = [] }) => {
+const Menu = () => {
     const state = useState()
     const actions = useActions()
     const [isMenuDisabled, setMenuDisabled] = React.useState(false)
@@ -31,8 +31,10 @@ const Menu = ({ selectedEntries = [] }) => {
         <Flex direction="column" alignItems="center" marginTop="1em">
             <GenerateISCCButton disabled={isMenuDisabled} />
             <StyledButton
-                disabled={selectedEntries.length === 0 || isMenuDisabled}
-                onClick={() => actions.isccs.deleteIsccs(selectedEntries)}
+                disabled={
+                    state.isccs.selectedIsccs.length === 0 || isMenuDisabled
+                }
+                onClick={() => actions.isccs.deleteIsccs()}
             >
                 Delete Selected Entries
             </StyledButton>

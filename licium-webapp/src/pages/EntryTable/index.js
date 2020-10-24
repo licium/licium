@@ -7,10 +7,11 @@ import RegisteredButton from '../../components/InfoButton/RegisteredButton'
 import { StyledTable } from './elements'
 import EditableCell from '../../components/EditableTableCell'
 import Table from '../../components/Table'
-import { useState } from '../../overmind'
+import { useActions, useState } from '../../overmind'
 
-const EntryTable = ({ onEntriesSelected = () => {} }) => {
+const EntryTable = () => {
     const state = useState()
+    const actions = useActions()
 
     const data = useMemo(() => state.isccs.isccList, [state.isccs.isccList])
 
@@ -61,7 +62,9 @@ const EntryTable = ({ onEntriesSelected = () => {} }) => {
             <Table
                 columns={columns}
                 data={data}
-                onEntriesSelected={onEntriesSelected}
+                onEntriesSelected={(isccs) =>
+                    actions.isccs.setSelectedISCCs(isccs)
+                }
             />
         </StyledTable>
     )
