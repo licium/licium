@@ -23,12 +23,12 @@ function App() {
     return (
         <Router>
             <Switch>
-                <BlockchainEnabledContent path="/app">
-                    <AppScaffold />
-                </BlockchainEnabledContent>
-                <Route path="/">
+                <Route path="/login">
                     <Login />
                 </Route>
+                <BlockchainEnabledContent path="/">
+                    <AppScaffold />
+                </BlockchainEnabledContent>
             </Switch>
         </Router>
     )
@@ -46,7 +46,7 @@ function BlockchainEnabledContent({ children, ...rest }) {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: '/',
+                            pathname: '/login',
                             state: { from: location },
                         }}
                     />

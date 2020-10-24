@@ -25,7 +25,7 @@ export const Login = () => {
         setLoading(true)
         await actions.blockchain.activateMetaMask()
         setLoading(false)
-        history.push('/app')
+        history.push('/')
     }
 
     return (

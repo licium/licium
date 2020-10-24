@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Grid from '@chakra-ui/core/dist/Grid'
 import { Box } from '@chakra-ui/core'
 import AppHeader from '../../components/AppHeader/AppHeader'
@@ -24,7 +24,7 @@ const AppScaffold = () => {
             </Box>
             <Box>
                 <Switch>
-                    <Route path="/app">
+                    <Route path="/">
                         <EntryTable />
                     </Route>
                 </Switch>
