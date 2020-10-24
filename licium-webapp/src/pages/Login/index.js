@@ -4,10 +4,12 @@ import Flex from '@chakra-ui/core/dist/Flex'
 import { ReactComponent as MetamaskLogo } from './metamask-fox.svg'
 import { useActions, useState } from '../../overmind'
 import { Logo } from '../../components/Logo/Logo'
+import { useHistory } from 'react-router'
 
-export const Login = ({ children }) => {
+export const Login = () => {
     const state = useState()
     const actions = useActions()
+    const history = useHistory()
 
     const [email, setEmail] = React.useState('')
     const [isLoading, setLoading] = React.useState(false)
@@ -23,11 +25,10 @@ export const Login = ({ children }) => {
         setLoading(true)
         await actions.blockchain.activateMetaMask()
         setLoading(false)
+        history.push('/app')
     }
 
-    return state.blockchain.provider ? (
-        children
-    ) : (
+    return (
         <Flex
             h="100vh"
             justifyContent="center"
