@@ -1,6 +1,6 @@
 import { Action } from 'overmind'
 
-export const loadIsccs: Action = ({ effects, state }) => {
+export const initialize: Action = ({ effects, state }) => {
     state.isccs.isccs = effects.isccs.loadIsccsFromLocalstorage()
 }
 

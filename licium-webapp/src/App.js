@@ -16,7 +16,7 @@ function App() {
     const actions = useActions()
 
     useEffect(() => {
-        actions.isccs.loadIsccs()
+        actions.isccs.initialize()
         actions.blockchain.initialize()
     }, [actions])
 
