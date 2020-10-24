@@ -1,11 +1,11 @@
 import React from 'react'
 import { Box, Button, Heading, Input, Link, Stack, Text } from '@chakra-ui/core'
 import Flex from '@chakra-ui/core/dist/Flex'
-import { Logo } from '../Logo/Logo'
 import { ReactComponent as MetamaskLogo } from './metamask-fox.svg'
 import { useActions, useState } from '../../overmind'
+import { Logo } from '../../components/Logo/Logo'
 
-export const BlockchainEnabled = ({ children }) => {
+export const Login = ({ children }) => {
     const state = useState()
     const actions = useActions()
 

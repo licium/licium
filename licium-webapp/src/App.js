@@ -7,8 +7,8 @@ import Menu from './components/Menu'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PageTitle from './components/PageTitle/PageTitle'
 import EntryTable from './pages/EntryTable'
-import { BlockchainEnabled } from './components/BlockchainEnabled'
 import { useActions } from './overmind'
+import { Login } from './pages/Login'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
@@ -23,7 +23,7 @@ function App() {
     }, [actions])
 
     return (
-        <BlockchainEnabled>
+        <Login>
             <Router>
                 <Grid
                     p="0.5em"
@@ -49,7 +49,7 @@ function App() {
                     </Box>
                 </Grid>
             </Router>
-        </BlockchainEnabled>
+        </Login>
     )
 }
 
