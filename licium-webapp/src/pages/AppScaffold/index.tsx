@@ -1,13 +1,15 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { ReactChildren } from 'react'
 import Grid from '@chakra-ui/core/dist/Grid'
 import { Box } from '@chakra-ui/core'
 import AppHeader from '../../components/AppHeader/AppHeader'
 import PageTitle from '../../components/PageTitle/PageTitle'
 import Menu from '../../components/Menu'
-import EntryTable from '../EntryTable'
 
-const AppScaffold = () => {
+type AppScaffoldProps = {
+    children: ReactChildren
+}
+
+const AppScaffold = function ({ children }: AppScaffoldProps) {
     return (
         <Grid
             p="0.5em"
@@ -22,13 +24,7 @@ const AppScaffold = () => {
             <Box>
                 <Menu />
             </Box>
-            <Box>
-                <Switch>
-                    <Route path="/">
-                        <EntryTable />
-                    </Route>
-                </Switch>
-            </Box>
+            <Box>{children}</Box>
         </Grid>
     )
 }

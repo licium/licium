@@ -8,6 +8,7 @@ import { StyledTable } from './elements'
 import EditableCell from '../../components/EditableTableCell'
 import Table from '../../components/Table'
 import { useActions, useState } from '../../overmind'
+import { Link } from 'react-router-dom'
 
 const EntryTable = () => {
     const state = useState()
@@ -52,6 +53,12 @@ const EntryTable = () => {
                 accessor: (row) => row,
                 className: 'centered',
                 Cell: ({ value }) => <RegistrationId iscc={value} />,
+            },
+            {
+                Header: 'Details',
+                accessor: (row) => row,
+                className: 'centered',
+                Cell: ({ value }) => <Link to={value.id}>Go to details</Link>,
             },
         ],
         []

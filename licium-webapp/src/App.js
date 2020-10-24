@@ -9,6 +9,8 @@ import {
     BrowserRouter as Router,
 } from 'react-router-dom'
 import { Login } from './pages/Login'
+import EntryTable from './pages/EntryTable'
+import ISCCDetails from './pages/ISCCDetails'
 
 export const API_PATH = process.env.NODE_ENV === 'production' ? '/api' : '/iscc'
 
@@ -26,8 +28,11 @@ function App() {
                 <Route path="/login">
                     <Login />
                 </Route>
+                <BlockchainEnabledContent path="/:id">
+                    <ISCCDetails />
+                </BlockchainEnabledContent>
                 <BlockchainEnabledContent path="/">
-                    <AppScaffold />
+                    <EntryTable />
                 </BlockchainEnabledContent>
             </Switch>
         </Router>
@@ -42,7 +47,7 @@ function BlockchainEnabledContent({ children, ...rest }) {
             {...rest}
             render={({ location }) =>
                 state.blockchain.provider ? (
-                    children
+                    <AppScaffold>{children}</AppScaffold>
                 ) : (
                     <Redirect
                         to={{
