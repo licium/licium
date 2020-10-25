@@ -2,7 +2,7 @@ import { UserDataVersion } from '../../utils/constants'
 
 const KEY = 'ISCCS'
 
-export const loadIsccsFromLocalstorage = (): UserData => {
+export const loadUserDataFromLocalStorage = (): UserData => {
     const initialValue = {
         version: UserDataVersion,
         entries: {},
@@ -13,7 +13,7 @@ export const loadIsccsFromLocalstorage = (): UserData => {
             ? JSON.parse(valueFromLocalstorage)
             : initialValue
         const parsedValueAsObject =
-            parsedValue === 'object' ? parsedValue : initialValue
+            typeof parsedValue === 'object' ? parsedValue : initialValue
         return parsedValueAsObject.version === UserDataVersion
             ? parsedValueAsObject
             : initialValue

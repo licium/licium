@@ -1,7 +1,8 @@
 import { Action } from 'overmind'
 
 export const initialize: Action = ({ effects, state }) => {
-    state.isccs.userData = effects.isccs.loadIsccsFromLocalstorage()
+    console.log(effects.isccs.loadUserDataFromLocalStorage())
+    state.isccs.userData = effects.isccs.loadUserDataFromLocalStorage()
 }
 
 export const addIscc: Action<ISCC> = ({ effects, state }, iscc) => {

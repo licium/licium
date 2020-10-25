@@ -1,5 +1,6 @@
 interface ISCC {
     id: string
+    transactionHash: string
 }
 
 type UserData = {
