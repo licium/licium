@@ -28,10 +28,10 @@ function App() {
                 <Route path="/login">
                     <Login />
                 </Route>
-                <BlockchainEnabledContent path="/:id">
+                <BlockchainEnabledContent pageTitle="Details" path="/:id">
                     <ISCCDetails />
                 </BlockchainEnabledContent>
-                <BlockchainEnabledContent path="/">
+                <BlockchainEnabledContent pageTitle="ISCC Entries" path="/">
                     <EntryTable />
                 </BlockchainEnabledContent>
             </Switch>
@@ -39,7 +39,7 @@ function App() {
     )
 }
 
-function BlockchainEnabledContent({ children, ...rest }) {
+function BlockchainEnabledContent({ pageTitle, children, ...rest }) {
     const state = useState()
 
     return (
@@ -47,7 +47,7 @@ function BlockchainEnabledContent({ children, ...rest }) {
             {...rest}
             render={({ location }) =>
                 state.blockchain.provider ? (
-                    <AppScaffold>{children}</AppScaffold>
+                    <AppScaffold pageTitle={pageTitle}>{children}</AppScaffold>
                 ) : (
                     <Redirect
                         to={{

@@ -6,10 +6,11 @@ import PageTitle from '../../components/PageTitle/PageTitle'
 import Menu from '../../components/Menu'
 
 type AppScaffoldProps = {
+    pageTitle: string
     children: ReactChildren
 }
 
-const AppScaffold = function ({ children }: AppScaffoldProps) {
+const AppScaffold = function ({ pageTitle, children }: AppScaffoldProps) {
     return (
         <Grid
             p="0.5em"
@@ -20,7 +21,7 @@ const AppScaffold = function ({ children }: AppScaffoldProps) {
             <Box>
                 <AppHeader />
             </Box>
-            <PageTitle />
+            <PageTitle title={pageTitle} />
             <Box>
                 <Menu />
             </Box>

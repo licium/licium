@@ -19,6 +19,7 @@ export const Login = () => {
         setLoading(true)
         await actions.blockchain.loginToMagic(email)
         setLoading(false)
+        history.push('/')
     }
 
     const enableMetamask = async () => {
@@ -38,7 +39,7 @@ export const Login = () => {
             {actions.blockchain.provider}
             <Logo size="sm" />
             <Heading as="h1" size="lg">
-                Welcome to licium
+                Welcome to Licium
             </Heading>
             <form onSubmit={(event) => submitEmail(event)}>
                 <Stack spacing={2}>

@@ -1,18 +1,12 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import { Flex } from '@chakra-ui/core'
 import Heading from '@chakra-ui/core/dist/Heading'
 
-const titles = {
-    '/': 'ISCC Entries',
-    '/registration': 'Register ISCCs',
+type PageTitleProps = {
+    title: string
 }
 
-export default function PageTitle() {
-    const location = useLocation()
-
-    const title = titles[location.pathname]
-
+export default function PageTitle({ title }: PageTitleProps) {
     return (
         <Flex justifyContent="start" alignItems="flex-end">
             <Heading size="lg">{title}</Heading>
