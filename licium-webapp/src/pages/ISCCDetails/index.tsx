@@ -10,6 +10,8 @@ const ISCCDetails = () => {
         (item) => item.id === id
     )
 
+    React.useEffect(() => {}, [])
+
     return (
         <Box>
             {!iscc ? (

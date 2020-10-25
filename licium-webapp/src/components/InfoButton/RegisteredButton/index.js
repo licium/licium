@@ -44,6 +44,7 @@ const RegisteredButton = ({ iscc }) => {
             const hash = await contractMethod.send({
                 from: account,
             })
+            const transactionHash = hash.transactionHash
             const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
 
             //const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
@@ -52,6 +53,7 @@ const RegisteredButton = ({ iscc }) => {
             actions.isccs.updateIscc({
                 ...iscc,
                 transactionLink,
+                transactionHash,
             })
         } catch (err) {
             showError(err.message)

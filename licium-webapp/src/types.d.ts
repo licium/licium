@@ -2,4 +2,11 @@ interface ISCC {
     id: string
 }
 
-type IndexedISCCS = { [key: string]: ISCC }
+type UserData = {
+    version: number
+    entries: IndexedISCCS
+}
+
+type IndexedISCCS = {
+    [key: string]: ISCC
+}

@@ -1,20 +1,32 @@
+import { UserDataVersion } from '../../utils/constants'
+
 const KEY = 'ISCCS'
 
-export const loadIsccsFromLocalstorage = (): IndexedISCCS => {
-    const initialValue = {}
+export const loadIsccsFromLocalstorage = (): UserData => {
+    const initialValue = {
+        version: UserDataVersion,
+        entries: {},
+    }
     try {
-        const item = window.localStorage.getItem(KEY)
-        const loaded = item ? JSON.parse(item) : initialValue
-        return typeof loaded === 'object' ? loaded : initialValue
+        const valueFromLocalstorage = window.localStorage.getItem(KEY)
+        const parsedValue = valueFromLocalstorage
+            ? JSON.parse(valueFromLocalstorage)
+            : initialValue
+        const parsedValueAsObject =
+            parsedValue === 'object' ? parsedValue : initialValue
+        return parsedValueAsObject.version === UserDataVersion
+            ? parsedValueAsObject
+            : initialValue
     } catch (error) {
         console.log(error)
         return initialValue
     }
 }
 
-export const storeIsccsToLocalStorage = (isccs: IndexedISCCS) => {
+export const storeIsccsToLocalStorage = (userData: UserData) => {
     try {
-        window.localStorage.setItem(KEY, JSON.stringify(isccs))
+        userData.version = UserDataVersion
+        window.localStorage.setItem(KEY, JSON.stringify(userData))
     } catch (error) {
         console.error(error)
     }
