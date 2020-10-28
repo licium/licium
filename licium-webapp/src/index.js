@@ -8,9 +8,7 @@ import { customTheme } from './assets/styles/theme'
 import { createOvermind } from 'overmind'
 import { config } from './overmind'
 import { Provider } from 'overmind-react'
-const overmind = createOvermind(config, {
-    devtools: 'localhost:3031',
-})
+const overmind = createOvermind(config)
 
 ReactDOM.render(
     <Provider value={overmind}>
