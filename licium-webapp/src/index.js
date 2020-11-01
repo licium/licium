@@ -8,6 +8,7 @@ import { customTheme } from './assets/styles/theme'
 import { createOvermind } from 'overmind'
 import { config } from './overmind'
 import { Provider } from 'overmind-react'
+import { ToastContainer } from 'react-toastify'
 const overmind = createOvermind(config)
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
         <ThemeProvider theme={customTheme}>
             <CSSReset />
             <App />
+            <ToastContainer />
         </ThemeProvider>
     </Provider>,
 

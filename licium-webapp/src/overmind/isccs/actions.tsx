@@ -1,4 +1,5 @@
-import { Action } from 'overmind'
+import { Action, AsyncAction } from 'overmind'
+import { v4 as uuidv4 } from 'uuid'
 
 export const initialize: Action = ({ effects, state }) => {
     console.log(effects.isccs.loadUserDataFromLocalStorage())
@@ -24,4 +25,21 @@ export const deleteIsccs: Action<ISCC[]> = ({ effects, state }) => {
 
 export const setSelectedISCCs: Action<ISCC[]> = ({ state }, selectedISCCs) => {
     state.isccs.selectedIsccs = selectedISCCs
+}
+
+export const generateISCCFromFile: AsyncAction<File> = async (
+    { state, actions, effects },
+    file
+) => {
+    try {
+        const iscc = await effects.isccs.generateISCCFromFile(file)
+        actions.isccs.addIscc({
+            ...iscc,
+            filename: file.name,
+            id: uuidv4(),
+            date: new Date().toISOString(),
+        })
+    } catch (e) {
+        actions.common.showError(e)
+    }
 }

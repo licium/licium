@@ -1,6 +1,7 @@
 import { namespaced } from 'overmind/config'
 import * as isccs from './isccs'
 import * as blockchain from './blockchain'
+import * as common from './common'
 import {
     createActionsHook,
     createEffectsHook,
@@ -11,6 +12,7 @@ import { IConfig } from 'overmind'
 
 export const config = namespaced({
     blockchain,
+    common,
     isccs,
 })
 
