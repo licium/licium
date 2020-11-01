@@ -27,3 +27,29 @@ export const logout: AsyncAction = async ({ state, effects }) => {
     effects.blockchain.logout()
     state.blockchain.provider = undefined
 }
+
+export const writeISCCToContract: AsyncAction<ISCC> = async (
+    { state, actions, effects },
+    iscc
+) => {
+    const { web3, walletAddress } = state.blockchain
+    if (!web3 || !walletAddress) {
+        return
+    }
+    try {
+        const transaction = await effects.blockchain.writeISCCToContract(
+            web3,
+            walletAddress,
+            iscc
+        )
+        const transactionHash = transaction.transactionHash
+        const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionHash}`
+        actions.isccs.updateIscc({
+            ...iscc,
+            transactionLink,
+            transactionHash,
+        })
+    } catch (error) {
+        actions.common.showError(error)
+    }
+}

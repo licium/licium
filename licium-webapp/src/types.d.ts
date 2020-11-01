@@ -1,8 +1,11 @@
 interface ISCC {
     id: string
-    transactionHash: string
     filename?: string
     date: string
+    iscc_raw: string
+    tophash: string
+    transactionHash: string
+    transactionLink: string
 }
 
 type UserData = {

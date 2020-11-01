@@ -1,65 +1,17 @@
 import React from 'react'
-import { IconButton, Link, useToast } from '@chakra-ui/core'
-import ISCCRegistry from '../../../assets/contracts/ISCCRegistry.json'
+import { IconButton, Link } from '@chakra-ui/core'
 import { FaUpload } from 'react-icons/all'
-import { useActions, useState } from '../../../overmind'
+import { useActions } from '../../../overmind'
 
 const RegisteredButton = ({ iscc }) => {
     const actions = useActions()
 
-    const state = useState()
-
     const [isLoading, setLoading] = React.useState(false)
-    const contract = new state.blockchain.web3.eth.Contract(
-        ISCCRegistry.abi,
-        ISCCRegistry.networks['8995'].address
-    )
-    const toast = useToast()
-
-    const showError = (msg) => {
-        console.error(msg)
-        toast({
-            title: 'An error occurred.',
-            description: msg,
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            position: 'top-right',
-        })
-    }
 
     const registerISCC = async () => {
         setLoading(true)
-        const iscc_hex = state.blockchain.web3.utils.hexToBytes(
-            `0x${iscc.iscc_raw}`
-        )
-        const tophash_hex = state.blockchain.web3.utils.hexToBytes(
-            `0x${iscc.tophash}`
-        )
-
-        const contractMethod = contract.methods.declare(iscc_hex, tophash_hex)
-        const account = (await state.blockchain.web3.eth.getAccounts())[0]
-
-        try {
-            const hash = await contractMethod.send({
-                from: account,
-            })
-            const transactionHash = hash.transactionHash
-            const transactionLink = `https://blockexplorer.bloxberg.org/tx/${hash.transactionHash}`
-
-            //const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${account}`
-            //const response = await fetch(shortCodeLink)
-            //const registrationId = shortcode.iscc_id
-            actions.isccs.updateIscc({
-                ...iscc,
-                transactionLink,
-                transactionHash,
-            })
-        } catch (err) {
-            showError(err.message)
-        } finally {
-            setLoading(false)
-        }
+        await actions.blockchain.writeISCCToContract(iscc)
+        setLoading(false)
     }
 
     return (
