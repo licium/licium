@@ -43,3 +43,26 @@ export const generateISCCFromFile: AsyncAction<File> = async (
         actions.common.showError(e)
     }
 }
+
+export const writeTransactionToMetaRegistry: AsyncAction<ISCC> = async (
+    { state, actions, effects },
+    iscc
+) => {
+    if (!state.blockchain.walletAddress) {
+        //TODO: Implement blockchain so that walletAddress is never undefinded
+        return
+    }
+    try {
+        const shortcode = await effects.isccs.writeTransactionToMetaRegistry(
+            iscc,
+            state.blockchain.walletAddress
+        )
+        const registrationId = shortcode.iscc_id
+        actions.isccs.updateIscc({
+            ...iscc,
+            registrationId,
+        })
+    } catch (e) {
+        actions.common.showError(e)
+    }
+}

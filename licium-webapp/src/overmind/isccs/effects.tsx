@@ -49,3 +49,19 @@ export const generateISCCFromFile = async (file: File): Promise<ISCC> => {
     }
     return await response.json()
 }
+
+export const writeTransactionToMetaRegistry = async (
+    iscc: ISCC,
+    walletAddress: string
+) => {
+    const shortCodeLink = `https://iscc.in/lookup/${iscc.iscc}/${walletAddress}`
+    const response = await fetch(shortCodeLink)
+
+    if (response.status === 200) {
+        return await response.json()
+    } else {
+        throw Error(
+            `Error while fetching data from Metaregistry (Status ${response.status})`
+        )
+    }
+}
