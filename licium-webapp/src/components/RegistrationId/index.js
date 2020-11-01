@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { IconButton } from '@chakra-ui/core'
 import Link from '@chakra-ui/core/dist/Link'
 import { useActions } from '../../overmind'
@@ -11,22 +11,17 @@ export const RegistrationId = ({ iscc }) => {
     )
     const actions = useActions()
 
-    const registerId = async () => {
+    const registerId = useCallback(async () => {
         setRegistrationRunning(true)
         await actions.isccs.writeTransactionToMetaRegistry(iscc)
         setRegistrationRunning(false)
-    }
+    }, [actions.isccs, iscc])
 
     useEffect(() => {
-        const waitForReg = async () => {
-            setRegistrationRunning(true)
-            await actions.isccs.writeTransactionToMetaRegistry(iscc)
-            setRegistrationRunning(false)
-        }
         if (iscc.transactionLink && !iscc.registrationId) {
-            waitForReg()
+            registerId()
         }
-    }, [actions.isccs, iscc])
+    }, [iscc.transactionLink, iscc.registrationId, registerId])
 
     const renderLink = () => (
         <Link
