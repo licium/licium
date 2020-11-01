@@ -3,7 +3,11 @@ import { IconButton, Link } from '@chakra-ui/core'
 import { FaUpload } from 'react-icons/all'
 import { useActions } from '../../../overmind'
 
-const RegisteredButton = ({ iscc }) => {
+type RegisteredButtonProps = {
+    iscc: ISCC
+}
+
+const RegisteredButton = ({ iscc }: RegisteredButtonProps) => {
     const actions = useActions()
 
     const [isLoading, setLoading] = React.useState(false)
