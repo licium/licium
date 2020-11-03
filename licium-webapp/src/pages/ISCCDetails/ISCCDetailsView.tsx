@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/core'
+import { Box, Divider } from '@chakra-ui/core'
 import React from 'react'
 import LabeledValue from '../../components/LabeledText'
 import Badges from '../../components/Badges/Badges'
+import ISCCBlock from '../../components/ISCCBlock/ISCCBlock'
 
 type ISCCDetailsViewProps = {
     iscc: ISCC
@@ -20,6 +21,8 @@ const ISCCDetailsView = ({ iscc }: ISCCDetailsViewProps) => {
             <LabeledValue label={'Filetype'}>
                 {iscc.filename?.split('.')[1] || ''}
             </LabeledValue>
+            <Divider />
+            <ISCCBlock isccString={iscc.iscc} />
         </Box>
     )
 }
