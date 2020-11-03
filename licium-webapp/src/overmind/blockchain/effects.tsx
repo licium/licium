@@ -48,3 +48,7 @@ export const writeISCCToContract = async (
 
     return await contractMethod.send({ from: walletAddress })
 }
+
+export const loadTransaction = async (web3: Web3, transactionHash: string) => {
+    return await web3.eth.getTransactionReceipt(transactionHash)
+}

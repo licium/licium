@@ -33,6 +33,7 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
     iscc
 ) => {
     const { web3, walletAddress } = state.blockchain
+    //fixme: ensure those values are always available
     if (!web3 || !walletAddress) {
         return
     }
@@ -44,10 +45,36 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
         )
         const transactionHash = transaction.transactionHash
         const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionHash}`
-        actions.isccs.updateIscc({
+        const updatedIscc = {
             ...iscc,
             transactionLink,
             transactionHash,
+        }
+        actions.isccs.updateIscc(updatedIscc)
+        actions.blockchain.loadTransaction(updatedIscc)
+    } catch (error) {
+        actions.common.showError(error)
+    }
+}
+
+export const loadTransaction: AsyncAction<ISCC> = async (
+    { state, actions, effects },
+    iscc
+) => {
+    //fixme: ensure those values are always available
+    if (!state.blockchain.web3) {
+        return
+    }
+    try {
+        const receipt = await effects.blockchain.loadTransaction(
+            state.blockchain.web3,
+            iscc.transactionHash
+        )
+        const transactionReceipts = [...iscc.transactionReceipts, receipt]
+
+        actions.isccs.updateIscc({
+            ...iscc,
+            transactionReceipts,
         })
     } catch (error) {
         actions.common.showError(error)

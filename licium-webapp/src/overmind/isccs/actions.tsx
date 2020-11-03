@@ -38,6 +38,7 @@ export const generateISCCFromFile: AsyncAction<File> = async (
             filename: file.name,
             id: uuidv4(),
             date: new Date().toISOString(),
+            transactionReceipts: [],
         })
     } catch (e) {
         actions.common.showError(e)

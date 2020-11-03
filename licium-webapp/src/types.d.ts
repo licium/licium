@@ -8,6 +8,25 @@ interface ISCC {
     transactionHash: string
     transactionLink: string
     registrationId: string
+    transactionReceipts: TransactionReceipt[]
+}
+
+interface TransactionReceipt {
+    status: boolean
+    transactionHash: string
+    transactionIndex: number
+    blockHash: string
+    blockNumber: number
+    from: string
+    to: string
+    contractAddress?: string
+    cumulativeGasUsed: number
+    gasUsed: number
+    logs: Log[]
+    logsBloom: string
+    events?: {
+        [eventName: string]: EventLog
+    }
 }
 
 type UserData = {
