@@ -2,8 +2,8 @@ import React from 'react'
 import { Logo } from './Logo'
 
 export default {
-  title: 'Logo',
-  component: Logo,
+    title: 'Components/Logo',
+    component: Logo,
 }
 
 export const originalSize = () => <Logo />

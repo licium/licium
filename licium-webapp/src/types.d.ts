@@ -1,6 +1,7 @@
 interface ISCC {
     id: string
     filename?: string
+    title: string
     date: string
     iscc: string
     iscc_raw: string
