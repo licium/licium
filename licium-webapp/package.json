@@ -60,6 +60,7 @@
     "cypress-cucumber-preprocessor": "^2.5.4",
     "emotion-theming": "^10.0.27",
     "eslint-plugin-cypress": "^2.11.1",
+    "file-type": "^16.0.1",
     "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.5",
     "install": "^0.13.0",
