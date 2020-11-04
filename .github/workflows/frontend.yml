@@ -14,11 +14,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12'
-        
-    - run: npm install
+
+    - name: yarn install, build, and test
       working-directory: licium-webapp
-    - run: npm test
-      working-directory: licium-webapp
-    - run: npm run build
-      working-directory: licium-webapp
-      
+      run: |
+        yarn install
+        yarn test
+        yarn run build
