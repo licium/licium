@@ -15,9 +15,6 @@ jobs:
       with:
         node-version: '12'
 
-    - name: install yarn
-      run: npm install -q yarn
-
     - name: yarn install, build, and test
       working-directory: licium-webapp
       run: |
