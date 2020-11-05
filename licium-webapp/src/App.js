@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import { useActions, useState } from './overmind'
+import { useActions } from './overmind'
 import AppScaffold from './pages/AppScaffold'
-import {
-    Switch,
-    Route,
-    Redirect,
-    BrowserRouter as Router,
-} from 'react-router-dom'
-import { Login } from './pages/Login'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import EntryTable from './pages/EntryTable'
 import ISCCDetails from './pages/ISCCDetails'
 
@@ -25,38 +19,24 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/login">
-                    <Login />
-                </Route>
-                <BlockchainEnabledContent pageTitle="Details" path="/:id">
+                <ApplicationRoute path="/:id" pageTitle="Details">
                     <ISCCDetails />
-                </BlockchainEnabledContent>
-                <BlockchainEnabledContent pageTitle="ISCC Entries" path="/">
+                </ApplicationRoute>
+                <ApplicationRoute path="/" pageTitle="ISCC Entries">
                     <EntryTable />
-                </BlockchainEnabledContent>
+                </ApplicationRoute>
             </Switch>
         </Router>
     )
 }
 
-function BlockchainEnabledContent({ pageTitle, children, ...rest }) {
-    const state = useState()
-
+function ApplicationRoute({ pageTitle, children, ...rest }) {
     return (
         <Route
             {...rest}
-            render={({ location }) =>
-                state.blockchain.provider ? (
-                    <AppScaffold pageTitle={pageTitle}>{children}</AppScaffold>
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: '/login',
-                            state: { from: location },
-                        }}
-                    />
-                )
-            }
+            render={() => (
+                <AppScaffold pageTitle={pageTitle}>{children}</AppScaffold>
+            )}
         />
     )
 }

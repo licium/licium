@@ -28,7 +28,7 @@ const Menu = () => {
     }
 
     return (
-        <Flex direction="column" alignItems="center" marginTop="1em">
+        <Flex direction="column" alignItems="center">
             <GenerateISCCButton disabled={isMenuDisabled} />
             <StyledButton
                 disabled={

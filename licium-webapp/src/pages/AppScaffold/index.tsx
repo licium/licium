@@ -16,7 +16,7 @@ const AppScaffold = function ({ pageTitle, children }: AppScaffoldProps) {
             p="0.5em"
             templateRows={['auto', 'auto 1fr']}
             templateColumns={['auto', 'auto 1fr']}
-            gridGap="0.5em"
+            gridGap="2em"
         >
             <Box>
                 <AppHeader />

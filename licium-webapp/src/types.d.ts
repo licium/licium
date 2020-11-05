@@ -38,3 +38,5 @@ type UserData = {
 type IndexedISCCS = {
     [key: string]: ISCC
 }
+
+type BlockchainProviderType = 'Magic' | 'Metamask' | 'None'
