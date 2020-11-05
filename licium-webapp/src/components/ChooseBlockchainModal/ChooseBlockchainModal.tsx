@@ -8,6 +8,7 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
+    ModalOverlay,
     Text,
 } from '@chakra-ui/core'
 import MagicLogo from './magic-logo.svg'
@@ -15,10 +16,10 @@ import MetamaskLogo from './metamask-logo.svg'
 import styled from '@emotion/styled'
 
 type ProviderIconProps = {
-    name: string
+    name: BlockchainProviderType
     icon: string
     isSelected: boolean
-    onSelected: (name: string) => void
+    onSelected: (name: BlockchainProviderType) => void
 }
 
 const ProviderIcon = ({
@@ -48,23 +49,25 @@ const ProviderIcon = ({
 
 type ChooseBlockchainModalProps = {
     isOpen: boolean
-    onClose: (selectedName: string) => void
+    onClose: (selectedProvider?: BlockchainProviderType) => void
 }
 
 const ChooseBlockchainModal = ({
     isOpen,
     onClose,
 }: ChooseBlockchainModalProps) => {
-    const [selected, setSelected] = React.useState<string>('Magic')
+    const [selected, setSelected] = React.useState<BlockchainProviderType>(
+        'None'
+    )
 
     return (
         <Modal isOpen={isOpen} isCentered>
+            <ModalOverlay />
             <ModalContent>
                 <ModalHeader textAlign="center">
-                    <Heading>Wallet access needed</Heading>
+                    <Heading>Please choose your wallet provider</Heading>
                 </ModalHeader>
                 <Flex direction="column" alignItems="center">
-                    <Text>Please choose your wallet provider</Text>
                     <Flex direction="row" pt="1em">
                         <ProviderIcon
                             isSelected={selected === 'Magic'}
@@ -82,13 +85,14 @@ const ChooseBlockchainModal = ({
                 </Flex>
                 <ModalFooter>
                     <Button
+                        isDisabled={selected === 'None'}
                         variantColor="blue"
                         mr={3}
                         onClick={() => onClose(selected)}
                     >
                         OK
                     </Button>
-                    <Button>Cancel</Button>
+                    <Button onClick={() => onClose()}>Cancel</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

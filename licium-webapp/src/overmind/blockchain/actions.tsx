@@ -9,7 +9,7 @@ export const activateMetaMask: AsyncAction = async ({ state, effects }) => {
     state.blockchain.walletAddress = (
         await state.blockchain.web3.eth.getAccounts()
     )[0]
-    state.blockchain.provider = 'MetaMask'
+    state.blockchain.provider = 'Metamask'
 }
 
 export const loginToMagic: AsyncAction<string> = async (
@@ -17,7 +17,7 @@ export const loginToMagic: AsyncAction<string> = async (
     email
 ) => {
     state.blockchain.web3 = await effects.blockchain.loadWeb3WithMagic(email)
-    state.blockchain.provider = 'magic'
+    state.blockchain.provider = 'Magic'
     state.blockchain.walletAddress = (
         await state.blockchain.web3.eth.getAccounts()
     )[0]
@@ -25,7 +25,22 @@ export const loginToMagic: AsyncAction<string> = async (
 
 export const logout: AsyncAction = async ({ state, effects }) => {
     effects.blockchain.logout()
-    state.blockchain.provider = undefined
+    state.blockchain.provider = 'None'
+}
+
+export const setBlockchainProviderType: Action<BlockchainProviderType> = (
+    { state },
+    providerType
+) => {
+    state.blockchain.provider = providerType
+}
+
+export const openChooseBlockchainProviderTypeModal: Action = ({ state }) => {
+    state.blockchain.isChoosBlockchainProviderModalOpen = true
+}
+
+export const closeChooseBlockchainProviderTypeModal: Action = ({ state }) => {
+    state.blockchain.isChoosBlockchainProviderModalOpen = false
 }
 
 export const writeISCCToContract: AsyncAction<ISCC> = async (
@@ -33,7 +48,6 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
     iscc
 ) => {
     const { web3, walletAddress } = state.blockchain
-    //fixme: ensure those values are always available
     if (!web3 || !walletAddress) {
         return
     }
@@ -61,7 +75,6 @@ export const loadTransaction: AsyncAction<ISCC> = async (
     { state, actions, effects },
     iscc
 ) => {
-    //fixme: ensure those values are always available
     if (!state.blockchain.web3) {
         return
     }

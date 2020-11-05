@@ -23,11 +23,16 @@ const BlockchainProviderIndicator = ({
     return (
         <Box>
             {providerType === 'None' ? (
-                <Link onClick={() => onClick()}>
-                    Choose Blockchain Provider
-                </Link>
+                <Link onClick={() => onClick()}>Choose Wallet Provider</Link>
             ) : (
-                <Image src={logo} size="32px" onClick={() => onClick()} />
+                <Image
+                    src={logo}
+                    size="32px"
+                    cursor="pointer"
+                    alt={`${providerType} Logo`}
+                    title={`Your current wallet provider is ${providerType}`}
+                    onClick={() => onClick()}
+                />
             )}
         </Box>
     )
