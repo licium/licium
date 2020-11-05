@@ -24,10 +24,7 @@ export const RegistrationId = ({ iscc }) => {
     }, [iscc.transactionLink, iscc.registrationId, registerId])
 
     const renderLink = () => (
-        <Link
-            href={`https://iscc.in/browse/core/isccid/${iscc.registrationId}/change/`}
-            target="_blank"
-        >
+        <Link href={`https://iscc.in/${iscc.registrationId}`} target="_blank">
             {iscc.registrationId}
         </Link>
     )
