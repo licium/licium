@@ -3,7 +3,7 @@ import { Magic } from 'magic-sdk'
 
 type State = {
     isMetamaskAvailable: boolean
-    provider: BlockchainProviderType
+    providerType: BlockchainProviderType
     web3?: Web3
     walletAddress?: string
     magic?: Magic
@@ -12,7 +12,7 @@ type State = {
 
 export const state: State = {
     isMetamaskAvailable: false,
-    provider: 'None',
+    providerType: 'None',
     web3: undefined,
     walletAddress: undefined,
     magic: undefined,

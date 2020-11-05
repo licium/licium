@@ -24,7 +24,7 @@ export default function PageTitle({ title }: PageTitleProps) {
         <Flex direction="column" justifyContent="space-between">
             <Flex direction="row" justifyContent="flex-end">
                 <BlockchainProviderIndicator
-                    providerType={state.blockchain.provider}
+                    providerType={state.blockchain.providerType}
                     onClick={() =>
                         actions.blockchain.openChooseBlockchainProviderTypeModal()
                     }

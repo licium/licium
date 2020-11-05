@@ -21,12 +21,6 @@ const Menu = () => {
         font-family: monospace;
     `
 
-    const logout = async () => {
-        setMenuDisabled(true)
-        await actions.blockchain.logout()
-        setMenuDisabled(false)
-    }
-
     return (
         <Flex direction="column" alignItems="center">
             <GenerateISCCButton disabled={isMenuDisabled} />
@@ -49,11 +43,6 @@ const Menu = () => {
                     {`Download JSON`}
                 </StyledButton>
             </a>
-            {state.blockchain.provider === 'magic' ? (
-                <StyledButton onClick={() => logout()}>Logout</StyledButton>
-            ) : (
-                ''
-            )}
             <Box>Your Wallet Address:</Box>
             <WalletBox>{state.blockchain.walletAddress}</WalletBox>
         </Flex>
