@@ -1,38 +1,22 @@
 import { Action, AsyncAction } from 'overmind'
-
-export const initialize: Action = ({ state, effects }) => {
-    state.blockchain.isMetamaskAvailable = effects.blockchain.isMetamaskAvailable()
-}
-
-export const activateMetaMask: AsyncAction = async ({ state, effects }) => {
-    state.blockchain.web3 = await effects.blockchain.loadWeb3WithMetamask()
-    state.blockchain.walletAddress = (
-        await state.blockchain.web3.eth.getAccounts()
-    )[0]
-    state.blockchain.provider = 'Metamask'
-}
-
-export const loginToMagic: AsyncAction<string> = async (
-    { state, effects },
-    email
-) => {
-    state.blockchain.web3 = await effects.blockchain.loadWeb3WithMagic(email)
-    state.blockchain.provider = 'Magic'
-    state.blockchain.walletAddress = (
-        await state.blockchain.web3.eth.getAccounts()
-    )[0]
-}
+import { Metamask } from './web3container/Metamask'
+import { Magic } from './web3container/Magic'
 
 export const logout: AsyncAction = async ({ state, effects }) => {
     effects.blockchain.logout()
-    state.blockchain.provider = 'None'
+    state.blockchain.providerType = 'None'
 }
 
-export const setBlockchainProviderType: Action<BlockchainProviderType> = (
-    { state },
-    providerType
-) => {
-    state.blockchain.provider = providerType
+export const setBlockchainProviderType: Action<{
+    type: BlockchainProviderType
+    email?: string
+}> = ({ state }, provider) => {
+    state.blockchain.providerType = provider.type
+    if (provider.type === 'Metamask') {
+        state.blockchain.web3container = new Metamask()
+    } else if (provider.type === 'Magic' && provider.email) {
+        state.blockchain.web3container = new Magic(provider.email)
+    }
 }
 
 export const openChooseBlockchainProviderTypeModal: Action = ({ state }) => {
@@ -47,49 +31,9 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
     { state, actions, effects },
     iscc
 ) => {
-    const { web3, walletAddress } = state.blockchain
-    if (!web3 || !walletAddress) {
-        return
-    }
-    try {
-        const transaction = await effects.blockchain.writeISCCToContract(
-            web3,
-            walletAddress,
-            iscc
-        )
-        const transactionHash = transaction.transactionHash
-        const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionHash}`
-        const updatedIscc = {
-            ...iscc,
-            transactionLink,
-            transactionHash,
-        }
-        actions.isccs.updateIscc(updatedIscc)
-        actions.blockchain.loadTransaction(updatedIscc)
-    } catch (error) {
-        actions.common.showError(error)
-    }
-}
-
-export const loadTransaction: AsyncAction<ISCC> = async (
-    { state, actions, effects },
-    iscc
-) => {
-    if (!state.blockchain.web3) {
-        return
-    }
-    try {
-        const receipt = await effects.blockchain.loadTransaction(
-            state.blockchain.web3,
-            iscc.transactionHash
-        )
-        const transactionReceipts = [...iscc.transactionReceipts, receipt]
-
-        actions.isccs.updateIscc({
-            ...iscc,
-            transactionReceipts,
-        })
-    } catch (error) {
-        actions.common.showError(error)
+    if (state.blockchain.web3container) {
+        return await state.blockchain.web3container.writeISCCToContract(iscc)
+    } else {
+        actions.blockchain.openChooseBlockchainProviderTypeModal()
     }
 }

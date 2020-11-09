@@ -13,7 +13,6 @@ export const StyledButton = styled(Button)`
 const Menu = () => {
     const state = useState()
     const actions = useActions()
-    const [isMenuDisabled, setMenuDisabled] = React.useState(false)
 
     const WalletBox = styled(Box)`
         line-break: anywhere;
@@ -23,11 +22,9 @@ const Menu = () => {
 
     return (
         <Flex direction="column" alignItems="center">
-            <GenerateISCCButton disabled={isMenuDisabled} />
+            <GenerateISCCButton />
             <StyledButton
-                disabled={
-                    state.isccs.selectedIsccs.length === 0 || isMenuDisabled
-                }
+                disabled={state.isccs.selectedIsccs.length === 0}
                 onClick={() => actions.isccs.deleteIsccs()}
             >
                 Delete Selected Entries
@@ -38,10 +35,7 @@ const Menu = () => {
                 )}`}
                 download="filename.json"
             >
-                <StyledButton disabled={isMenuDisabled}>
-                    {' '}
-                    {`Download JSON`}
-                </StyledButton>
+                <StyledButton disabled={false}> {`Download JSON`}</StyledButton>
             </a>
             <Box>Your Wallet Address:</Box>
             <WalletBox>{state.blockchain.walletAddress}</WalletBox>

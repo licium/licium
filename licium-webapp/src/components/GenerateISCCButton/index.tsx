@@ -4,10 +4,10 @@ import { StyledButton } from '../Menu'
 import { useActions } from '../../overmind'
 
 type GenerateISCCButtonProps = {
-    disabled: boolean
+    disabled?: boolean
 }
 
-const GenerateISCCButton = ({ disabled }: GenerateISCCButtonProps) => {
+const GenerateISCCButton = ({ disabled = false }: GenerateISCCButtonProps) => {
     const [counter, setCounter] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const actions = useActions()

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import {
     Button,
     Flex,
+    FormControl,
+    FormHelperText,
+    FormLabel,
     Heading,
     Image,
+    Input,
     Modal,
     ModalContent,
     ModalFooter,
@@ -13,7 +17,6 @@ import {
 } from '@chakra-ui/core'
 import MagicLogo from './magic-logo.svg'
 import MetamaskLogo from './metamask-logo.svg'
-import styled from '@emotion/styled'
 
 type ProviderIconProps = {
     name: BlockchainProviderType
@@ -28,14 +31,11 @@ const ProviderIcon = ({
     isSelected,
     onSelected,
 }: ProviderIconProps) => {
-    const StyledFlex = styled(Flex)`
-        border: 0.2em black;
-        border-radius: 1em;
-        border-style: ${isSelected ? 'solid' : 'none'};
-    `
-
     return (
-        <StyledFlex
+        <Flex
+            border="0.2em black"
+            borderRadius="1em"
+            borderStyle={isSelected ? 'solid' : 'none'}
             direction="column"
             alignItems="center"
             m="auto 1.5em"
@@ -43,13 +43,39 @@ const ProviderIcon = ({
         >
             <Image src={icon} alt={`${name} Logo`} size="128px" />
             <Text>{name}</Text>
-        </StyledFlex>
+        </Flex>
+    )
+}
+
+type EmailRequiredInputProps = {
+    onChange: (value: string) => void
+}
+
+const EmailRequiredInput = ({ onChange }: EmailRequiredInputProps) => {
+    return (
+        <FormControl>
+            <FormLabel htmlFor="email">
+                Please enter you E-Mail address.
+            </FormLabel>
+            <Input
+                isRequired={true}
+                type="email"
+                id="email"
+                placeholder="E-Mail"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    onChange(e.target.value)
+                }
+            />
+            <FormHelperText id="email-helper-text">
+                For Magic we need a valid E-Mail address.
+            </FormHelperText>
+        </FormControl>
     )
 }
 
 type ChooseBlockchainModalProps = {
     isOpen: boolean
-    onClose: (selectedProvider?: BlockchainProviderType) => void
+    onClose: (type?: BlockchainProviderType, email?: string) => void
 }
 
 const ChooseBlockchainModal = ({
@@ -59,6 +85,12 @@ const ChooseBlockchainModal = ({
     const [selected, setSelected] = React.useState<BlockchainProviderType>(
         'None'
     )
+    const [email, setEmail] = React.useState<string>('')
+
+    const submit = (e: FormEvent) => {
+        e.preventDefault()
+        onClose(selected, email)
+    }
 
     return (
         <Modal isOpen={isOpen} isCentered>
@@ -67,33 +99,43 @@ const ChooseBlockchainModal = ({
                 <ModalHeader textAlign="center">
                     <Heading>Please choose your wallet provider</Heading>
                 </ModalHeader>
-                <Flex direction="column" alignItems="center">
-                    <Flex direction="row" pt="1em">
-                        <ProviderIcon
-                            isSelected={selected === 'Magic'}
-                            icon={MagicLogo}
-                            name="Magic"
-                            onSelected={(name) => setSelected(name)}
-                        />
-                        <ProviderIcon
-                            isSelected={selected === 'Metamask'}
-                            icon={MetamaskLogo}
-                            name="Metamask"
-                            onSelected={(name) => setSelected(name)}
-                        />
+                <form onSubmit={(e) => submit(e)}>
+                    <Flex direction="column" alignItems="center">
+                        <Flex direction="row" pt="1em">
+                            <ProviderIcon
+                                isSelected={selected === 'Magic'}
+                                icon={MagicLogo}
+                                name="Magic"
+                                onSelected={(name) => setSelected(name)}
+                            />
+                            <ProviderIcon
+                                isSelected={selected === 'Metamask'}
+                                icon={MetamaskLogo}
+                                name="Metamask"
+                                onSelected={(name) => setSelected(name)}
+                            />
+                        </Flex>
+                        {selected === 'Magic' ? (
+                            <EmailRequiredInput
+                                onChange={(value) => setEmail(value)}
+                            />
+                        ) : (
+                            ''
+                        )}
                     </Flex>
-                </Flex>
-                <ModalFooter>
-                    <Button
-                        isDisabled={selected === 'None'}
-                        variantColor="blue"
-                        mr={3}
-                        onClick={() => onClose(selected)}
-                    >
-                        OK
-                    </Button>
-                    <Button onClick={() => onClose()}>Cancel</Button>
-                </ModalFooter>
+
+                    <ModalFooter>
+                        <Button
+                            type="submit"
+                            isDisabled={selected === 'None'}
+                            variantColor="blue"
+                            mr={3}
+                        >
+                            OK
+                        </Button>
+                        <Button onClick={() => onClose()}>Cancel</Button>
+                    </ModalFooter>
+                </form>
             </ModalContent>
         </Modal>
     )

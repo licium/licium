@@ -49,14 +49,13 @@ export const writeTransactionToMetaRegistry: AsyncAction<ISCC> = async (
     { state, actions, effects },
     iscc
 ) => {
-    if (!state.blockchain.walletAddress) {
-        //TODO: Implement blockchain so that walletAddress is never undefinded
+    if (!state.blockchain.web3container) {
         return
     }
     try {
         const shortcode = await effects.isccs.writeTransactionToMetaRegistry(
             iscc,
-            state.blockchain.walletAddress
+            state.blockchain.web3container.walletAddress
         )
         const registrationId = shortcode.iscc_id
         actions.isccs.updateIscc({

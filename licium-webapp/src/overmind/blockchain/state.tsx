@@ -1,20 +1,15 @@
-import Web3 from 'web3'
-import { Magic } from 'magic-sdk'
+import { Web3Container } from './web3container/Web3Container'
 
 type State = {
     isMetamaskAvailable: boolean
     providerType: BlockchainProviderType
-    web3?: Web3
-    walletAddress?: string
-    magic?: Magic
+    web3container?: Web3Container
     isChoosBlockchainProviderModalOpen: boolean
 }
 
 export const state: State = {
     isMetamaskAvailable: false,
     providerType: 'None',
-    web3: undefined,
-    walletAddress: undefined,
-    magic: undefined,
+    web3container: undefined,
     isChoosBlockchainProviderModalOpen: false,
 }

@@ -13,7 +13,6 @@ function App() {
 
     useEffect(() => {
         actions.isccs.initialize()
-        actions.blockchain.initialize()
     }, [actions])
 
     return (
