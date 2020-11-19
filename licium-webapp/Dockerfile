@@ -3,10 +3,10 @@ FROM node:12 as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
-COPY yarn.lock ./
-RUN HUSKY_SKIP_INSTALL=true yarn install --silent
+COPY package-lock.json ./
+RUN HUSKY_SKIP_INSTALL=true npm ci --silent
 COPY . ./
-RUN yarn build
+RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
