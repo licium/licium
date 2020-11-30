@@ -1,22 +1,27 @@
 import { Action, AsyncAction } from 'overmind'
-import { Metamask } from './web3container/Metamask'
-import { Magic } from './web3container/Magic'
+import ISCCRegistry from '../../assets/contracts/ISCCRegistry.json'
+import { Contract } from 'web3-eth-contract'
+
+type ContractInstance = InstanceType<typeof Contract>
 
 export const logout: AsyncAction = async ({ state, effects }) => {
     effects.blockchain.logout()
     state.blockchain.providerType = 'None'
 }
 
-export const setBlockchainProviderType: Action<{
+export const setBlockchainProviderType: AsyncAction<{
     type: BlockchainProviderType
     email?: string
-}> = ({ state }, provider) => {
+}> = async ({ state, effects }, provider) => {
     state.blockchain.providerType = provider.type
     if (provider.type === 'Metamask') {
-        state.blockchain.web3container = new Metamask()
+        state.blockchain.walletProvider = await effects.blockchain.loadWeb3WithMetamask()
     } else if (provider.type === 'Magic' && provider.email) {
-        state.blockchain.web3container = new Magic(provider.email)
+        state.blockchain.walletProvider = await effects.blockchain.loadWeb3WithMagic(
+            provider.email
+        )
     }
+    state.blockchain.isChoosBlockchainProviderModalOpen = false
 }
 
 export const openChooseBlockchainProviderTypeModal: Action = ({ state }) => {
@@ -31,9 +36,30 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
     { state, actions, effects },
     iscc
 ) => {
-    if (state.blockchain.web3container) {
-        return await state.blockchain.web3container.writeISCCToContract(iscc)
-    } else {
-        actions.blockchain.openChooseBlockchainProviderTypeModal()
+    const { walletProvider } = state.blockchain
+    if (walletProvider) {
+        const { web3, walletAddress } = walletProvider
+        const contract: ContractInstance = new web3.eth.Contract(
+            ISCCRegistry.abi as any,
+            ISCCRegistry.networks['8995'].address
+        )
+
+        const [isccInHex, tophashInHex] = [
+            iscc.iscc_raw,
+            iscc.tophash,
+        ].map((value) => web3.utils.hexToBytes(`0x${value}`))
+
+        const contractMethod = contract.methods.declare(isccInHex, tophashInHex)
+
+        const transactionHash = await contractMethod.send({
+            from: walletAddress,
+        })
+        const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionHash}`
+        const updatedIscc = {
+            ...iscc,
+            transactionLink,
+            transactionHash,
+        }
+        actions.isccs.updateIscc(updatedIscc)
     }
 }

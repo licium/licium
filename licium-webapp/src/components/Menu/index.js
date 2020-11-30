@@ -37,8 +37,17 @@ const Menu = () => {
             >
                 <StyledButton disabled={false}> {`Download JSON`}</StyledButton>
             </a>
-            <Box>Your Wallet Address:</Box>
-            <WalletBox>{state.blockchain.walletAddress}</WalletBox>
+
+            {state.blockchain.walletProvider ? (
+                <>
+                    <Box>Your Wallet Address:</Box>
+                    <WalletBox>
+                        {state.blockchain.walletProvider?.walletAddress}
+                    </WalletBox>
+                </>
+            ) : (
+                ''
+            )}
         </Flex>
     )
 }

@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/core'
 import MagicLogo from './magic-logo.svg'
 import MetamaskLogo from './metamask-logo.svg'
+import { useActions, useState } from '../../overmind'
 
 type ProviderIconProps = {
     name: BlockchainProviderType
@@ -73,27 +74,29 @@ const EmailRequiredInput = ({ onChange }: EmailRequiredInputProps) => {
     )
 }
 
-type ChooseBlockchainModalProps = {
-    isOpen: boolean
-    onClose: (type?: BlockchainProviderType, email?: string) => void
-}
+const ChooseBlockchainModal = () => {
+    const state = useState()
+    const actions = useActions()
 
-const ChooseBlockchainModal = ({
-    isOpen,
-    onClose,
-}: ChooseBlockchainModalProps) => {
     const [selected, setSelected] = React.useState<BlockchainProviderType>(
         'None'
     )
+
     const [email, setEmail] = React.useState<string>('')
 
     const submit = (e: FormEvent) => {
         e.preventDefault()
-        onClose(selected, email)
+        actions.blockchain.setBlockchainProviderType({
+            type: selected,
+            email,
+        })
     }
 
     return (
-        <Modal isOpen={isOpen} isCentered>
+        <Modal
+            isOpen={state.blockchain.isChoosBlockchainProviderModalOpen}
+            isCentered
+        >
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader textAlign="center">
@@ -133,7 +136,13 @@ const ChooseBlockchainModal = ({
                         >
                             OK
                         </Button>
-                        <Button onClick={() => onClose()}>Cancel</Button>
+                        <Button
+                            onClick={() =>
+                                actions.blockchain.closeChooseBlockchainProviderTypeModal()
+                            }
+                        >
+                            Cancel
+                        </Button>
                     </ModalFooter>
                 </form>
             </ModalContent>

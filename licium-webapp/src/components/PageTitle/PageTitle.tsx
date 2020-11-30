@@ -13,13 +13,6 @@ export default function PageTitle({ title }: PageTitleProps) {
     const state = useState()
     const actions = useActions()
 
-    const onModalClose = (type?: BlockchainProviderType, email?: string) => {
-        if (type) {
-            actions.blockchain.setBlockchainProviderType({ type, email })
-        }
-        actions.blockchain.closeChooseBlockchainProviderTypeModal()
-    }
-
     return (
         <Flex direction="column" justifyContent="space-between">
             <Flex direction="row" justifyContent="flex-end">
@@ -35,10 +28,7 @@ export default function PageTitle({ title }: PageTitleProps) {
                     {title}
                 </Heading>
             </Flex>
-            <ChooseBlockchainModal
-                isOpen={state.blockchain.isChoosBlockchainProviderModalOpen}
-                onClose={(type, email) => onModalClose(type, email)}
-            />
+            <ChooseBlockchainModal />
         </Flex>
     )
 }

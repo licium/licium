@@ -2,6 +2,7 @@ import Web3 from 'web3'
 import { Magic } from 'magic-sdk'
 import ISCCRegistry from '../../assets/contracts/ISCCRegistry.json'
 import { Contract } from 'web3-eth-contract'
+import { WalletProvider } from './state'
 
 type ContractInstance = InstanceType<typeof Contract>
 
@@ -13,16 +14,27 @@ const magic = new Magic('pk_test_CEB45261B7EC3A3F', {
 
 export const isMetamaskAvailable = () => !!(window as any).ethereum
 
-export const loadWeb3WithMetamask = async () => {
+export const loadWeb3WithMetamask = async (): Promise<WalletProvider> => {
     const ethereum = (window as any).ethereum
     const web3 = new Web3(ethereum)
-    await ethereum.request({ method: 'eth_requestAccounts' })
-    return web3
+    const accounts = await web3.eth.getAccounts()
+    return {
+        web3,
+        walletAddress: accounts[0],
+    }
 }
 
-export const loadWeb3WithMagic = async (email: string) => {
+export const loadWeb3WithMagic = async (
+    email: string
+): Promise<WalletProvider> => {
     await magic.auth.loginWithMagicLink({ email })
-    return new Web3(magic.rpcProvider as any)
+    const web3 = new Web3(magic.rpcProvider as any)
+    const accounts = await web3.eth.getAccounts()
+    return {
+        web3,
+        walletAddress: accounts[0],
+        magic,
+    }
 }
 
 export const logout = async () => {
