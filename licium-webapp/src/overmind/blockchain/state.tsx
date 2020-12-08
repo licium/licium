@@ -7,16 +7,25 @@ export interface WalletProvider {
     magic?: Magic
 }
 
+type PopupPromise<T> = {
+    resolve: (value?: void | PromiseLike<void> | undefined) => void
+    reject: (reason?: any) => void
+}
+
 type State = {
     isMetamaskAvailable: boolean
     providerType: BlockchainProviderType
     walletProvider?: WalletProvider
-    isChoosBlockchainProviderModalOpen: boolean
+    isChooseBlockchainProviderModalOpen: boolean
+    chooseBlockchainPopupPromise: undefined | PopupPromise<void>
+    activatingProvider: boolean
 }
 
 export const state: State = {
     isMetamaskAvailable: false,
     providerType: 'None',
     walletProvider: undefined,
-    isChoosBlockchainProviderModalOpen: false,
+    isChooseBlockchainProviderModalOpen: false,
+    chooseBlockchainPopupPromise: undefined,
+    activatingProvider: false,
 }

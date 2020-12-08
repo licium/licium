@@ -18,9 +18,13 @@ export default function PageTitle({ title }: PageTitleProps) {
             <Flex direction="row" justifyContent="flex-end">
                 <BlockchainProviderIndicator
                     providerType={state.blockchain.providerType}
-                    onClick={() =>
-                        actions.blockchain.openChooseBlockchainProviderTypeModal()
-                    }
+                    onClick={async () => {
+                        try {
+                            await actions.blockchain.openChooseBlockchainProviderTypeModal()
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }}
                 />
             </Flex>
             <Flex direction="row">

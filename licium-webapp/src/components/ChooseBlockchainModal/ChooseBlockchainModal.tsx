@@ -48,17 +48,72 @@ const ProviderIcon = ({
     )
 }
 
-type EmailRequiredInputProps = {
-    onChange: (value: string) => void
+type ProviderSelectorProps = {
+    selected: BlockchainProviderType
+    setSelected: (name: BlockchainProviderType) => void
+    isDisabled: boolean
+    setEmail: (value: string) => void
+}
+const ProviderSelector = ({
+    selected,
+    setSelected,
+    isDisabled,
+    setEmail,
+}: ProviderSelectorProps) => {
+    const onSelect = (name: BlockchainProviderType) => {
+        if (!isDisabled) {
+            setSelected(name)
+        }
+    }
+
+    return (
+        <Flex
+            direction="column"
+            alignItems="center"
+            opacity={isDisabled ? 0.4 : 1}
+        >
+            <Flex direction="row" pt="1em">
+                <ProviderIcon
+                    isSelected={selected === 'Magic'}
+                    icon={MagicLogo}
+                    name="Magic"
+                    onSelected={(name) => onSelect(name)}
+                />
+                <ProviderIcon
+                    isSelected={selected === 'Metamask'}
+                    icon={MetamaskLogo}
+                    name="Metamask"
+                    onSelected={(name) => onSelect(name)}
+                />
+            </Flex>
+            {selected === 'Magic' ? (
+                <EmailRequiredInput
+                    isDisabled={isDisabled}
+                    onChange={(value) => setEmail(value)}
+                />
+            ) : (
+                ''
+            )}
+        </Flex>
+    )
 }
 
-const EmailRequiredInput = ({ onChange }: EmailRequiredInputProps) => {
+type EmailRequiredInputProps = {
+    onChange: (value: string) => void
+    isDisabled: boolean
+}
+
+const EmailRequiredInput = ({
+    onChange,
+    isDisabled,
+}: EmailRequiredInputProps) => {
     return (
         <FormControl>
             <FormLabel htmlFor="email">
                 Please enter you E-Mail address.
             </FormLabel>
             <Input
+                isDisabled={isDisabled}
                 isRequired={true}
                 type="email"
                 id="email"
@@ -94,7 +149,7 @@ const ChooseBlockchainModal = () => {
 
     return (
         <Modal
-            isOpen={state.blockchain.isChoosBlockchainProviderModalOpen}
+            isOpen={state.blockchain.isChooseBlockchainProviderModalOpen}
             isCentered
         >
             <ModalOverlay />
@@ -103,33 +158,16 @@ const ChooseBlockchainModal = () => {
                     <Heading>Please choose your wallet provider</Heading>
                 </ModalHeader>
                 <form onSubmit={(e) => submit(e)}>
-                    <Flex direction="column" alignItems="center">
-                        <Flex direction="row" pt="1em">
-                            <ProviderIcon
-                                isSelected={selected === 'Magic'}
-                                icon={MagicLogo}
-                                name="Magic"
-                                onSelected={(name) => setSelected(name)}
-                            />
-                            <ProviderIcon
-                                isSelected={selected === 'Metamask'}
-                                icon={MetamaskLogo}
-                                name="Metamask"
-                                onSelected={(name) => setSelected(name)}
-                            />
-                        </Flex>
-                        {selected === 'Magic' ? (
-                            <EmailRequiredInput
-                                onChange={(value) => setEmail(value)}
-                            />
-                        ) : (
-                            ''
-                        )}
-                    </Flex>
-
+                    <ProviderSelector
+                        selected={selected}
+                        setSelected={setSelected}
+                        isDisabled={state.blockchain.activatingProvider}
+                        setEmail={setEmail}
+                    />
                     <ModalFooter>
                         <Button
                             type="submit"
+                            isLoading={state.blockchain.activatingProvider}
                             isDisabled={selected === 'None'}
                             variantColor="blue"
                             mr={3}
@@ -140,6 +178,7 @@ const ChooseBlockchainModal = () => {
                             onClick={() =>
                                 actions.blockchain.closeChooseBlockchainProviderTypeModal()
                             }
+                            isDisabled={state.blockchain.activatingProvider}
                         >
                             Cancel
                         </Button>

@@ -17,6 +17,7 @@ export const isMetamaskAvailable = () => !!(window as any).ethereum
 export const loadWeb3WithMetamask = async (): Promise<WalletProvider> => {
     const ethereum = (window as any).ethereum
     const web3 = new Web3(ethereum)
+    await ethereum.enable()
     const accounts = await web3.eth.getAccounts()
     return {
         web3,

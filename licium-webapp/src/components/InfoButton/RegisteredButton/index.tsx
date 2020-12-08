@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconButton, Link } from '@chakra-ui/core'
 import { FaUpload } from 'react-icons/all'
-import { useActions } from '../../../overmind'
+import { useActions, useState } from '../../../overmind'
 
 type RegisteredButtonProps = {
     iscc: ISCC
@@ -10,12 +10,19 @@ type RegisteredButtonProps = {
 const RegisteredButton = ({ iscc }: RegisteredButtonProps) => {
     const actions = useActions()
 
+    const state = useState()
     const [isLoading, setLoading] = React.useState(false)
 
     const registerISCC = async () => {
         setLoading(true)
-        await actions.blockchain.writeISCCToContract(iscc)
-        setLoading(false)
+        try {
+            if (!state.blockchain.walletProvider) {
+                await actions.blockchain.openChooseBlockchainProviderTypeModal()
+            }
+            await actions.blockchain.writeISCCToContract(iscc)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (

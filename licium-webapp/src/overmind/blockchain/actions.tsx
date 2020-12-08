@@ -13,6 +13,7 @@ export const setBlockchainProviderType: AsyncAction<{
     type: BlockchainProviderType
     email?: string
 }> = async ({ state, effects }, provider) => {
+    state.blockchain.activatingProvider = true
     state.blockchain.providerType = provider.type
     if (provider.type === 'Metamask') {
         state.blockchain.walletProvider = await effects.blockchain.loadWeb3WithMetamask()
@@ -21,15 +22,23 @@ export const setBlockchainProviderType: AsyncAction<{
             provider.email
         )
     }
-    state.blockchain.isChoosBlockchainProviderModalOpen = false
+    state.blockchain.chooseBlockchainPopupPromise?.resolve()
+    state.blockchain.activatingProvider = false
+    state.blockchain.isChooseBlockchainProviderModalOpen = false
 }
 
-export const openChooseBlockchainProviderTypeModal: Action = ({ state }) => {
-    state.blockchain.isChoosBlockchainProviderModalOpen = true
+export const openChooseBlockchainProviderTypeModal: AsyncAction = async ({
+    state,
+}) => {
+    state.blockchain.isChooseBlockchainProviderModalOpen = true
+    return new Promise<void>((resolve, reject) => {
+        state.blockchain.chooseBlockchainPopupPromise = { resolve, reject }
+    })
 }
 
 export const closeChooseBlockchainProviderTypeModal: Action = ({ state }) => {
-    state.blockchain.isChoosBlockchainProviderModalOpen = false
+    state.blockchain.isChooseBlockchainProviderModalOpen = false
+    state.blockchain.chooseBlockchainPopupPromise?.reject('popup closed')
 }
 
 export const writeISCCToContract: AsyncAction<ISCC> = async (
