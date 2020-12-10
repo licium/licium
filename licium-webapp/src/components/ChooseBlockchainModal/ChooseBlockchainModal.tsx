@@ -91,6 +91,10 @@ const ProviderSelector = ({
                     isDisabled={isDisabled}
                     onChange={(value) => setEmail(value)}
                 />
+            ) : isDisabled ? (
+                <Text as="i">
+                    Please open the metamask plugin to log in with metamask.
+                </Text>
             ) : (
                 ''
             )}
