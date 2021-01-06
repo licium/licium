@@ -60,14 +60,14 @@ export const writeISCCToContract: AsyncAction<ISCC> = async (
 
         const contractMethod = contract.methods.declare(isccInHex, tophashInHex)
 
-        const transactionHash = await contractMethod.send({
+        const transactionObject = await contractMethod.send({
             from: walletAddress,
         })
-        const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionHash}`
+        const transactionLink = `https://blockexplorer.bloxberg.org/tx/${transactionObject.transactionHash}`
         const updatedIscc = {
             ...iscc,
             transactionLink,
-            transactionHash,
+            transactionHash: transactionObject,
         }
         actions.isccs.updateIscc(updatedIscc)
     }
