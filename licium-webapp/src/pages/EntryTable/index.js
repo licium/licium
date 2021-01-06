@@ -35,6 +35,12 @@ const EntryTable = () => {
             {
                 Header: 'Date',
                 accessor: 'date',
+                Cell: ({ value }) => {
+                    const date = new Date(value)
+                    const time = date.toLocaleTimeString('en-GB')
+                    const dateString = date.toISOString().split('T')[0]
+                    return `${dateString} ${time}`
+                },
             },
             {
                 accessor: (row) => row,
