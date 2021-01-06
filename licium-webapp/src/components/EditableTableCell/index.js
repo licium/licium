@@ -68,7 +68,7 @@ const EditableCell = ({ iscc }) => {
     const actions = useActions()
 
     return (
-        <Flex minW="25em" justifyContent="space-between">
+        <Flex justifyContent="space-between">
             <Box mr={3}>{iscc.title}</Box>
 
             <Popover
