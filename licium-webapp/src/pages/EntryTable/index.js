@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import { Icon } from '@chakra-ui/core'
 import { ISCCButton } from '../../components/InfoButton/ISCCButton'
 
 import { RegistrationId } from '../../components/RegistrationId'
@@ -18,11 +17,11 @@ const EntryTable = () => {
 
     const columns = useMemo(
         () => [
-            {
+            /* {
                 Header: 'Star',
                 className: 'centered',
                 Cell: () => <Icon name="star" />,
-            },
+            },*/
             {
                 Header: 'Filename',
                 accessor: 'filename',
