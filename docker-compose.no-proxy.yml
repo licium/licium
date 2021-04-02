@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  iscc-service:
+    build: iscc-service/.
+    restart: unless-stopped
+    ports:
+      - "8124:8080"
+  licium-webapp:
+    build: licium-webapp/.
+    restart: unless-stopped
+    ports:
+      - "8123:80"
+
