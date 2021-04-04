@@ -10,7 +10,7 @@ jobs:
 
     steps:
     -  name: Login to DockerHub
-       uses: docker/login-action@v1 
+       uses: docker/login-action@v1.8.0 
        with:
           username: ${{ secrets.DOCKERHUB_USER_NAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
