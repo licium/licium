@@ -21,7 +21,7 @@ jobs:
         npm install
         npm test
         npm run build
-  build and publish image:
+  "build and publish image":
     runs-on: ubuntu-latest
     steps:
     -  name: Login to DockerHub
