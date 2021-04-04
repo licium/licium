@@ -18,8 +18,8 @@ jobs:
     - name: npm install, build, and test
       working-directory: licium-webapp
       run: |
-        npm install
-        npm test
+        #npm install
+        #npm test
         npm run build
   
     -  name: Login to DockerHub
