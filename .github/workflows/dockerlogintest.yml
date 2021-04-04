@@ -1,0 +1,17 @@
+name: Docker login test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test: 
+    runs-on: ubuntu-latest
+
+    steps:
+    -  name: Login to DockerHub
+       uses: docker/login-action@v1 
+       with:
+          username: ${{ secrets.DOCKERHUB_USER_NAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+   
