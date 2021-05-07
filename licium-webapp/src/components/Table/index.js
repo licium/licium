@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react'
 import { useRowSelect, useTable } from 'react-table'
+import {
+    Table as ChakraTable,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+} from '@chakra-ui/react'
 import IndeterminateCheckbox from './IndeterminateCheckbox'
 
 const Table = ({ columns, data, onEntriesSelected = () => {} }) => {
@@ -44,26 +52,26 @@ const Table = ({ columns, data, onEntriesSelected = () => {} }) => {
     )
 
     return (
-        <table {...getTableProps()}>
-            <thead>
+        <ChakraTable {...getTableProps()}>
+            <Thead>
                 {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
+                    <Tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>
+                            <Th {...column.getHeaderProps()}>
                                 {column.render('Header')}
-                            </th>
+                            </Th>
                         ))}
-                    </tr>
+                    </Tr>
                 ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
+            </Thead>
+            <Tbody {...getTableBodyProps()}>
                 {rows.map((row) => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <Tr {...row.getRowProps()}>
                             {row.cells.map((cell) => {
                                 return (
-                                    <td
+                                    <Td
                                         {...cell.getCellProps([
                                             {
                                                 className:
@@ -72,14 +80,14 @@ const Table = ({ columns, data, onEntriesSelected = () => {} }) => {
                                         ])}
                                     >
                                         {cell.render('Cell')}
-                                    </td>
+                                    </Td>
                                 )
                             })}
-                        </tr>
+                        </Tr>
                     )
                 })}
-            </tbody>
-        </table>
+            </Tbody>
+        </ChakraTable>
     )
 }
 
