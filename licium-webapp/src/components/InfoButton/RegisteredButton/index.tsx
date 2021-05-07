@@ -1,6 +1,6 @@
 import React from 'react'
-import { IconButton, Link } from '@chakra-ui/core'
-import { FaUpload } from 'react-icons/all'
+import { IconButton, Link } from '@chakra-ui/react'
+import { FaCheck, FaUpload } from 'react-icons/all'
 import { useActions, useState } from '../../../overmind'
 
 type RegisteredButtonProps = {
@@ -31,9 +31,9 @@ const RegisteredButton = ({ iscc }: RegisteredButtonProps) => {
                 <Link href={iscc.transactionLink} target="_blank">
                     <IconButton
                         size="sm"
-                        variantColor="green"
+                        colorScheme="green"
                         title="Registered on blockchain"
-                        icon="check"
+                        icon={<FaCheck />}
                         aria-label="RegistrationInfo"
                     />
                 </Link>
@@ -41,9 +41,10 @@ const RegisteredButton = ({ iscc }: RegisteredButtonProps) => {
                 <IconButton
                     onClick={() => registerISCC()}
                     isLoading={isLoading}
-                    icon={FaUpload}
+                    icon={<FaUpload />}
                     size="sm"
-                    variantColor="yellow"
+                    color="white"
+                    colorScheme="yellow"
                     aria-label="Not registered"
                 />
             )}

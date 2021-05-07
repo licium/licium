@@ -1,6 +1,5 @@
-import { theme } from '@chakra-ui/core'
+import { extendTheme } from '@chakra-ui/react'
 
-export const customTheme = {
-    ...theme,
+export const customTheme = extendTheme({
     fonts: { heading: 'Source Sans Pro', body: 'Source Sans Pro' },
-}
+})

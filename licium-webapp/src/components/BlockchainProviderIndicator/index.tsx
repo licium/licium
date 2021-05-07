@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Image, Link } from '@chakra-ui/core'
+import { Box, Image, Link } from '@chakra-ui/react'
 import MetamaskLogo from './metamask-logo.svg'
 import MagicLogo from './magic-logo.svg'
 

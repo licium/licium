@@ -1,4 +1,4 @@
-import { Box, Divider } from '@chakra-ui/core'
+import { Box, Divider } from '@chakra-ui/react'
 import React from 'react'
 import LabeledValue from '../../components/LabeledText'
 import Badges from '../../components/Badges/Badges'

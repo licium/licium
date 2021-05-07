@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Stack } from '@chakra-ui/core'
+import { Badge, Stack } from '@chakra-ui/react'
 
 type BadgesProps = {
     badges: string[]

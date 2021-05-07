@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex } from '@chakra-ui/core'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import GenerateISCCButton from '../GenerateISCCButton'
 import styled from '@emotion/styled'
 import { useActions, useState } from '../../overmind'

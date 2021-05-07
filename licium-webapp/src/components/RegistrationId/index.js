@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
-import { IconButton } from '@chakra-ui/core'
-import Link from '@chakra-ui/core/dist/Link'
+import { IconButton, Link } from '@chakra-ui/react'
 import { useActions } from '../../overmind'
 
 export const RegistrationId = ({ iscc }) => {

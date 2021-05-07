@@ -2,8 +2,7 @@ import React from 'react'
 import { Logo } from '../Logo/Logo'
 import './AppHeader.scss'
 import { Link as ReachLink } from 'react-router-dom'
-import Link from '@chakra-ui/core/dist/Link'
-import { Flex } from '@chakra-ui/core'
+import { Flex, Link } from '@chakra-ui/react'
 
 export default function AppHeader() {
     return (

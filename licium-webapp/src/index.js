@@ -4,8 +4,8 @@ import './index.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 import { customTheme } from './assets/styles/theme'
+import { ChakraProvider } from '@chakra-ui/react'
 import { createOvermind } from 'overmind'
 import { config } from './overmind'
 import { Provider } from 'overmind-react'
@@ -14,11 +14,10 @@ const overmind = createOvermind(config)
 
 ReactDOM.render(
     <Provider value={overmind}>
-        <ThemeProvider theme={customTheme}>
-            <CSSReset />
+        <ChakraProvider theme={customTheme}>
             <App />
             <ToastContainer />
-        </ThemeProvider>
+        </ChakraProvider>
     </Provider>,
 
     document.getElementById('root')

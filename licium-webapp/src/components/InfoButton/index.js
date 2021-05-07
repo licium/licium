@@ -8,10 +8,10 @@ import {
     PopoverContent,
     PopoverHeader,
     PopoverTrigger,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 export const InfoButton = ({
-    variantColor,
+    colorScheme,
     title,
     icon,
     placement,
@@ -22,7 +22,7 @@ export const InfoButton = ({
             <IconButton
                 size="sm"
                 icon={icon}
-                variantColor={variantColor}
+                colorScheme={colorScheme}
                 aria-label={title}
             />
         </PopoverTrigger>

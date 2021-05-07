@@ -37,9 +37,9 @@
     ]
   },
   "devDependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.35",
-    "@emotion/styled": "^10.0.27",
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
     "@storybook/addon-storyshots": "^6.0.28",
@@ -58,9 +58,9 @@
     "cross-env": "^7.0.2",
     "cypress": "^4.11.0",
     "cypress-cucumber-preprocessor": "^2.5.4",
-    "emotion-theming": "^10.0.27",
     "eslint-plugin-cypress": "^2.11.1",
     "file-type": "^16.0.1",
+    "framer-motion": "^4.1.11",
     "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.5",
     "install": "^0.13.0",

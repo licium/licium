@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+    Box,
     Button,
     ButtonGroup,
     Flex,
@@ -13,10 +14,10 @@ import {
     PopoverContent,
     PopoverTrigger,
     Stack,
-} from '@chakra-ui/core'
-import Box from '@chakra-ui/core/dist/Box'
+} from '@chakra-ui/react'
 import FocusLock from 'react-focus-lock'
 import { useActions } from '../../overmind'
+import { FaEdit } from 'react-icons/all'
 
 const TextInput = React.forwardRef((props, ref) => {
     return (
@@ -80,7 +81,7 @@ const EditableCell = ({ iscc }) => {
                 closeOnBlur={false}
             >
                 <PopoverTrigger>
-                    <IconButton size="sm" icon="edit" aria-label="edit" />
+                    <IconButton size="sm" icon={<FaEdit />} aria-label="edit" />
                 </PopoverTrigger>
                 <PopoverContent zIndex={4} p={5}>
                     <FocusLock returnFocus persistentFocus={false}>

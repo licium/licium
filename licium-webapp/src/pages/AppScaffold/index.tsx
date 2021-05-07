@@ -1,6 +1,5 @@
 import React, { ReactChildren } from 'react'
-import Grid from '@chakra-ui/core/dist/Grid'
-import { Box } from '@chakra-ui/core'
+import { Box, Grid } from '@chakra-ui/react'
 import AppHeader from '../../components/AppHeader/AppHeader'
 import PageTitle from '../../components/PageTitle/PageTitle'
 import Menu from '../../components/Menu'

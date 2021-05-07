@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { List, ListItem } from '@chakra-ui/core'
+import { List, ListItem } from '@chakra-ui/react'
 import { FaQrcode } from 'react-icons/all'
 import { splitEvery } from 'ramda'
 import { InfoButton } from '../index'
@@ -25,7 +25,11 @@ export const ISCCButton = (props) => {
     const breakTophash = (tophash) => splitEvery(32, tophash).join(' ')
 
     return (
-        <InfoButton icon={FaQrcode} placement="left" title="ISCC Information">
+        <InfoButton
+            icon={<FaQrcode />}
+            placement="left"
+            title="ISCC Information"
+        >
             <List textAlign="left">
                 {isccCodeList(iscc.iscc)}
                 <ListItem>

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Box, Heading, Text } from '@chakra-ui/core'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 type LabeledTextProps = {
     label: string

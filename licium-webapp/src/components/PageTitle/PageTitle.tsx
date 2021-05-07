@@ -1,6 +1,5 @@
 import React from 'react'
-import { Flex } from '@chakra-ui/core'
-import Heading from '@chakra-ui/core/dist/Heading'
+import { Flex, Heading } from '@chakra-ui/react'
 import BlockchainProviderIndicator from '../BlockchainProviderIndicator'
 import { useActions, useState } from '../../overmind'
 import ChooseBlockchainModal from '../ChooseBlockchainModal/ChooseBlockchainModal'

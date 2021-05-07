@@ -14,7 +14,7 @@ import {
     ModalHeader,
     ModalOverlay,
     Text,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import MagicLogo from './magic-logo.svg'
 import MetamaskLogo from './metamask-logo.svg'
 import { useActions, useState } from '../../overmind'
@@ -154,6 +154,7 @@ const ChooseBlockchainModal = () => {
     return (
         <Modal
             isOpen={state.blockchain.isChooseBlockchainProviderModalOpen}
+            onClose={() => {}}
             isCentered
         >
             <ModalOverlay />
@@ -173,7 +174,7 @@ const ChooseBlockchainModal = () => {
                             type="submit"
                             isLoading={state.blockchain.activatingProvider}
                             isDisabled={selected === 'None'}
-                            variantColor="blue"
+                            colorScheme="blue"
                             mr={3}
                         >
                             OK
